@@ -1,0 +1,93 @@
+{# empty Twig template #}
+{% extends "CrowdRiseBundle::layout.html.twig" %}
+
+{% block content %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+        <script type="text/javascript" src="{{asset('js/materialize.js')}}"></script> 
+    
+    
+    <script>
+        $(document).ready(function () {
+
+            $('.projetCfDate').pickadate({
+                format: 'yyyy-mm-dd',
+                selectMonths: true, // Creates a dropdown to control month
+                selectYears: 15, // Creates a dropdown of 15 years to control year
+                min:$.now()
+            });
+            $('#form-cf').submit(function(){
+                if ($('.projetCfDate').val() === '') {   
+                return false; 
+                }
+            })
+        });
+
+    </script>
+
+    <style>
+        .formulaire{
+            margin-right: 30%;
+            margin-left:30%;
+        }
+        .test{
+            margin-bottom:  10px;
+        }
+    </style>
+    <section id="featured" >
+        <form method="post" id="form-cf">
+            <div class="row formulaire">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">Ajouter votre Projet CrowdFunding</span>
+                        <div class="input-field col s12">
+                            <i class="medium material-icons prefix">label</i>
+                            {{form_widget(f.nom,{'attr':{'class':'validate','pattern':'[A-Za-z0-9]+( [A-Za-z0-9]+)*'}})}}
+                            <label for="{{f.nom.vars.id}}" data-error="wrong" data-success="right" class="center-align">Nom</label>
+
+                        </div>
+
+
+                        <div class="input-field col s12">
+                            <i class="medium material-icons prefix">description</i>
+                            {{form_widget(f.description,{'attr':{'class':'materialize-textarea'}})}}
+                            <label for="{{f.description.vars.id}}" class="center-align">description</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="meddium material-icons prefix">attach_money</i>
+                            {{form_widget(f.budgetFinale,{'attr':{'class':'validate tooltipped','required':'required','pattern':'[1-9][0-9]*','data-tooltip':'1DT = 1Cr'}})}}
+                            <label for="{{f.budgetFinale.vars.id}}" class="center-align">Budget Final (En Cr)</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="medium material-icons prefix">date_range</i>
+                            {{form_widget(f.fin)}} 
+                            <label for="{{f.fin.vars.id}}" class="center-align active ">Fin</label>
+                        </div>
+                            {% if update is not defined %}
+                        <div class="file-field input-field col s12">
+                            
+                            <div class="btn">
+                                <span>Importer</span>
+                                
+                                {{form_widget(f.imageidee,{'attr':{'accept':'image/*'}})}}
+                            </div>
+                            <div class="file-path-wrapper" style='margin-left:5%;'>
+                                <input id="a" class="file-path validate" pattern='.+\.(png|jpeg|jpe|jpg)' type="text" placeholder="Chemin de l'image du projet">
+                            </div>
+                        </div>
+                            {% endif %}
+
+                    </div>
+                    {{form_rest(f)}}
+        
+                    <div class="card-action" style="margin-left: 25%;">
+                     <button class="btn waves-effect waves-light" type="submit" name="action">
+                        <i class="material-icons right">send</i>Valider
+                      </button>
+                        <button class="btn waves-effect waves-light" type="reset" name="action"><i class="material-icons right">replay</i>Reset</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+{% endblock %}

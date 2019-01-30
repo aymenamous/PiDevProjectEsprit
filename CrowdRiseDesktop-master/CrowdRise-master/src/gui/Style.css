@@ -1,0 +1,37 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12 févr. 2016, 21:32:04
+    Author     : Giliwawaa
+*/
+.body{
+    -fx-background-color: #e4f5e5;
+    -fx-font-family: "Roboto";
+}
+.btn{
+    -fx-background-color: #a6dfde;
+    -fx-border-radius: 0px 0px 0px 0px;
+}
+
+.btn:hover{
+    -fx-background-color: #88a6e5;
+}
+
+.title{
+    -fx-font-size: 20px;
+}
+
+.testBTN{
+    -fx-background-image:url("plus.png");
+}
+.testBTN:hover{
+    -fx-background-image:url("idee.jpg");
+}
+
+.add_btn{
+    -fx-background-image:url("AddMembreSolution.png");
+    -fx-background-size:stretch;
+}

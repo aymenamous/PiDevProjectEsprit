@@ -1,0 +1,104 @@
+{# empty Twig template #}
+{% extends "CrowdRiseBundle:Admin:indexAdmin.html.twig" %}
+
+{% block script %}
+    <script>
+        $(document).ready(function(){
+            $('#all_idees').hide();
+            var $show=false;
+            $('#action').click(function(){
+                if($show==false){
+                  $('#all_idees').show();
+                  $show=true;
+                }else{
+                  $('#all_idees').hide();
+                  $show=false;  
+                }
+                
+                
+            });
+        });
+        
+    </script> 
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="content" style="margin-top: 10vh">
+        <h5>Les Idees <b>(en attente)</b></h5>
+        <div class="row">
+            <div class="col s11 l10">
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Titre</th>
+                            <th>Déscription</th>
+                            <th>Date De Création</th>
+                            <th>Accepter</th>
+                            <th>Refuser</th>
+
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for i in idee %}
+                            <tr>
+                                <td>{{i.id}}</td>
+                                <td>{{i.nom}}</td>
+                                <td>{{i.description}}</td>
+                                <td>{{i.date|date('m-d-y')}}</td>
+                                <td><a class="btn-floating btn-medium waves-effect waves-light green" href="{{path('crowdrise_idees_accept',{'id':i.id})}}" onclick="Materialize.toast('Idée acceptée ! un mail de validation a été envoyé', 6000)"><i class="material-icons">check</i></a></td>
+                                <td><a class="btn-floating btn-medium waves-effect waves-light red" href="{{path('crowdrise_idees_refuse',{'id':i.id})}}" onclick="Materialize.toast('Idée refusée !', 6000)"><i class="material-icons">block</i></a></td>
+
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <button class="btn waves-effect waves-light" id="action" style="width: 200px;">Toutes les idées</button>
+
+
+    <div class="content" style="margin-top: 10vh;" id="all_idees">
+        <h5>Toutes les Idées</h5>
+        <div class="row">
+            <div class="col s11 l10">
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Titre</th>
+                            <th>Déscription</th>
+                            <th>Date De Création</th>
+                            <th>Supprimer</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for i in idee_all %}
+                            <tr>
+                                <td>{{i.id}}</td>
+                                <td>{{i.nom}}</td>
+                                <td>{{i.description}}</td>
+                                <td>{{i.date|date('m-d-y')}}</td>
+                                <td><a class="btn-floating btn-medium waves-effect waves-light red" href="{{path('crowdrise_idees_delete',{'id':i.id})}}"><i class="material-icons">delete</i></a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div> 
+{% endblock %}
+

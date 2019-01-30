@@ -1,0 +1,25 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+    my_user_provider.class: CrowdRiseBundle\Security\Core\FOSUBUserProvider
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+   redirect.after.login:
+         class: CrowdRiseBundle\Redirection\AfterLoginRedirection
+         arguments: [@router]
+   redirect.after.logout:
+         class: CrowdRiseBundle\Redirection\AfterLogoutRedirection
+         arguments: [@router, @security.context]      
+   
+   authentication_handler:
+        class:        CrowdRiseBundle\Handler\AuthenticationHandler
+        arguments:    [@router, @security.context, @fos_user.user_manager, @service_container]
+        
+   my_user_provider:
+        class: "%my_user_provider.class%"
+        #this is the place where the properties are passed to the UserProvider - see config.yml
+        arguments: [@fos_user.user_manager,{facebook: facebook_id , google: google_id,twitter: twitter_id}]        

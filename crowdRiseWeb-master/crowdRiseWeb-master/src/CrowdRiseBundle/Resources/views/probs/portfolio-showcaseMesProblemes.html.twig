@@ -1,0 +1,157 @@
+{# empty Twig template #}
+<dom-module id="portfolio-showcaseMesProblemes">
+    <style type="text/css">
+        :host{
+            display: block;
+        }
+        #mainContainer {
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            @apply(--layout-vertical);
+            @apply(--layout-center-center);
+        }
+
+        #productCard {
+            margin: 44px 0px;
+            width: 60%;
+            background-color: white;
+            min-height: 541px;
+            z-index: 2;
+        }
+
+        #productCard paper-icon-button {
+            position: absolute;
+            right: 16px;
+            margin-top: 16px;
+        }
+
+        #productCard .title {
+            font-size: 2.5em;
+            font-weight: 300;
+            color: #555;
+        }
+
+        #productCard .author {
+            font-size: 1.8em;
+            font-weight: 300;
+            color: #444;
+        }
+
+        #productCard .description {
+            word-wrap: break-word;
+            font-size: 1.3em;
+            font-weight: 300;
+            color: #111;
+            margin: 1em;
+            margin-top: 3em;
+        }
+        #productCard .menu {
+            word-wrap: break-word;
+            font-size: 1.3em;
+            font-weight: 300;
+            color: #111;
+            margin: 1em;
+            margin-top: 3em;
+        }
+
+        .horizontal {
+            @apply(--layout-horizontal);
+        }
+
+        .vertical {
+            @apply(--layout-vertical);
+        }
+
+        @media (max-width: 890px) {
+            #productCard {
+                margin: initial;
+                width: 100%;
+            }
+        }
+
+    </style>
+    <template>
+        <!-- Main Content -->
+        <div id="mainContainer">
+            <paper-material id="productCard">
+                <div class="horizontal">
+                    <paper-icon-button on-click="_closeCard" icon="close"></paper-icon-button>                    
+                    <img  width="192px" height="192px" src="[[product.launcher]]"/>
+                    <div style="margin-left: 2em; margin-top: 2em;" class="vertical">
+                        <span class="title">[[product.name]]</span>
+                        <span class="author" >[[product.membre]]</span>
+                        <span style="display: none;" id="membre" >[[product.membreId]]</span>
+                    </div>                    
+                </div>
+                <div class="description">
+                    [[product.descriptionComplete]]                    
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <div class="fixed-action-btn vertical" style="position: absolute; display: inline-block; right: 24px;">
+                            <a class="btn-floating btn-large blue">
+                              <i class="large material-icons">settings</i>
+                            </a>
+                            <ul>
+                              <li><a class="btn-floating blue-300" href="#"><i class="material-icons">delete</i></a></li>
+                              <li><a class="btn-floating blue-grey"><i class="material-icons">mode_edit</i></a></li>
+                            </ul>
+                        </div>                       
+                    {% endif %}                    
+                </div>
+            </paper-material>
+        </div>
+    </template>
+</dom-module>
+
+<script type="text/javascript">
+    addEventListener('WebComponentsReady', function () {
+        Polymer({
+            is: "portfolio-showcaseMesProblemes",
+            behaviors: [
+                Polymer.NeonAnimationRunnerBehavior,
+                Polymer.NeonSharedElementAnimatableBehavior
+            ],
+            properties: {
+                product: {
+                    observer: "_productChanged"
+                },
+                sharedElements: {
+                    value: function () {
+                        return {
+                            'hero': this.$.productCard
+                        }
+                    }
+                },
+                // DEBUT : CONFIGURATIONS DES ANIMATIONS
+                animationConfig: {
+                    value: function () {
+                        return {
+                            'entry': [{
+                                    name: 'hero-animation',
+                                    id: 'hero',
+                                    toPage: this
+                                }, {
+                                    name: 'fade-in-animation',
+                                    node: this
+                                }],
+                            'exit': [{
+                                    name: 'fade-out-animation',
+                                    node: this
+                                }, {
+                                    name: 'scale-down-animation',
+                                    node: this
+                                }]
+                        }
+                    }
+                }
+                // FIN : CONFIGURATIONS DES ANIMATIONS
+            },
+            // FIN : PROPRIETES
+            _closeCard: function () {
+                this.fire("changePageMesProblemes", "MesProblemes");
+            },
+            _productChanged: function (data) {                                 
+                this.$.mainContainer.style.backgroundImage = "url('" + data["header"] + "')";
+            }
+        })
+    })
+</script>

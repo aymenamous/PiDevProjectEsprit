@@ -1,0 +1,90 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    <div class="input-field" >
+                  <i style="margin-left:-180px;margin-bottom:20px;" class="material-icons prefix">email</i>
+              
+              
+{{ form_widget(form.email, {'attr': {'class': 'form-control input-lg','placeholder':'email','required':'entrez votre mail'}}) }}<br>
+    </div>
+    
+    
+    
+      <div class="input-field" >
+                  <i class="material-icons prefix" style="margin-left:-180px;margin-bottom:20px;">sort_by_alpha</i>
+              
+              
+{{ form_widget(form.nom, {'attr': {'class': 'form-control input-lg','placeholder':'nom','required':'entrez votre nom'}}) }}<br>
+    </div>
+    
+    
+          <div class="input-field" >
+                  <i class="material-icons prefix" style="margin-left:-180px;margin-bottom:20px;">sort_by_alpha</i>
+              
+              
+{{ form_widget(form.prenom, {'attr': {'class': 'form-control input-lg','placeholder':'prenom','required':'entrez votre prenom'}}) }}<br>
+    </div>
+ <div class="input-field" >
+                  <i class="material-icons prefix" style="margin-left:-180px;margin-bottom:20px;">account_circle</i>
+              
+{{ form_widget(form.username, {'attr': {'class': 'form-control input-lg','placeholder':'username','pattern':'.{3,40}','required title':'3 to 10 characters'}}) }}<br>
+ </div>
+<div class="input-field">
+                  <i class="material-icons prefix" style="margin-left:-180px;margin-bottom:20px;">lock_outline</i>
+              
+{{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control input-lg','placeholder':'password','required':'tapez votre mot de passe'}}) }}<br>
+
+</div>
+<div class="input-field" >
+                  <i class="material-icons prefix" style="margin-left:-180px;margin-bottom:20px;">lock_outline</i>
+              
+{{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control input-lg','placeholder':'repeate password','required':'retapez votre mot de passe'}}) }}
+</div>
+    
+    
+<div class="input-field" >
+
+<div class="checkbox">
+
+    <p>
+     <input type="checkbox" id="remember_me" checked="checked"  name="_remember_me" value="on" class="filled-in" /> <label for="remember_me" checked="checked" >{{ 'security.login.remember_me'|trans }}</label><br>
+
+    </p>
+     <p>  
+         <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" required/>
+      
+      <label for="filled-in-box"  >J'ai lu et j'accepte  <a href="#modal3" class="waves-effect waves-light modal-trigger">les conditions générales d'utilisation </a></label>
+    </p>
+
+</div>  
+     <br><br>
+
+  </div>
+<div class=" center">
+      <input style="padding-top:6px;"  class="btn  waves-effect waves-light"   type="submit" value="{{ 'registration.submit'|trans }}" />
+    <a href="{{ path('crowd_rise_homepage') }}"> <input   style="font-family: inherit ; padding-top:6px;" class="waves-effect waves-light btn  " type="button" value="Cancel"   /></a>
+
+</div>
+    <br><br>
+
+      {{ form_widget(form._token) }} {{ form_end(form, {'render_rest': false}) }}
+      
+  <!-- Modal Structure -->
+  <div id="modal3" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Confidentialité & Termes légaux</h4>
+      
+      <br><br>
+      <p> Nous avons recueillies sont traitées avec la plus stricte confidentialité, conformément aux dispositions de notre politique de protection des données personnelles. Lors de vos achats, Nous ne Vous demandons que les informations indispensables pour assurer la qualité de nos services et du traitement de votre commande.
+
+Nous pouvons toutefois décider de transmettre vos informations à des sociétés partenaires si et seulement si vous en êtes d'accord. Lors de votre commande vous pouvez préciser en cochant une simple case, si oui ou non vous êtes d'accord à ce que notre entreprise transmet vos informations à des sociétés partenaires. </p>
+    </div>
+    <div class="modal-footer">
+        
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+    </div>
+  </div>
+  
+  

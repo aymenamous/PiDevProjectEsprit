@@ -1,0 +1,476 @@
+<html>
+    <!--  /!\  THIS TEMPLATE IS FOR OFFLINE USERS !  /!\  --> 
+    <head> 
+        <title>{% block Title %}{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta property="og:url"           content="https://developers.facebook.com/docs/plugins/" />
+        <meta property="og:type"          content="article" />
+        <meta property="og:title"         content="crowdRise" />
+        <meta property="og:description"   content="Crowdrise" />
+        <meta property="og:image" content="https://developers.facebook.com/docs/plugins/" />
+        <meta name="google-signin-client_id" content="409555704055-rte0o9lh3bqj2icvdie7641bei67b4t5.apps.googleusercontent.com">
+        <link rel="stylesheet" href="{{asset('css/styles3.css')}}">
+        <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('css/bootstrap-glyphicons.css')}}" rel="stylesheet">
+        <link href="{{asset('css/hadhstyle.css')}}" rel="stylesheet">
+        <script src="{{asset('js/jquery.min.js')}}"></script>
+        <script src="{{ asset('bundles/dcsrating/js/rating.js') }}"></script>
+
+
+        <!-- CORE CSS-->
+        <link rel="stylesheet" href="{{ asset('bundles/dcsrating/css/rating.css') }}" />
+        <link href="{{asset('css/materialize.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
+        <link href="{{asset('css/style1.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
+        <!-- Custome CSS-->
+        <link href="{{asset('css/custom-style.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
+        <!-- CSS style Horizontal Nav (Layout 03)-->
+        <link href="{{asset('css/style-horizontal.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
+        <link rel="stylesheet" href="{{asset('font/font-awesome.min.css')}}">
+        <link href="{{asset('css/icon.css')}}" rel="stylesheet">
+        <link rel="stylesheet" href="{{asset('css/styles3.css')}}">
+        <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('css/bootstrap-glyphicons.css')}}" rel="stylesheet">
+        <link href="{{asset('roboto.css')}}" rel="stylesheet" type="text/css">
+
+        <!-- If no online access, fallback to our hardcoded version of jQuery -->
+        <script>window.jQuery || document.write('<script src="{{asset('js/jquery-1.8.2.min.js')}}"><\/script>')</script>
+
+        <!-- Bootstrap JS -->
+        <script src="{{asset('js/script.js')}}"></script>
+
+        <script src="{{asset('js/bootstrap.min.js')}}"></script>
+
+        <!-- Custom JS -->
+        <script src="{{asset('live.js')}}"></script>
+
+        <link type="text/css" rel="stylesheet" href="{{asset('css/home.css')}}"/>
+        <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+        <link href="{{asset('css/prism.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
+        <link href="{{asset('js/plugins/perfect-scrollbar/perfect-scrollbar.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
+        <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+
+        <link href="{{asset('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css')}}" rel="stylesheet"></link>
+        <link rel="stylesheet" href="{{asset('css/buttonsocial.css')}}">
+
+        <script type="text/javascript" src="{{asset('js/jquery.js')}}"></script>
+        <script src="{{asset('js/bootstrap1.js')}}"></script>  
+        <script type="text/javascript" src="{{asset('js/materialize.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/prism.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins/chartist-js/chartist.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins.js')}}"></script>
+        <script src="{{asset('platform.js')}}" async defer></script>
+        <script src="{{asset('api client.js')}}"></script>
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                $('.slider').slider({full_width: true});
+                $('select').material_select();
+            });
+
+            $(document).ready(function () {
+                document.addEventListener('WebComponentsReady', function () {
+                    var template = document.querySelector('neon-animated-pages');
+                    template.selected = "AllIdeas";
+                });
+
+                document.addEventListener('changePage', function (data) {
+                    document.querySelector("neon-animated-pages").selected = (data.detail == "showcase") ? "showcase" : "AllIdeas";
+                });
+
+                document.addEventListener('updateShowcase', function (data) {
+                    document.querySelector('portfolio-showcase').product = data.detail;
+                });
+                $('.carousel').carousel();
+
+                // Pause slider
+                $('.slider').slider('pause');
+                // Start slider
+                $('.slider').slider('start');
+                // Next slide
+                $('.slider').slider('next');
+                // Previous slide
+                $('.slider').slider('prev');
+                $(".button-collapse").sideNav();
+                $(".dropdown-button").dropdown({
+                    belowOrigin: true
+                });
+                $('.collapsible').collapsible({
+                    accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+                });
+                $('.modal-trigger').leanModal({
+                    dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                    opacity: .5, // Opacity of modal background
+                    in_duration: 300, // Transition in duration
+                    out_duration: 200 // Transition out duration
+                }
+                );
+
+
+
+
+// Pause slider
+                $('.slider').slider('pause');
+// Start slider
+                $('.slider').slider('start');
+// Next slide
+                $('.slider').slider('next');
+// Previous slide
+                $('.slider').slider('prev');
+
+            });
+            $(function () {
+                $('a[href*="#"]:not([href="#"])').click(function () {
+                    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                        var target = $(this.hash);
+                        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                        if (target.length) {
+                            $('html, body').animate({
+                                scrollTop: target.offset().top
+                            }, 1000);
+                            return false;
+                        }
+                    }
+                });
+            });
+
+            function onSuccess(googleUser) {
+                console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+            }
+            function onFailure(error) {
+                console.log(error);
+            }
+            function renderButton() {
+                gapi.signin2.render('my-signin2', {
+                    'scope': 'profile email',
+                    'width': 240,
+                    'height': 50,
+                    'longtitle': true,
+                    'theme': 'dark',
+                    'onsuccess': onSuccess,
+                    'onfailure': onFailure
+                });
+            }
+            function attachSignin(element) {
+                console.log(element.id);
+                auth2.attachClickHandler(element, {},
+                        function (googleUser) {
+                            document.getElementById('name').innerText = "Signed in: " +
+                                    googleUser.getBasicProfile().getName();
+                        }, function (error) {
+                    alert(JSON.stringify(error, undefined, 2));
+                });
+            }
+        </script>
+        <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
+        {% block script %} {% endblock %}
+    </head>
+
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.6&appId=1056721161069684";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+
+    <script>
+        // This is called with the results from from FB.getLoginStatus().
+        function statusChangeCallback(response) {
+            console.log('statusChangeCallback');
+            console.log(response);
+            // The response object is returned with a status field that lets the
+            // app know the current login status of the person.
+            // Full docs on the response object can be found in the documentation
+            // for FB.getLoginStatus().
+            if (response.status === 'connected') {
+                // Logged into your app and Facebook.
+                testAPI();
+            } else if (response.status === 'not_authorized') {
+                // The person is logged into Facebook, but not your app.
+                document.getElementById('status').innerHTML = '' +
+                        '';
+            } else {
+                // The person is not logged into Facebook, so we're not sure if
+                // they are logged into this app or not.
+                document.getElementById('status').innerHTML = '';
+            }
+        }
+
+        // This function is called when someone finishes with the Login
+        // Button.  See the onlogin handler attached to it in the sample
+        // code below.
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+                if (response.status === 'connected') {
+                    console.log(response.authResponse.accessToken);
+                }
+            });
+        }
+        function fbLogoutUser() {
+            FB.getLoginStatus(function (response) {
+                if (response && response.status === 'connected') {
+                    FB.logout(function (response) {
+                        document.location.reload();
+                    });
+                }
+            });
+        }
+
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '{1056721161069684}',
+                cookie: true, // enable cookies to allow the server to access 
+                // the session
+                xfbml: true, // parse social plugins on this page
+                version: 'v2.5' // use graph api version 2.5
+            });
+
+            // Now that we've initialized the JavaScript SDK, we call 
+            // FB.getLoginStatus().  This function gets the state of the
+            // person visiting this page and can return one of three states to
+            // the callback you provide.  They can be:
+            //
+            // 1. Logged into your app ('connected')
+            // 2. Logged into Facebook, but not your app ('not_authorized')
+            // 3. Not logged into Facebook and can't tell if they are logged into
+            //    your app or not.
+            //
+            // These three cases are handled in the callback function.
+
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+
+        };
+
+        // Load the SDK asynchronously
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id))
+                return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        // Here we run a very simple test of the Graph API after login is
+        // successful.  See statusChangeCallback() for when this call is made.
+        function testAPI() {
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me', function (response) {
+                console.log('Successful login for: ' + response.name);
+                document.getElementById('status').innerHTML =
+                        ' ' + response.name + '';
+            });
+        }
+        function fb_login() {
+            FB.getLoginStatus(function (response) {
+                if (response.status === 'connected') {
+                    // connected
+                    alert('Already connected, redirect to login page to create token.');
+                    document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
+                } else {
+                    // not_authorized
+                    FB.login(function (response) {
+                        if (response.authResponse) {
+                            document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
+                        } else {
+                            alert('Cancelled.');
+                        }
+                    }, {scope: 'email'});
+                }
+            });
+        }
+
+        var googleUser = {};
+        var startApp = function () {
+            gapi.load('auth2', function () {
+                // Retrieve the singleton for the GoogleAuth library and set up the client.
+                auth2 = gapi.auth2.init({
+                    client_id: '409555704055-rte0o9lh3bqj2icvdie7641bei67b4t5.apps.googleusercontent.com',
+                    cookiepolicy: 'single_host_origin',
+                    // Request scopes in addition to 'profile' and 'email'
+                    //scope: 'additional_scope'
+                });
+                attachSignin(document.getElementById('customBtn'));
+            });
+        };
+
+
+    </script>
+
+    <ul id="projectDropdown" class="dropdown-content">
+        <li><a href="{{path('crowdrise_projetcf_displayAll')}}">CrowdFunding</a></li>
+        <li class="divider"></li>
+        <li><a href="{{path('crowdrise_idee_displayAll')}}">Idee</a></li>
+        <li class="divider"></li>
+        <li><a href="{{path('crowdrise_probleme_displayAll')}}">Problemes</a></li>
+    </ul>
+
+
+
+
+    <section id="intro">
+        <div class="navbar-fixed">
+
+            <nav class="grey darken-4 " >
+
+                <div class="nav-wrapper">
+                    <a href="{{path('crowd_rise_homepage') }}" class="brand-logo"><i style="margin-right: 10px;" class="material-icons">play_circle_filled</i> START RISING</a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        {% block contentNavBar %}{% endblock %}
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li> <a href="#"  class=" dropdown-button " data-activates='projectDropdown'>Browse Projects <svg style="width:24px;height:24px;top: 6px; position: relative; right: 2px;" viewBox="0 0 24 24">
+                                <path fill="#ffffff" d="M5.59,7.41L7,6L13,12L7,18L5.59,16.59L10.17,12L5.59,7.41M11.59,7.41L13,6L19,12L13,18L11.59,16.59L16.17,12L11.59,7.41Z" />
+                                </svg></a>
+                        </li>
+
+
+                        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+
+
+                            <div class="shake shake-slow">
+                                <li><button  type="button " data-target="#modal1" data-toggle="modal" class="waves-effect waves-light btn modal-trigger" >LOGIN</button></li></div>
+
+
+                            <div class="shake shake-slow">
+                                <li><a href="../app_dev.php/register" data-toggle="modal" data-target="" class="modal-trigger waves-effect waves-light btn" >Sing up</a></li></div>
+                            <li>   <div id="name"></div></li>
+                            <li><div id="status"></div></li>
+                            {% else %}
+
+
+                            <li><a href="{{ path('fos_user_change_password') }}"><i class="material-icons blue-text text-darken-2">perm_identity</i></a></li> 
+
+
+                            <li> <a href="{{ path('my_profile') }}">{{ app.user}} </a></li>        
+
+                            <li><a href="{{ path('chat') }}" class="waves-effect waves-block waves-light"><i class="material-icons">chat</i></a></li>
+                            <li><a href="{{ path('fos_user_security_logout') }}" class="modal-trigger waves-effect waves-light btn1" data-toggle="modal" data-target="" > <i class="material-icons blue-text text-darken-2">power_settings_new</i></a></li>
+
+
+
+                        {% endif %}
+
+
+
+                        {% if app.request.hasPreviousSession %}
+                            {% for type, messages in app.session.flashbag.all() %}
+                                {% for message in messages %}
+                                    <div class="flash-{{ type }}">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+
+    {% block intro %}{% endblock %}
+    {% block chat %}{% endblock %}
+
+
+    {% block fos_user_content %}
+    {% endblock %}
+
+</section>
+
+<section>
+{% block prob %}{% endblock %}  
+{% block content %}{% endblock %}
+</section>
+
+<section> 
+{% block content2 %}{% endblock %}
+</section>
+
+<div id="msg" class="row">
+    <div class="col s12 m6">
+
+    {% block change_password %}{% endblock %}
+{% block registration %}{% endblock %}
+{% block profile %}{% endblock %}
+{% block hwi_oauth_content %}
+
+{% endblock hwi_oauth_content %}
+</div>
+</div>
+
+<!-- footer --> 
+<section>
+    <footer>
+        <div id="footer-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m3">
+                        <p>STAMPLAY LTD</p>
+                        <ul>
+                            <li><a href="/terms">Terms of service</a></li>
+                            <li><a href="/privacy">Privacy</a></li>
+                        </ul>
+                        <a href="https://mixpanel.com/f/partner" rel="nofollow"><img src="//cdn.mxpnl.com/site_media/images/partner/badge_blue.png" alt="Mobile Analytics" /></a>
+                    </div>
+                    <div class="col s12 m3">
+                        <p>COMPANY</p>
+                        <ul>
+                            <li><a href="/team">Team</a></li>
+                            <li><a href="https://blog.stamplay.com/" target="_blank">Blog</a></li>
+                            <li><a href="https://stamplay.growsumo.com/" target="_blank">Partner with us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col s12 m3">
+
+                        <p>PLATFORM</p>
+                        <ul>
+                            <li><a href="/pricing">Pricing</a></li>
+                            <li><a href="/docs/hosting">Docs</a></li>
+                            <li><a href="https://stamplaykb.stamplayapp.com" target="_blank">Community</a></li>
+                            <li><a href="https://slackinvites.stamplayapp.com" target="_blank">Join us on Slack</a></li>
+                        </ul>
+                    </div>
+                    <div class="col s12 m3">
+
+                        {{ socialButtons() }}
+
+
+                        <div class="fb-like col s12 m5" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>                    
+
+
+
+
+                    </div>
+                </div>
+
+
+
+                </footer>
+
+                <div id="lesforme">
+
+
+                    {{ render(controller("FOSUserBundle:Security:login")) }}      
+
+                </div>
+
+
+
+
+                </section>
+
+
+                </html>

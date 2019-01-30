@@ -1,0 +1,114 @@
+{# empty Twig template #}
+<dom-module id="portfolio-MesProblemes">
+    <style type="text/css">
+        :host {
+            display: block;
+            padding: 16px;
+        }
+
+        h1 {
+            color: #78909c;
+            font-size: 24px;
+            font-weight: 300;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            margin-left: 8px;
+        }
+
+        paper-card {
+            margin: 8px 16px;
+            width: 250px;
+            --paper-card-header-color: white;
+        }
+
+        @media (max-width: 601px) {
+            paper-card {
+                width: 100% !important;
+                margin-left: 0px;
+                margin-right: 0px;
+            }
+        }
+    </style>
+
+    <template>
+        <template is="dom-repeat" items="[[productsList]]" on-dom-change="_repeatRender">
+            <paper-card elevation="1" id="[[item.id]]" image="[[item.header]]" heading="[[item.name]]">
+                <div class="card-content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut earum, quisquam in temporibus dolor facilis provident similique officiis velit blanditiis!
+                </div>
+                <div class="card-actions">
+                    <paper-button on-tap="_openCard">Open</paper-button>
+                </div>
+            </paper-card>
+        </template>
+    </template>
+</dom-module>
+
+<script type="text/javascript">
+    addEventListener('WebComponentsReady', function () {
+        Polymer({
+            is: "portfolio-MesProblemes",
+            behaviors: [
+                Polymer.NeonAnimationRunnerBehavior,
+                Polymer.NeonSharedElementAnimatableBehavior
+            ],
+            properties: {
+                // START ANIMATIONS
+                animationConfig: {
+                    value: function () {
+                        return {
+                            'entry': [{
+                                    name: 'fade-in-animation',
+                                    node: this
+                                }],
+                            'exit': [{
+                                    name: 'hero-animation',
+                                    id: 'hero',
+                                    fromPage: this
+                                }, {
+                                    name: 'fade-out-animation',
+                                    node: this
+                                }]
+                        }
+                    }
+                }
+                // END ANIMATIONS
+            },
+            ready: function () {
+                this.productsList = [{
+                        "id": 0,
+                        "name": "Card 1 - Cat 1",
+                        "header": "http://lorempixel.com/g/350/200",
+                        "launcher": "../../images/ic_launcher.png"
+                    }, {
+                        "id": 1,
+                        "name": "Card 1 - Cat 1",
+                        "header": "http://lorempixel.com/g/350/200",
+                        "launcher": "../../images/ic_launcher.png"
+                    }];
+            },
+            _repeatRender: function () {
+                this.paperCard = Polymer.dom(this.root).querySelectorAll("paper-card");
+                this.animationConfig["entry"].push({
+                    name: "cascaded-animation",
+                    animation: "transform-animation",
+                    transformFrom: "translateY(100vh)",
+                    nodes: this.paperCard,
+                    timing: {
+                        delay: 0,
+                        duration: 1000
+                    }
+                })
+            },
+            _openCard: function (event) {
+                this.fire("updateShowcase", this.productsList[event.model.item.id]);
+
+                this.sharedElements = {
+                    'hero': event.target
+                }
+
+                this.fire("changePage", "showcase");
+            }
+        })
+    })
+</script>

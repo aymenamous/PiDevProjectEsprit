@@ -1,0 +1,57 @@
+{# empty Twig template #}
+{# empty Twig template #}
+{% extends "CrowdRiseBundle:Admin:indexAdmin.html.twig" %}
+
+
+{% block content %}
+
+
+    <div class="content" style="margin-top: 10vh">
+        <h1>Liste des Projet CF</h1>
+        <div class="row">
+            <div class="col s11 l10">
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Titre</th>
+                            <th>Déscription</th>
+                            <th>Date De Création</th>
+                            <th>Date Fin</th>
+                            <th>Budget Actuel</th>
+                            <th>Budget Final</th>
+                            <th>Supprimer</th>
+
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for i in projetcf %}
+                            <tr>
+                                <td>{{i.id}}</td>
+                                <td>{{i.nom}}</td>
+                                <td>{{i.description}}</td>
+                                <td>{{i.date|date('m-d-y')}}</td>
+                                <td>{{i.fin|date('m-d-y')}}</td>
+                                <td>{{i.budgetActuel|number_format}}</td>
+                                <td>{{i.budgetFinale|number_format}}</td>
+                                <td><a class="btn-floating btn-medium waves-effect waves-light red" href="{{path('crowdrise_projetcf_admin_delete',{'id':i.id})}}"><i class="material-icons">delete</i></a></td>
+
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+{% endblock %}

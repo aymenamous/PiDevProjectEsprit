@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0"  styleClass="jfx-decorator" stylesheets="@../ressources/jfoenix-components.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ListCommenSignaleController">
+   <children>
+      <TableView fx:id="TVCom" layoutX="37.0" layoutY="100.0" prefHeight="448.0" prefWidth="745.0" styleClass="jfx-layout-body">
+        <columns>
+          <TableColumn fx:id="idCom" prefWidth="110.0" text="id" />
+          <TableColumn fx:id="textCom" prefWidth="634.0" text="Commentaire" />
+        </columns>
+      </TableView>
+      <com.jfoenix.controls.JFXTextField fx:id="txtRech" layoutX="173.0" layoutY="43.0" onKeyReleased="#rechercher" />
+      <Text layoutX="46.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size:15px;" text="chercher" wrappingWidth="74.953125" />
+      <Text layoutX="237.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La liste des commentaires signalés">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

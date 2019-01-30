@@ -1,0 +1,22 @@
+{
+  "name": "PolymerLesson",
+  "description": "lesson",
+  "main": "index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "webcomponentsjs": "^0.7.21",
+    "polymer": "Polymer/polymer#^1.4.0"
+  }
+}

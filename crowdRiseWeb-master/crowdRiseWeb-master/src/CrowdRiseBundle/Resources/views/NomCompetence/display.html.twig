@@ -1,0 +1,99 @@
+{% extends "CrowdRiseBundle:Admin:indexAdmin.html.twig" %}
+
+{% block content %}
+    <style>
+        .modal{
+            height: 20%;
+            width: 20%;
+        }
+    </style>
+    
+    <div class="content" style="margin-top: 10vh">
+        <h3>Liste des Competence</h3>
+        <div class="row">
+            <div class="col s11 l10">
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th data-field="id">id</th>
+                            <th data-field="name">Name</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for item in comps %}
+                            <tr>
+                                <td>{{item.id}}</td>
+                                <td>{{item.nom}}</td>
+                                <td>
+                                    <a class="modal-trigger btn-floating btn-medium waves-effect waves-light teal darken-3 mod-trigger" data="{{item.id}}" data-name="{{item.nom}}" href="#updateModal"><i class="material-icons">edit</i></a>
+                                    <a class="btn-floating btn-medium waves-effect waves-light red" href="{{path('crowdrise_competence_delete',{'id' : item.id})}}"><i class="material-icons">delete</i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col s1 l1">
+                <!-- Modal Trigger -->
+                <a class="modal-trigger btn-floating btn-medium waves-effect waves-light red" href="#modal1"><i class="material-icons">add</i></a>
+            </div>
+        </div>
+
+    </div>
+    <!--update Modal Structure -->
+    <div id="updateModal" class="modal" style="height : 40%">
+        <div class="modal-content">
+            <form id="updateForm" action="" method="POST">
+                <div class="input-field" id="updateInput">
+                    <input id="update-name" type="text" class="validate" name="name">
+                    <label for="update-name">Name</label>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
+    </div>
+    <!--Add Modal Structure -->
+    <div id="modal1" class="modal" style="height : 40%">
+        <div class="modal-content">
+            <h6>Ajouter Competence</h6>
+            {{form_start(form)}}
+            {{form_errors(form) }}
+            <div class ="row">
+                <div >
+                    {{ form_widget(form.nom)}}
+                    {{ form_label(form.nom,'Nom') }}
+                </div>
+            </div>
+            <div class="row" >
+
+            </div>
+
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+        {{form_end(form)}}
+    </div>
+
+{% endblock %}
+{% block script %}
+    <script >
+        $(document).ready(function () {
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
+            $('.mod-trigger').click(function () {
+                var id = $(this).attr('data');
+                var name = $(this).attr('data-name');
+                $('#update-name').val(name);
+                $('#updateForm').attr('action', '/crowdriseWeb/web/app_dev.php/admin/competence/update/' + id);
+                
+            });
+            
+        });
+    </script>
+
+{% endblock %}

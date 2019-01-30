@@ -1,0 +1,214 @@
+{# empty Twig template #}
+<dom-module id="portfolio-showcaseMesIdees">
+    <script src="{{asset('node_modules/sweetalert/dist/sweetalert.min.js')}}"></script> 
+    <link rel="stylesheet" type="text/css" href="{{asset('node_modules/sweetalert/dist/sweetalert.css')}}">
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+    <style type="text/css">
+        :host{
+            display: block;
+        }
+        #mainContainer {
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            @apply(--layout-vertical);
+            @apply(--layout-center-center);
+        }
+
+        #productCard {
+            margin: 44px 0px;
+            width: 60%;
+            background-color: white;
+            min-height: 541px;
+            z-index: 2;
+        }
+
+        #productCard paper-icon-button {
+            position: absolute;
+            right: 16px;
+            margin-top: 16px;
+        }
+
+        #productCard .title {
+            font-size: 2.5em;
+            font-weight: 300;
+            color: #555;
+        }
+
+        #productCard .author {
+            font-size: 1.8em;
+            font-weight: 300;
+            color: #444;
+        }
+
+        #productCard .description {
+            word-wrap: break-word;
+            font-size: 1.3em;
+            font-weight: 300;
+            color: #111;
+            margin: 1em;
+            margin-top: 3em;
+        }
+        #productCard .menu {
+            word-wrap: break-word;
+            font-size: 1.3em;
+            font-weight: 300;
+            color: #111;
+            margin: 1em;
+            margin-top: 3em;
+        }
+
+        .horizontal {
+            @apply(--layout-horizontal);
+        }
+
+        .vertical {
+            @apply(--layout-vertical);
+        }
+
+        @media (max-width: 890px) {
+            #productCard {
+                margin: initial;
+                width: 100%;
+            }
+        }
+
+    </style>
+    <div id="modalProcess" class="modal" style="height: 250px; width: 300px">
+        <div class="modal-content" style="height: 250px; width: 300px">
+            <center><img src="http://www.travislayne.com/images/loading.gif"/></center>
+            <center><h4>Processing...</h4></center>
+        </div>        
+    </div>
+    <template>
+        <!-- Main Content -->
+        <div id="mainContainer">
+            <paper-material id="productCard">
+                <div class="horizontal">
+                    <paper-icon-button on-click="_closeCard" icon="close"></paper-icon-button>                    
+                    <img  width="192px" height="192px" src="[[product.launcher]]"/>
+                    <div style="margin-left: 2em; margin-top: 2em;" class="vertical">
+                        <span class="title">[[product.name]]</span>
+                        <span class="author" >[[product.membre]]</span>
+                        <span style="display: none;" id="idprojet" >[[product.idProjet]]</span>
+                    </div> 
+                    
+                </div>
+                <div id="amine"></div>
+                <div class="description">
+                    [[product.descriptionComplete]]                    
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <div class="fixed-action-btn vertical" style="position: absolute; display: inline-block; right: 24px;">
+                            <a class="btn-floating btn-large blue">
+                                <i class="large material-icons">settings</i>
+                            </a>
+                            <ul>
+                                <li><a class="btn-floating blue-300" id="supp"><i class="material-icons">delete</i></a></li>
+                                <li><a class="btn-floating blue-grey" id="update"><i class="material-icons">mode_edit</i></a></li>
+                            </ul>
+                        </div>                       
+                    {% endif %}                    
+                </div>
+            </paper-material>
+        </div>
+    </template>
+</dom-module>
+
+<script type="text/javascript">
+
+    addEventListener('WebComponentsReady', function () {
+        Polymer({
+            is: "portfolio-showcaseMesIdees",
+            behaviors: [
+                Polymer.NeonAnimationRunnerBehavior,
+                Polymer.NeonSharedElementAnimatableBehavior
+            ],
+            properties: {
+                product: {
+                    observer: "_productChanged"
+                },
+                sharedElements: {
+                    value: function () {
+                        return {
+                            'hero': this.$.productCard
+                        }
+                    }
+                },
+                // DEBUT : CONFIGURATIONS DES ANIMATIONS
+                animationConfig: {
+                    value: function () {
+                        return {
+                            'entry': [{
+                                    name: 'hero-animation',
+                                    id: 'hero',
+                                    toPage: this
+                                }, {
+                                    name: 'fade-in-animation',
+                                    node: this
+                                }],
+                            'exit': [{
+                                    name: 'fade-out-animation',
+                                    node: this
+                                }, {
+                                    name: 'scale-down-animation',
+                                    node: this
+                                }]
+                        }
+                    }
+                }
+                // FIN : CONFIGURATIONS DES ANIMATIONS
+            },
+            ready: function () {
+                $("#supp").click(function () {
+                    swal({
+                        title: "Are you sure?",
+                        text: "You will not be able to recover this Project!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, delete it!",                        
+                    }, function () {
+                        $.ajax({
+                            type: "POST",
+                            url: Routing.generate('crowdrise_idee_delete', {id: document.getElementById("idprojet").innerHTML}),
+                            beforeSend: function (xhr) {
+                                $('#modalProcess').openModal();
+                            },
+                            data: {
+                            },
+                            cache: false,
+                            success: function (data) {
+                                $('#modalProcess').closeModal();
+                                swal({title: "Project Deleted",
+                                    text: "You will not be able to recover this Project!",
+                                    type: "success",
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "OK",
+                                    closeOnConfirm: false
+                                }, function () {
+                                    window.location.href = "{{path('crowd_rise_homepage')}}";
+                                });
+                            }
+                        }).fail(function () {
+                            $('#modalProcess').closeModal();
+                            swal("Erreur !",
+                                    "Il y a quelque chose qui cloche",
+                                    "error"
+                            );
+                        });
+                    });
+                });
+                $("#update").click(function(){
+                    window.location.href=Routing.generate('crowdrise_idee_update', {id: document.getElementById("idprojet").innerHTML});
+                });
+            },
+            // FIN : PROPRIETES
+            _closeCard: function () {
+                this.fire("changePageMesIdees", "MesIdees");
+            },
+            _productChanged: function (data) {
+                this.$.mainContainer.style.backgroundImage = "url('" + data["header"] + "')";
+            }
+        })
+    })
+</script>

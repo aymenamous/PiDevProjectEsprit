@@ -1,0 +1,33 @@
+imports:
+    - { resource: config.yml }
+
+#framework:
+#    validation:
+#        cache: apc
+
+#doctrine:
+#    orm:
+#        metadata_cache_driver: apc
+#        result_cache_driver: apc
+#        query_cache_driver: apc
+
+monolog:
+    handlers:
+        main:
+            type:         fingers_crossed
+            action_level: error
+            handler:      nested
+        nested:
+            type:  stream
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+        console:
+            type:  console
+beelab_paypal:
+    return_route: completed
+    cancel_route: cancel
+    test_mode: true
+
+    username: alaa.ksontini-facilitator_api1.esprit.tn
+    password: YBFFPEBUALRD7NTT
+    signature: AFcWxV21C7fd0v3bYYYRCpSSRl31AaV9-VHIqFWFumbYA2u4a2vvJG6w

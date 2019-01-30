@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="detailsAnchor" prefHeight="466.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DetailsProblemeController">
+   <children>
+      <AnchorPane fx:id="details" layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="413.0" prefWidth="581.0">
+         <children>
+            <Label layoutX="14.0" layoutY="94.0" prefHeight="17.0" prefWidth="56.0" text=" Titre :" />
+            <TextField fx:id="txtAjout" editable="false" layoutX="74.0" layoutY="90.0" prefHeight="25.0" prefWidth="479.0" AnchorPane.topAnchor="90.0" />
+            <Label layoutX="14.0" layoutY="141.0" prefHeight="17.0" prefWidth="78.0" text=" Description :" />
+            <TextField fx:id="txtDescription" alignment="TOP_LEFT" layoutX="74.0" layoutY="176.0" prefHeight="138.0" prefWidth="479.0" AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="176.0" />
+            <Label layoutX="14.0" layoutY="376.0" prefHeight="17.0" prefWidth="56.0" text="Mot-Clés :" />
+            <TextField fx:id="txtmotcles" layoutX="74.0" layoutY="372.0" prefHeight="25.0" prefWidth="479.0" />
+            <Button fx:id="btnAjout" layoutX="187.0" layoutY="433.0" mnemonicParsing="false" onAction="#method" text="Ajouter">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnReset" layoutX="286.0" layoutY="433.0" mnemonicParsing="false" text="Reset">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="20.0" layoutY="29.0" prefHeight="17.0" prefWidth="245.0" text="Poser votre question :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

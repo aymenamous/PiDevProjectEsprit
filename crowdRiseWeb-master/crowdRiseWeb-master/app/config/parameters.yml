@@ -1,0 +1,14 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port: 3306
+    database_name: crowdrise
+    database_user: root
+    database_password: null
+    mailer_transport: smtp
+    mailer_host: smtp.gmail.com
+    mailer_user: testfirasbarrek@gmail.com
+    mailer_password: 23648096
+    locale: en
+    secret: 607c5213d40303af3ca3646670300394ed54029b

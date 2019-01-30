@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="80.0" prefWidth="225.0" stylesheets="@../../ressources/jfoenix-components.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.CompetenceController">
+   <children>
+      <Label layoutX="22.0" layoutY="2.0" text="Gestion des compétences">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <com.jfoenix.controls.JFXButton fx:id="btn_ajouter" layoutX="47.0" layoutY="40.0" mnemonicParsing="false" onAction="#onBtnAjouterClicked" styleClass="button-raised-profil" text="Ajouter" />
+      <com.jfoenix.controls.JFXButton fx:id="btn_retirer" layoutX="124.0" layoutY="40.0" mnemonicParsing="false" onAction="#onBtnRetirerClicked" styleClass="button-raised-profil" text="Retirer" />
+   </children>
+</AnchorPane>

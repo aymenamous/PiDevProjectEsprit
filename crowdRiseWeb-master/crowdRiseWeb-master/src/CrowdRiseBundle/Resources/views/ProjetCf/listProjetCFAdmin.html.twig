@@ -1,0 +1,53 @@
+{# empty Twig template #}
+{# empty Twig template #}
+{% extends "CrowdRiseBundle:Admin:indexAdmin.html.twig" %}
+
+
+{% block content %}
+
+
+    <div class="content" style="margin-top: 10vh">
+        <h1>Liste des Projet CF</h1>
+        <div class="row">
+            <div class="col s11 l10">
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Titre</th>
+                            <th>Déscription</th>
+                            <th>Date De Création</th>
+                            <th>Accepter</th>
+                            <th>Refuser</th>
+
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for i in projetcf %}
+                            <tr>
+                                <td>{{i.id}}</td>
+                                <td>{{i.nom}}</td>
+                                <td>{{i.description}}</td>
+                                <td>{{i.date|date('m-d-y')}}</td>
+                                <td><a class="btn-floating btn-medium waves-effect waves-light green" href="{{path('crowdrise_projetcf_accept',{'id':i.id})}}" onclick="Materialize.toast('Projet CF accepté !', 6000)"><i class="material-icons">check</i></a></td>
+                                <td><a class="btn-floating btn-medium waves-effect waves-light red" href="{{path('crowdrise_projetcf_refuse',{'id':i.id})}}" onclick="Materialize.toast('Projet CF refusé !', 6000)"><i class="material-icons">block</i></a></td>
+
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+{% endblock %}

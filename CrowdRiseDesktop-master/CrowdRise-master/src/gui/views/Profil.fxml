@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.embed.swing.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="base" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../ressources/jfoenix-components.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ProfilController">
+   <children>
+       <JFXDialog fx:id="dialog">
+		<JFXDialogLayout fx:id="dialog_layout">
+			<heading>
+				<Label fx:id="title_dialog" style="-fx-font-size:16px;" />
+			</heading>
+			<body>
+                            <Label fx:id="content_dialog" />
+                             <AnchorPane fx:id="dialog_btn">
+                                    
+                                   
+                                
+                            </AnchorPane>
+				
+                                
+                        </body>
+                        
+                        <actions>
+                            <JFXButton fx:id="action" styleClass="dialog-accept" text="Accepter" />
+                            <JFXButton fx:id="action1" styleClass="dialog-accept" text="Annuler" />
+			</actions>
+			
+		</JFXDialogLayout>
+	</JFXDialog>
+      <SplitPane fx:id="border" dividerPositions="0.2239657631954351" layoutX="146.0" layoutY="81.0" prefHeight="400.0" prefWidth="600.0" styleClass="body" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane maxWidth="160.0" minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="0.0" styleClass="body">
+               <children>
+                  <JFXButton layoutX="80.0" layoutY="187.0" mnemonicParsing="false" onAction="#onBtnConvertirClicked" styleClass="button-raised-profil" text="Convertir" />
+                  <Label layoutX="14.0" layoutY="156.0" text="CR:" />
+                  <JFXTextField fx:id="cr_field" editable="false" layoutX="36.0" layoutY="152.0" prefHeight="25.0" prefWidth="102.0" />
+                  <JFXButton layoutX="3.0" layoutY="187.0" mnemonicParsing="false" onAction="#onBtnAjouterClicked" styleClass="button-raised-profil" text="Ajouter" />
+                  <Pane onMouseEntered="#onPhotoEntred" onMouseExited="#onPhotoExisted" prefHeight="145.0" prefWidth="154.0">
+                     <children>
+                        <ImageView fx:id="imgv_photo" fitHeight="145.0" fitWidth="154.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true" />
+                        <VBox fx:id="vbox_photo" alignment="CENTER" layoutY="80.0" opacity="0.58" prefHeight="59.0" prefWidth="154.0" style="-fx-background-color: gray;" />
+                        <Hyperlink fx:id="link_photo" layoutX="15.0" layoutY="95.0" onAction="#onLinkPhotoClicked" text="Modifier la photo" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Hyperlink>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="body">
+               <children>
+                  <Pane fx:id="pane_parametre_compte" layoutX="12.0" layoutY="22.0" prefHeight="260.0" prefWidth="604.0" style="-fx-background-color: white; -fx-background-radius: 10px;" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="22.0">
+                     <children>
+                        <Label layoutX="10.0" layoutY="5.0" text="Paramètres généraux du compte">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                        <Label fx:id="nom_label" layoutX="21.0" layoutY="40.0" text="Nom">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="prenom_label" layoutX="21.0" layoutY="75.0" text="Prénom">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="mdp_label" layoutX="21.0" layoutY="145.0" text="Mot de passe">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="email_label" layoutX="21.0" layoutY="110.0" prefHeight="25.0" prefWidth="34.0" text="Email">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="adresse_label" layoutX="21.0" layoutY="180.0" text="Adresse">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="telephone_label" layoutX="21.0" layoutY="215.0" text="Telephone">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="nouveau_label" layoutX="21.0" layoutY="180.0" text="Nouveau">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <JFXTextField fx:id="nom_field" layoutX="108.0" layoutY="40.0" onAction="#onBtnNomClicked" prefWidth="250.0" />
+                        <JFXTextField fx:id="prenom_field" layoutX="108.0" layoutY="75.0" prefWidth="250.0" />
+                        <JFXTextField fx:id="email_field" layoutX="108.0" layoutY="110.0" prefWidth="250.0" />
+                        <JFXPasswordField fx:id="mdp_field" layoutX="108.0" layoutY="145.0" prefWidth="250.0" />
+                        <JFXPasswordField fx:id="nouveau_field" layoutX="108.0" layoutY="180.0" prefWidth="250.0" />
+                        <JFXPasswordField fx:id="confirmer_field" layoutX="108.0" layoutY="215.0" prefWidth="250.0" />
+                        <JFXTextField fx:id="adresse_field" layoutX="108.0" layoutY="180.0" prefWidth="250.0" />
+                        <JFXTextField fx:id="telephone_field" layoutX="108.0" layoutY="215.0" prefWidth="250.0" />
+                        <Label fx:id="confirmer_label" layoutX="21.0" layoutY="215.0" text="Confirmer">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <JFXButton id="btn" fx:id="btn_nomm" ellipsisString="" layoutX="504.0" layoutY="40.0" mnemonicParsing="false" onAction="#onBtnNomClicked" prefHeight="25.0" prefWidth="24.0" style="-fx-background-color: #F1C40F;" styleClass="button-raised-profil">
+                           <graphic>
+                              <ImageView fx:id="btn_nom" fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@/ressources/document-edit-256-000000.png" />
+                                 </image></ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton id="btn" fx:id="btn_prenom" layoutX="504.0" layoutY="75.0" mnemonicParsing="false" onAction="#onBtnPrenomClicked" prefHeight="25.0" prefWidth="24.0" style="-fx-background-color: #F1C40F;" styleClass="button-raised-profil">
+                           <graphic>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@/ressources/document-edit-256-000000.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton id="btn" fx:id="btn_email" layoutX="504.0" layoutY="110.0" mnemonicParsing="false" onAction="#onBtnEmailClicked" prefHeight="25.0" prefWidth="0.0" style="-fx-background-color: #F1C40F;" styleClass="button-raised-profil">
+                           <graphic>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@/ressources/document-edit-256-000000.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton id="btn" fx:id="btn_mdp" layoutX="504.0" layoutY="145.0" mnemonicParsing="false" onAction="#onBtnMdpClicked" prefHeight="25.0" prefWidth="24.0" style="-fx-background-color: #F1C40F;" styleClass="button-raised-profil">
+                           <graphic>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@/ressources/document-edit-256-000000.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton id="btn" fx:id="btn_adresse" layoutX="504.0" layoutY="180.0" mnemonicParsing="false" onAction="#onBtnAdresseClicked" prefHeight="25.0" prefWidth="24.0" style="-fx-background-color: #F1C40F;" styleClass="button-raised-profil">
+                           <graphic>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@/ressources/document-edit-256-000000.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton id="btn" fx:id="btn_telephone" layoutX="504.0" layoutY="215.0" mnemonicParsing="false" onAction="#onBtnTelephoneClicked" prefHeight="25.0" prefWidth="24.0" style="-fx-background-color: #F1C40F;" styleClass="button-raised-profil">
+                           <graphic>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@/ressources/document-edit-256-000000.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></JFXButton>
+                        <JFXButton layoutX="555.0" layoutY="5.0" maxHeight="5.0" maxWidth="25.0" mnemonicParsing="false" onAction="#onExtendClicked" prefHeight="5.0" prefWidth="25.0" styleClass="button-raised-profil">
+                           <graphic>
+                              <ImageView fitHeight="13.0" fitWidth="13.0">
+                                 <image>
+                                    <Image url="@/ressources/extend.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton id="btn" fx:id="btn_annuler_nom" layoutX="555.0" layoutY="40.0" mnemonicParsing="false" onAction="#onBtnAnnulerNomClicked" prefHeight="25.0" prefWidth="24.0" style="-fx-background-color: #E74C3C;" styleClass="button-raised-profil">
+                           <graphic>
+                              <ImageView fx:id="btn_nom1" fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@/ressources/cross.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton id="btn" fx:id="btn_annuler_prenom" layoutX="555.0" layoutY="75.0" mnemonicParsing="false" onAction="#onBtnAnnulerPrenomClicked" prefHeight="25.0" prefWidth="24.0" style="-fx-background-color: #E74C3C;" styleClass="button-raised-profil">
+                           <graphic>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@/ressources/cross.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton id="btn" fx:id="btn_annuler_email" layoutX="555.0" layoutY="110.0" mnemonicParsing="false" onAction="#onBtnAnnulerEmailClicked" prefHeight="25.0" prefWidth="0.0" style="-fx-background-color: #E74C3C;" styleClass="button-raised-profil">
+                           <graphic>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@/ressources/cross.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton id="btn" fx:id="btn_annuler_mdp" layoutX="555.0" layoutY="145.0" mnemonicParsing="false" onAction="#onBtnAnnulerMdpClicked" prefHeight="25.0" prefWidth="24.0" style="-fx-background-color: #E74C3C;" styleClass="button-raised-profil">
+                           <graphic>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@/ressources/cross.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton id="btn" fx:id="btn_annuler_telephone" layoutX="555.0" layoutY="215.0" mnemonicParsing="false" onAction="#onBtnAnnulerTelephoneClicked" prefHeight="25.0" prefWidth="24.0" style="-fx-background-color: #E74C3C;" styleClass="button-raised-profil">
+                           <graphic>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@/ressources/cross.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton id="btn" fx:id="btn_annuler_adresse" layoutX="555.0" layoutY="180.0" mnemonicParsing="false" onAction="#onBtnAnnulerAdresseClicked" prefHeight="25.0" prefWidth="24.0" style="-fx-background-color: #E74C3C;" styleClass="button-raised-profil">
+                           <graphic>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@/ressources/cross.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="12.0" layoutY="350.0" prefHeight="180.0" prefWidth="604.0" style="-fx-background-color: white; -fx-background-radius: 10px;" AnchorPane.leftAnchor="12.0">
+                     <children>
+                        <Label layoutX="6.0" layoutY="5.0" text="Compétence">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                        <JFXButton id="btn1" layoutX="560.0" layoutY="1.0" mnemonicParsing="false" onAction="#onBtnAjouterCompetenceClicked" prefHeight="17.0" prefWidth="35.0" styleClass="button-raised-profil">
+                           <graphic>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@/ressources/plus.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <ScrollPane fx:id="pane_competence" layoutY="35.0" prefHeight="145.0" prefWidth="604.0" style="-fx-border-color: white; -fx-background-color: white;">
+                          <content>
+                            <AnchorPane fx:id="anchor_competence" minHeight="0.0" minWidth="0.0" prefHeight="141.0" prefWidth="600.0" style="-fx-background-color: white;" />
+                          </content>
+                        </ScrollPane>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

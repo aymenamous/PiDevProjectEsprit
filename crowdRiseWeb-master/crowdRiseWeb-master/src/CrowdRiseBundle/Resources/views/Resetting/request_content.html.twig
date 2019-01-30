@@ -1,0 +1,30 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+   <div class="row">
+        <div class="col s12 m6">
+          <div style="margin-left:400px;width:100%;margin-top:60px;height: 360px;" class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Entrez Votre adresse email :<br></span>
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+    <div>
+        {% if invalid_username is defined %}
+            <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+        {% endif %}
+        <br><br>
+        <label for="username">{{ 'resetting.request.username'|trans }}</label>
+        <input type="text" id="username" name="username" required="required" />
+    </div>
+        
+    <div>
+        <input class="btn waves-green" type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+    </div>
+</form>
+            </div>
+    <br> 
+            <div class="card-action">
+                <a href="#">On va vous envoyer un email !</a>
+            </div>
+          </div>
+        </div>
+      </div>

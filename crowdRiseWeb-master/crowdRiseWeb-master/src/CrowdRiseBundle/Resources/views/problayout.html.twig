@@ -1,0 +1,295 @@
+{# empty Twig template #}
+<html>
+    <!--  /!\  problayout /!\  --> 
+    <head> 
+        <title>{% block Title %}{% endblock %}</title>
+        <meta charset="utf-8">
+
+
+        <link href="{{asset('css/hadhstyle.css')}}" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+        <script src="{{ asset('bundles/dcsrating/js/rating.js') }}"></script>
+
+
+        <!-- CORE CSS-->
+        <link rel="stylesheet" href="{{ asset('bundles/dcsrating/css/rating.css') }}" />
+        <link href="{{asset('css/materialize.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
+        <link href="{{asset('css/style1.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
+        <!-- Custome CSS-->
+        <link href="{{asset('css/custom-style.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
+        <!-- CSS style Horizontal Nav (Layout 03)-->
+        <link href="{{asset('css/style-horizontal.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="{{asset('css/styles3.css')}}">
+        <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('css/bootstrap-glyphicons.css')}}" rel="stylesheet">
+        <!-- If no online access, fallback to our hardcoded version of jQuery -->
+       
+
+
+
+        
+        <link type="text/css" rel="stylesheet" href="{{asset('css/home.css')}}"/>
+        <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+        <link href="{{asset('css/prism.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
+        <link href="{{asset('js/plugins/perfect-scrollbar/perfect-scrollbar.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
+        <link rel="stylesheet" type="text/css" href="{{asset('css/materialize.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+        <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{asset('css/style1.css')}}">
+
+        <script type="text/javascript" src="{{asset('js/jquery.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/materialize.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/prism.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins/chartist-js/chartist.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins.js')}}"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $('.carousel').carousel();
+
+                // Pause slider
+                $('.slider').slider('pause');
+                // Start slider
+                $('.slider').slider('start');
+                // Next slide
+                $('.slider').slider('next');
+                // Previous slide
+                $('.slider').slider('prev');
+                $(".button-collapse").sideNav();
+                $(".dropdown-button").dropdown({
+                    belowOrigin: true
+                });
+                $('.collapsible').collapsible({
+                    accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+                });
+                $('.modal-trigger').leanModal({
+                    dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                    opacity: .5, // Opacity of modal background
+                    in_duration: 300, // Transition in duration
+                    out_duration: 200 // Transition out duration
+                }
+                );
+
+
+
+
+// Pause slider
+                $('.slider').slider('pause');
+// Start slider
+                $('.slider').slider('start');
+// Next slide
+                $('.slider').slider('next');
+// Previous slide
+                $('.slider').slider('prev');
+
+            });
+            $(function () {
+                $('a[href*="#"]:not([href="#"])').click(function () {
+                    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                        var target = $(this.hash);
+                        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                        if (target.length) {
+                            $('html, body').animate({
+                                scrollTop: target.offset().top
+                            }, 1000);
+                            return false;
+                        }
+                    }
+                });
+            });
+
+
+        </script>
+        {% block script %} {% endblock %}
+    </head>
+    <body>
+
+        <ul id="projectDropdown" class="dropdown-content">
+            <li><a href="#!">CrowdFunding</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">Idee</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">Problemes</a></li>
+        </ul>
+
+
+
+
+
+        <section id="intro">
+            <div class="navbar-fixed">
+
+                <nav class="grey darken-4 " >
+
+                    <div class="nav-wrapper">
+                        <a href="{{path('crowd_rise_homepage') }}" class="brand-logo"><i style="margin-right: 10px;" class="material-icons">play_circle_filled</i> START RISING</a>
+                        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                        <ul class="right hide-on-med-and-down">
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li> <a href="#"  class=" dropdown-button " data-activates='projectDropdown'>Browse Projects <svg style="width:24px;height:24px;top: 6px; position: relative; right: 2px;" viewBox="0 0 24 24">
+                                    <path fill="#ffffff" d="M5.59,7.41L7,6L13,12L7,18L5.59,16.59L10.17,12L5.59,7.41M11.59,7.41L13,6L19,12L13,18L11.59,16.59L16.17,12L11.59,7.41Z" />
+                                    </svg></a>
+                            </li>
+
+                            {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                                <div class="shake shake-slow">
+                                    <li><button  type="button " data-target="#modal1" data-toggle="modal" class="waves-effect waves-light btn modal-trigger" >LOGIN</button></li></div>
+                             
+
+                                <div class="shake shake-slow">
+                                    <li><a href="../app_dev.php/register" data-toggle="modal" data-target="" class="modal-trigger waves-effect waves-light btn" >Sing up</a></li></div>
+
+
+                            {% else %}
+
+
+                                <li><i class="material-icons blue-text text-darken-2">perm_identity</i></li> 
+
+                                <li> <a href="{{ path('my_profile') }}">{{ app.user}} </a></li>         
+
+                                <li><a href="{{ path('fos_user_security_logout') }}" class="modal-trigger waves-effect waves-light btn1" data-toggle="modal" data-target=""> <i class="material-icons blue-text text-darken-2">power_settings_new</i></a></li>
+
+
+                            {% endif %}
+
+
+
+                            {% if app.request.hasPreviousSession %}
+                                {% for type, messages in app.session.flashbag.all() %}
+                                    {% for message in messages %}
+                                        <div class="flash-{{ type }}">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endif %}
+
+
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+
+        {% block intro %}{% endblock %}
+
+
+
+   
+    </section>
+
+    <section>
+    {% block prob %}{% endblock %}  
+{% block content %}{% endblock %}
+</section>
+
+<section> 
+{% block content2 %}{% endblock %}
+</section>
+
+
+<div id="msg" class="row">
+    <div class="col s12 m6">
+
+    {% block change_password %}{% endblock %}
+{% block registration %}{% endblock %}
+{% block profile %}{% endblock %}
+ {% block hwi_oauth_content %}
+     
+    {% endblock hwi_oauth_content %}
+</div>
+</div>
+<!-- footer --> 
+<section>
+    <footer>
+        <div id="footer-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m3">
+                        <p>STAMPLAY LTD</p>
+                        <ul>
+                            <li><a href="/terms">Terms of service</a></li>
+                            <li><a href="/privacy">Privacy</a></li>
+                        </ul>
+                        <a href="https://mixpanel.com/f/partner" rel="nofollow"><img src="//cdn.mxpnl.com/site_media/images/partner/badge_blue.png" alt="Mobile Analytics" /></a>
+                    </div>
+                    <div class="col s12 m3">
+                        <p>COMPANY</p>
+                        <ul>
+                            <li><a href="/team">Team</a></li>
+                            <li><a href="https://blog.stamplay.com/" target="_blank">Blog</a></li>
+                            <li><a href="https://stamplay.growsumo.com/" target="_blank">Partner with us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col s12 m3">
+
+                        <p>PLATFORM</p>
+                        <ul>
+                            <li><a href="/pricing">Pricing</a></li>
+                            <li><a href="/docs/hosting">Docs</a></li>
+                            <li><a href="https://stamplaykb.stamplayapp.com" target="_blank">Community</a></li>
+                            <li><a href="https://slackinvites.stamplayapp.com" target="_blank">Join us on Slack</a></li>
+                        </ul>
+                    </div>
+                                 <div class="col s12 m3">
+
+
+                    </div>
+
+
+
+                    <div class="col s12 m3">
+
+                        <!-- Begin MailChimp Signup Form -->
+                        <div id="mc_embed_signup">
+                            <form action="//stamplay.us6.list-manage.com/subscribe/post?u=b066facd44f5a378509bc4e82&amp;id=f1fb33c6e5" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                                <div id="mc_embed_signup_scroll">
+                                    
+                                    <p style="margin-bottom: 0px;">Join the newsletter</p>
+                                    <div class="mc-field-group">
+                                        <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Enter email" style="color:#fbc02d;">
+                                    </div>
+                                    <div id="mce-responses" class="clear">
+                                        <div class="response" id="mce-error-response" style="display:none"></div>
+                                        <div class="response" id="mce-success-response" style="display:none"></div>
+                                    </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                    <div style="position: absolute; left: -5000px;"><input type="text" name="b_b066facd44f5a378509bc4e82_f1fb33c6e5" class="mailchimp" tabindex="-1" value=""></div>
+                                    <div class="clear">
+                                        <input type="submit" value="Subscribe"  name="subscribe to newsletter" id="mc-embedded-subscribe" class="btn button darken-2"></div>
+                                </div>
+                            </form>
+
+                        </div>
+                        <!--End mc_embed_signup-->
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </footer>
+                        
+        <div id="lesforme">
+           
+
+                {{ render(controller("FOSUserBundle:Security:login")) }}      
+
+        </div>
+                     
+        <script src="{{asset('js/jquery1.js')}}"></script>
+        <script src="{{asset('js/bootstrap1.js')}}"></script>      
+
+        
+</section>
+</body>
+
+</html>

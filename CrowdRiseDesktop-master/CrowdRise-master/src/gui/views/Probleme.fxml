@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.*?>
+
+<AnchorPane fx:id="content" id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="body3" stylesheets="@../../ressources/jfoenix-components.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ProblemeController">
+    <children>
+      <SplitPane dividerPositions="0.22011385199240988" layoutX="-3.0" orientation="VERTICAL" prefHeight="529.0" prefWidth="689.0" styleClass="body" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="97.0" prefWidth="680.0" styleClass="body3">
+               <children>
+
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="409.0" prefWidth="680.0" styleClass="body3">
+               <children>
+                  <JFXListView fx:id="liste" layoutY="2.0" prefHeight="358.0" prefWidth="687.0" styleClass="jfx-list-view" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  
+                  <StackPane layoutX="169.0" layoutY="358.0" prefHeight="49.0" prefWidth="350.0">
+                     <children>
+                        <Pagination fx:id="pagination" prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </StackPane>
+                  <VBox layoutX="525.0" layoutY="358.0" prefHeight="49.0" prefWidth="47.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="44.0" text="Limite" textFill="WHITE" />
+                        <JFXTextField fx:id="limitText" onAction="#changeLimit" prefHeight="25.0" prefWidth="66.0" styleClass="jfx-text-field" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <Pane fx:id="pane" layoutX="-203.0" prefHeight="600.0" prefWidth="197.0" styleClass="body2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-203.0" AnchorPane.rightAnchor="806.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <com.jfoenix.controls.JFXButton fx:id="lb" cache="true" layoutX="201.0" layoutY="26.0" mnemonicParsing="false" onAction="#onBtnAjoutClicked" prefHeight="25.0" prefWidth="36.0" styleClass="button-raised2" stylesheets="@../../ressources/jfoenix-components.css" text="Menu" />
+            <JFXButton fx:id="mesprob" layoutX="15.0" layoutY="144.0" mnemonicParsing="false" onAction="#onMesProblemesClicked" prefHeight="40.0" prefWidth="170.0" styleClass="button-raised" text="Mes Questions" />
+           
+            
+            <Label layoutX="26.0" layoutY="105.0" prefHeight="17.0" prefWidth="79.0" text="Login">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ImageView>
+               <image>
+                  <Image url="@../../ressources/profile.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

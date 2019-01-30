@@ -1,0 +1,115 @@
+{# empty Twig template #}
+{% extends "CrowdRiseBundle:Admin:indexAdmin.html.twig" %}
+
+
+{% block content %}
+
+    <div class="row"style="margin-top: 100px; width:1700px;margin-right: 400px;">
+
+
+        <label for="rechercher" style="font-size: 20px;height: 100px;" ><i class="large material-icons">search</i>  Rechercher</label>
+        <input  type="text" name="search" id="search" placeholder="Par nom ou prenom" >
+
+    </div>
+
+    <div class="content"   id="tableau"  style="margin-top: 5vh">
+        <h3 style="margin-top: -10px;">Liste de membres</h3>
+        <div class="row">
+            <div class="col s11 l12">
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th >id</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Email</th>
+                            <th >Activer /Désactiver</th>
+                            <th>Supprimer</th>
+
+
+                        </tr>
+                    </thead>
+
+                    <tbody id="tbody">
+                        {% for item in membre %}
+                            <tr>
+                                <td>{{item.id}}</td>
+                                <td>{{item.nom}}</td>
+                                <td>{{item.prenom}}</td>
+                                <td>{{item.email}}</td>
+
+
+                                <td>
+                                    <a class="btn-floating btn-medium waves-effect waves-light green" href="{{path('crowdrise_membre_accept',{'id' : item.id})}}"><i class="material-icons">check </i></a>
+                                    <a class="btn-floating btn-medium waves-effect waves-light red" href="{{path('crowdrise_membre_refuse',{'id' : item.id})}}"><i class="material-icons">block</i></a>
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    {% block script %}
+
+        <script src="{{asset('js/jquery.js')}}"></script>
+        <script>
+            $(document).ready(function () {
+
+                var action;
+                $('#search').keyup(function () {
+                    action = '1';
+                    searchText = $(this).val();
+
+                    if ($('#search').val() == "")
+                    {
+                        action = '0';
+            {#console.log("test");
+            {
+                window.location = "{{path('crowdrise_membre_Admin')}}"
+            }#}
+                        }
+
+
+
+                        $.ajax({
+                            type: "POST",
+                            url: "{{path('Rechercher_Membre')}}",
+                            dataType: "json",
+                            data: {'searchText': searchText, action: action},
+                            success: function (data)
+                            {
+
+                                //    $('#tableau').html('<div class="content"   id="tableau"><div class="row"><div class="col s11 l10"><table class="striped">data);
+                                $('#tbody').html('');
+                                $.each(data, function (i, item) {
+
+                                    $('#tbody').append('<tr><td>  ' + data[i].id + "</td> <td>" + data[i].nom + "</td><td>" + data[i].prenom + "</td><td>" + data[i].email + '</td><td><a class="btn-floating btn-medium waves-effect waves-light green" href="../Membre/enable/' + data[i].id + '"><i class="material-icons">check </i></a><a class="btn-floating btn-medium waves-effect waves-light red" href="../Membre/disable/' + data[i].id + '"><i class="material-icons">block</i></a></td> <td> <a class="btn-floating btn-medium waves-effect waves-light red" href="../Membre/refuse/' + data[i].id + '"><i class="material-icons">delete</i></a></td></tr>');
+
+
+                                });
+                            }
+
+
+
+                        });
+
+
+
+
+                    });
+
+
+                });
+
+
+        </script>
+
+
+    {% endblock %}
+
+{% endblock %}

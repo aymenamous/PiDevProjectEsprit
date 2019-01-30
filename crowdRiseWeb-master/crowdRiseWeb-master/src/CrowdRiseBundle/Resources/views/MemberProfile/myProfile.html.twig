@@ -1,0 +1,447 @@
+{% extends "CrowdRiseBundle::layout.html.twig" %}
+{% block script %}
+
+    <script src="{{asset('js/croppie/croppie.min.js')}}" ></script>
+    <script src="{{asset('js/croppie/demo.js')}}" ></script>
+    <script src="{{asset('js/croppie/profile.js')}}" ></script>
+    <style>
+        #CRForm{
+            width: 400px;
+            height: 200px;
+        }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+
+    <!-- Modal Structure -->
+    <div id="skill" class="modal">
+        <div class="modal-content">
+            <h4>Add new skills</h4>
+
+        </div>
+        <div class="modal-footer">
+            {% for n in ncomp %}
+                <div id="{{loop.index}}" class="chip chose">
+                    {{n.nom}}
+                </div>
+            {%endfor%}
+            <button id="send">Send</button>
+        </div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="CRForm" class="modal">
+        <center>
+        <div class="modal-content">
+            <h5>Inserez le montant</h5>
+
+            <form action="{{path('payment')}}" method="POST">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">euro_symbol</i>
+                    <input id="euro" type="number" name="amount" min="0" max="9999" step="0.01" size="4" class="validate"> 
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
+        </center>
+    </div>
+    <!-- START MAIN -->
+    <div id="main">
+        <!-- START WRAPPER -->
+        <div class="wrapper">
+            <!-- START CONTENT -->
+            <section id="content">        
+
+                <!--start container-->
+                <div class="container">
+
+                    <div id="profile-page" class="section">
+                        <!-- profile-page-header -->
+                        <div id="profile-page-header" class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="{{asset('images/user/user_banner.jpg')}}" alt="user background">                    
+                            </div>
+                            <figure class="card-profile-image">
+                                <img src="{{app.user.img}}" alt="profile image" class="upload-trigger circle z-depth-2 responsive-img">
+                            </figure>
+                            <div class="card-content">
+                                <div class="row">                    
+                                    <div class="col s3 offset-s2">                        
+                                        <h4 class="card-title grey-text text-darken-4">{{app.user.nom}} {{app.user.prenom}}</h4>
+                                        <p class="medium-small grey-text">Project Manager</p>                        
+                                    </div>
+                                    <div class="col s2 center-align">
+                                        <h4 class="card-title grey-text text-darken-4">10+</h4>
+                                        <p class="medium-small grey-text">Work Experience</p>                        
+                                    </div>
+                                    <div class="col s2 center-align">
+                                        <h4 class="card-title grey-text text-darken-4">6</h4>
+                                        <p class="medium-small grey-text">Completed Projects</p>                        
+                                    </div>                    
+                                    <div class="col s2 center-align">
+                                        <h4 class="card-title grey-text text-darken-4"> {{app.user.cr}} Cr</h4>
+                                        <p class="medium-small grey-text"><a href="#CRForm" class="modal-trigger">Approvisionner votre compte</a></p>                        
+                                    </div>                    
+                                    <div class="col s1 right-align">
+                                        <a class="btn-floating activator waves-effect waves-light darken-2 right">
+                                            <i class="mdi-action-perm-identity"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-reveal">
+                                <p>
+                                    <span class="card-title grey-text text-darken-4">{{app.user.nom}} {{app.user.prenom}}<i class="mdi-navigation-close right"></i></span>
+
+                                </p>
+                                <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i> {{app.user.telephone}}</p>
+                                <p><i class="mdi-communication-email cyan-text text-darken-2"></i> {{app.user.email}}</p>
+                                <p><i class="mdi-device-airplanemode-on cyan-text text-darken-2"></i> {{app.user.adresse}}</p>
+
+                                <a href="{{path('edit_profile')}}" class="tooltipped btn-floating btn-large waves-effect waves-light red" data-position="bottom" data-delay="50" data-tooltip="Modfier vos donnée personelles"><i class="material-icons">settings</i></a>
+
+                            </div>
+                        </div>
+                        <!--/ profile-page-header -->
+
+                        <!-- profile-page-content -->
+                        <div id="profile-page-content" class="row">
+                            <!-- profile-page-sidebar-->
+                            <div id="profile-page-sidebar" class="col s12 m4">
+
+                                <!-- Profile About Details  -->
+                                <ul id="profile-page-about-details" class="collection z-depth-1">
+
+                                    <li class="collection-item">
+                                        <div class="row">
+                                            <div class="col s5 grey-text darken-1"><i class="mdi-social-poll"></i> Skills</div>
+                                            <div class="col s7 grey-text text-darken-4 right-align">
+                                                {% if comps is defined and comps is not empty%}
+                                                    {% for c in comps %}
+                                                        {% if not loop.last %}
+                                                            {{c.nom}},
+                                                        {% else %}
+                                                            {{c.nom}}
+                                                        {% endif %}    
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <a href="#skill" class="modal-action">Add new skills.</a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="collection-item">
+                                        <div class="row">
+                                            <div class="col s5 grey-text darken-1"><i class="mdi-social-domain"></i> Lives in</div>
+                                            <div class="col s7 grey-text text-darken-4 right-align">{{app.user.adresse}}</div>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                                <!--/ Profile About Details  -->
+
+
+
+                                <!-- Profile feed  -->
+                                <ul id="profile-page-about-feed" class="collection z-depth-1">
+
+                                    {% if projs is defined %}
+                                        {% for p in projs %}
+                                            <li class="collection-item avatar">
+                                                <i class="material-icons circle">folder</i>
+                                                <span class="title">{{p.nom}}</span>
+                                                <p><span class="truncate">{{p.description}}</span>
+                                                    {% if p.type is sameas('ProjetCF') %}
+                                                        <span class="ultra-small"><a href="{{path('crowdrise_projetcf_displayAll')}}">Detail</a></span>
+                                                    {% else %}
+                                                        <span class="ultra-small"><a href="{{path('crowd_rise_homepage')}}">Detail</a></span>
+                                                    {% endif %}
+                                                </p>
+                                                <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
+                                            </li>
+                                        {% endfor %}  
+                                    {% else %}
+                                        No Projects yet
+                                    {% endif %}
+
+                                </ul>
+                                <!-- Profile feed  -->
+
+                                <!-- task-todos -->
+                                <ul id="task-card" class="collection with-header">
+                                    <li class="collection-header cyan">
+                                        <h4 class="task-card-title">Tasks todos</h4>
+                                        <p class="task-card-date">{{ "now"|date("m/d/Y") }}</p>
+                                    </li>
+                                    {% set k=0%}
+                                    {%for item in sol%}
+                                        {%if item.idMembre is not null%}
+                                        {%if item.idMembre.id == user.id %}
+                                        {%if item.confirmOwner==1 and item.confirmSolver==1 %}
+                                        <li class="collection-item dismissable ">
+                                            <input type="checkbox" checked="checked" id="task{{k}}" disabled="disabled"/>
+                                            <label for="task{{k}}">{{item.tache}} {{item.confirmOwner}} <a href="#" class="secondary-content"><span class="ultra-small">{{item.idProjet.date|date("d/M/y")}}</span></a>
+                                            </label>
+                                            <span class="task-cat pink">{{item.nomCompetence.nom}}</span>
+                                        </li>
+                                        {% else %}
+                                            <li class="collection-item dismissable ">
+                                            <input type="checkbox" id="task{{k}}" />
+                                            <label for="task{{k}}">{{item.tache}} {{item.confirmOwner}} <a href="#" class="secondary-content"><span class="ultra-small">{{item.idProjet.date|date("d/M/y")}}</span></a>
+                                            </label>
+                                            <span class="task-cat pink">{{item.nomCompetence.nom}}</span>
+                                        </li>
+                                        {% endif %}
+                                        {% endif %}
+                                        {% endif %}
+                                        {%set k=k+1%}
+                                    {%endfor%}
+                                    <!--<li class="collection-item dismissable">
+                                        <input type="checkbox" id="task110" />
+                                        <label for="task1">Create Mobile App UI. 
+                                            <a href="#" class="secondary-content">
+                                                <span class="ultra-small">Today</span>
+                                            </a>
+                                        </label>
+                                        <span class="task-cat teal">Mobile App</span>
+                                    </li>
+                                    <li class="collection-item dismissable">
+                                        <input type="checkbox" id="task210" />
+                                        <label for="task2">Check the new API standerds. <a href="#" class="secondary-content"><span class="ultra-small">Monday</span></a>
+                                        </label>
+                                        <span class="task-cat purple">Web API</span>
+                                    </li>
+                                    <li class="collection-item dismissable">
+                                        <input type="checkbox" id="task310" checked="checked" />
+                                        <label for="task3">Check the new Mockup of ABC. <a href="#" class="secondary-content"><span class="ultra-small">Wednesday</span></a>
+                                        </label>
+                                        <span class="task-cat pink">Mockup</span>
+                                    </li>
+                                    <li class="collection-item dismissable">
+                                        <input type="checkbox" id="task410" checked="checked" disabled="disabled" />
+                                        <label for="task4">I did it !</label>
+                                        <span class="task-cat cyan">Mobile App</span>
+                                    </li>-->
+                                </ul>
+                                <!-- task-todos -->
+                                
+                                <!-- task-card -->
+                                <ul id="task-card" class="collection with-header">
+                                    <li class="collection-header cyan">
+                                        <h4 class="task-card-title">My Task</h4>
+                                        <p class="task-card-date">March 26, 2015</p>
+                                    </li>                                    
+                                    {%for item in sol%}
+                                        {%if item.idProjet.idMembre.id==user.id %}
+                                        {%if item.confirmOwner==1 %}
+                                        <li class="collection-item dismissable ">
+                                            <input type="checkbox" checked="checked" id="task{{k}}" disabled="disabled"/>
+                                            <label for="task{{k}}">{{item.tache}} {{item.confirmOwner}} <a href="#" class="secondary-content"><span class="ultra-small">{{item.idProjet.date|date("d/M/y")}}</span></a>
+                                            </label>
+                                            <span class="task-cat pink">{{item.nomCompetence.nom}}</span>
+                                        </li>
+                                        {% else %}
+                                            <li class="collection-item dismissable ">
+                                            <input type="checkbox" id="task{{k}}" />
+                                            <label for="task{{k}}">{{item.tache}} {{item.confirmOwner}} <a href="#" class="secondary-content"><span class="ultra-small">{{item.idProjet.date|date("d/M/y")}}</span></a>
+                                            </label>
+                                            <span class="task-cat pink">{{item.nomCompetence.nom}}</span>
+                                        </li>
+                                        {% endif %}
+                                        {% endif %}
+                                        {%set k=k+1%}
+                                    {%endfor%}
+                                    <!--<li class="collection-item dismissable">
+                                        <input type="checkbox" id="task20" />
+                                        <label for="task2">Check the new API standerds. <a href="#" class="secondary-content"><span class="ultra-small">Monday</span></a>
+                                        </label>
+                                        <span class="task-cat purple">Web API</span>
+                                    </li>
+                                    <li class="collection-item dismissable">
+                                        <input type="checkbox" id="task31" checked="checked" />
+                                        <label for="task3">Check the new Mockup of ABC. <a href="#" class="secondary-content"><span class="ultra-small">Wednesday</span></a>
+                                        </label>
+                                        <span class="task-cat pink">Mockup</span>
+                                    </li>
+                                    <li class="collection-item dismissable">
+                                        <input type="checkbox" id="task40" checked="checked" disabled="disabled" />
+                                        <label for="task4">I did it !</label>
+                                        <span class="task-cat cyan">Mobile App</span>
+                                    </li>-->
+                                </ul>
+                                <!-- task-card -->
+
+
+
+                            </div>
+                            <!-- profile-page-sidebar-->
+
+                            <!-- profile-page-wall -->
+                            <div id="profile-page-wall" class="col s12 m8">
+                                <!-- profile-page-wall-share -->
+                                <div id="profile-page-wall-share" class="row">
+                                    <div class="col s12">
+                                        <ul class="tabs tab-profile z-depth-1 light-blue">
+                                            <li class="tab col s3"><a class="white-text waves-effect waves-light active" href="#UpdateStatus"><i class="mdi-editor-border-color"></i> Update Status</a>
+                                            </li>
+                                            <li class="tab col s3"><a class="white-text waves-effect waves-light" href="#AddPhotos"><i class="mdi-image-camera-alt"></i> Add Photos</a>
+                                            </li>
+                                            <li class="tab col s3"><a class="white-text waves-effect waves-light" href="#CreateAlbum"><i class="mdi-image-photo-album"></i> Create Album</a>
+                                            </li>                      
+                                        </ul>
+                                        <!-- UpdateStatus-->
+                                        <div id="UpdateStatus" class="tab-content col s12  grey lighten-4">
+                                            <div class="row">
+                                                <div class="col s2">
+                                                    <img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image-post">
+                                                </div>
+                                                <div class="input-field col s10">
+                                                    <textarea id="textarea" row="2" class="materialize-textarea"></textarea>
+                                                    <label for="textarea" class="">What's on your mind?</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12 m6 share-icons">
+                                                    <a href="#"><i class="mdi-image-camera-alt"></i></a>
+                                                    <a href="#"><i class="mdi-action-account-circle"></i></a>
+                                                    <a href="#"><i class="mdi-hardware-keyboard-alt"></i></a>
+                                                    <a href="#"><i class="mdi-communication-location-on"></i></a>
+                                                </div>
+                                                <div class="col s12 m6 right-align">
+                                                    <!-- Dropdown Trigger -->
+                                                    <a class='dropdown-button btn' href='#' data-activates='profliePost'><i class="mdi-action-language"></i> Public</a>
+
+                                                    <!-- Dropdown Structure -->
+                                                    <ul id='profliePost' class='dropdown-content'>
+                                                        <li><a href="#!"><i class="mdi-action-language"></i> Public</a></li>
+                                                        <li><a href="#!"><i class="mdi-action-face-unlock"></i> Friends</a></li>                              
+                                                        <li><a href="#!"><i class="mdi-action-lock-outline"></i> Only Me</a></li>
+                                                    </ul>
+
+                                                    <a class="waves-effect waves-light btn"><i class="mdi-maps-rate-review left"></i>Post</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- AddPhotos -->
+                                        <div id="AddPhotos" class="tab-content col s12  grey lighten-4">
+                                            <div class="row">
+                                                <div class="col s2">
+                                                    <img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image-post">
+                                                </div>
+                                                <div class="input-field col s10">
+                                                    <textarea id="textarea" row="2" class="materialize-textarea"></textarea>
+                                                    <label for="textarea" class="">Share your favorites photos!</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12 m6 share-icons">
+                                                    <a href="#"><i class="mdi-image-camera-alt"></i></a>
+                                                    <a href="#"><i class="mdi-action-account-circle"></i></a>
+                                                    <a href="#"><i class="mdi-hardware-keyboard-alt"></i></a>
+                                                    <a href="#"><i class="mdi-communication-location-on"></i></a>
+                                                </div>
+                                                <div class="col s12 m6 right-align">
+                                                    <!-- Dropdown Trigger -->
+                                                    <a class='dropdown-button btn' href='#' data-activates='profliePost2'><i class="mdi-action-language"></i> Public</a>
+
+                                                    <!-- Dropdown Structure -->
+                                                    <ul id='profliePost2' class='dropdown-content'>
+                                                        <li><a href="#!"><i class="mdi-action-language"></i> Public</a></li>
+                                                        <li><a href="#!"><i class="mdi-action-face-unlock"></i> Friends</a></li>                              
+                                                        <li><a href="#!"><i class="mdi-action-lock-outline"></i> Only Me</a></li>
+                                                    </ul>
+
+                                                    <a class="waves-effect waves-light btn"><i class="mdi-maps-rate-review left"></i>Post</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- CreateAlbum -->
+                                        <div id="CreateAlbum" class="tab-content col s12  grey lighten-4">
+                                            <div class="row">
+                                                <div class="col s2">
+                                                    <img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image-post">
+                                                </div>
+                                                <div class="input-field col s10">
+                                                    <textarea id="textarea" row="2" class="materialize-textarea"></textarea>
+                                                    <label for="textarea" class="">Create awesome album.</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12 m6 share-icons">
+                                                    <a href="#"><i class="mdi-image-camera-alt"></i></a>
+                                                    <a href="#"><i class="mdi-action-account-circle"></i></a>
+                                                    <a href="#"><i class="mdi-hardware-keyboard-alt"></i></a>
+                                                    <a href="#"><i class="mdi-communication-location-on"></i></a>
+                                                </div>
+                                                <div class="col s12 m6 right-align">
+                                                    <!-- Dropdown Trigger -->
+                                                    <a class='dropdown-button btn' href='#' data-activates='profliePost3'><i class="mdi-action-language"></i> Public</a>
+
+                                                    <!-- Dropdown Structure -->
+                                                    <ul id='profliePost3' class='dropdown-content'>
+                                                        <li><a href="#!"><i class="mdi-action-language"></i> Public</a></li>
+                                                        <li><a href="#!"><i class="mdi-action-face-unlock"></i> Friends</a></li>                              
+                                                        <li><a href="#!"><i class="mdi-action-lock-outline"></i> Only Me</a></li>
+                                                    </ul>
+
+                                                    <a class="waves-effect waves-light btn"><i class="mdi-maps-rate-review left"></i>Post</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/ profile-page-wall-share -->
+                            </div>
+                            <!--/ profile-page-wall -->
+                            <form id="form" action="{{path('user_add_skill')}}" method="POST">
+
+                            </form>
+                            <form id="formImg" action="{{path('user_change_pic')}}" method="POST">
+                                <input type="hidden" name="src" value="" id="inputHidden">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <!--end container-->
+    </section>
+    <!-- END CONTENT -->
+
+
+
+
+
+    <!-- END WRAPPER -->
+    <link type="text/css" rel="stylesheet" href="{{asset('css/croppie.css')}}">
+    <!-- Modal Structure -->
+    <div id="uploadImg" class="modal">
+        <div class="content modal-content">
+            <h4>Télécharger une photo</h4>
+            <div class="row">
+                <div class="file-field input-field col s6">
+                    <div class="btn">
+                        <span>File</span>
+                        <input type="file" id="upload">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <div class="col s6">
+                    <img src="" id="upimage">
+                    <div class="container demo">
+
+                    </div>
+                </div>
+                <a href="#" id="result" class="btn"> Send </a>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- END MAIN -->
+{% endblock %}

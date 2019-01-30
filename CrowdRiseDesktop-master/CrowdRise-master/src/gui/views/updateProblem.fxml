@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.*?>
+
+<AnchorPane id="AnchorPane" onMouseClicked="#onMouseClicked" prefHeight="539.0" prefWidth="600.0" styleClass="body2" stylesheets="@../../ressources/jfoenix-components.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.UpdateProblemController">
+   <children>
+      <JFXTextField fx:id="nom" layoutX="25.0" layoutY="90.0" prefHeight="25.0" prefWidth="180.0" />
+      <DatePicker fx:id="dateDebut" layoutX="383.0" layoutY="63.0" />
+      <TextArea fx:id="description" layoutX="25.0" layoutY="155.0" prefHeight="171.0" prefWidth="560.0" />
+      <Label layoutX="25.0" layoutY="63.0" text="Titre" textFill="WHITE" />
+      <Label layoutX="326.0" layoutY="67.0" text="Date" textFill="WHITE" />
+      <Label layoutX="25.0" layoutY="126.0" text="Description" textFill="WHITE" />
+      <JFXButton fx:id="btnMenu" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBtnMenuClicked" prefHeight="40.0" prefWidth="137.0" styleClass="button-raised2" text="Menu" />
+      <JFXButton fx:id="btnReset" layoutX="351.0" layoutY="484.0" mnemonicParsing="false" onAction="#onBtnResetClicked" prefHeight="37.0" prefWidth="92.0" styleClass="button-raised" text="Reset" />
+      <JFXButton fx:id="btnUpdate" layoutX="72.0" layoutY="484.0" mnemonicParsing="false" onAction="#onBtnUpdateClicked" prefHeight="37.0" prefWidth="92.0" styleClass="button-raised" text="Enregistrer" />
+      <Pane fx:id="pane" layoutX="-209.0" prefHeight="554.0" prefWidth="209.0" styleClass="body3">
+         <children>
+            <JFXButton fx:id="btnSupprimer" layoutX="27.0" layoutY="210.0" mnemonicParsing="false" onAction="#onBtnSupprimerClicked" prefHeight="37.0" prefWidth="155.0" styleClass="button-raised" text="Supprimer" textFill="WHITE" />
+            <JFXButton fx:id="btnModifier" layoutX="27.0" layoutY="154.0" mnemonicParsing="false" onAction="#onBtnModifierClicked" prefHeight="37.0" prefWidth="155.0" styleClass="button-raised" text="Modifier" textFill="WHITE" />
+            <JFXButton fx:id="btnQuitter" layoutX="27.0" layoutY="267.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" styleClass="button-raised" text="Quitter" textFill="#fffefe" />
+
+         </children>
+      </Pane>
+      <JFXProgressBar fx:id="pb" layoutX="37.0" layoutY="424.0" prefWidth="200.0" progress="0.0" styleClass="jfx-progress-bar" />
+   </children>
+</AnchorPane>

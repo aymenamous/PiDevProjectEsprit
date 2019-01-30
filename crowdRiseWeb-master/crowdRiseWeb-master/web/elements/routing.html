@@ -1,0 +1,59 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<script src="../bower_components/bower_components/page/page.js"></script>
+<script>
+  window.addEventListener('WebComponentsReady', function() {
+
+    // We use Page.js for routing. This is a Micro
+    // client-side router inspired by the Express router
+    // More info: https://visionmedia.github.io/page.js/
+    var app= document.querySelector('#app');
+    
+    page('/crowdriseWeb/web/app_dev.php/idee/cards', function () {        
+      app.route = 'AllIdeas';
+    });
+
+    page('/AllIdeas', function () {      
+      app.route = 'AllIdeas';
+    });
+
+    page('/MesIdees', function () {
+      app.route = 'MesIdees';
+    });
+
+    page('/videos', function () {
+      app.route = 'videos';
+    });
+
+
+    page('/showcase', function () {
+      app.route = 'showcase';
+    });
+
+    page('/showcase/:productId', function (data) {
+       console.log(data)
+      app.route = 'showcase/:productId';
+      app.params = data.params;
+    });
+    
+    page('/showcaseMesIdees/:productId', function (data) {
+       console.log(data)
+      app.route = 'showcaseMesIdees/:productId';
+      app.params = data.params;
+    });
+
+    // add #! before urls
+    page({
+      hashbang: true
+    });
+
+  });
+</script>

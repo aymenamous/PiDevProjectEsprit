@@ -1,0 +1,136 @@
+{# empty Twig template #}
+<dom-module id="portfolio-AllIdeas">
+    <style type="text/css">
+        :host {
+            display: block;
+        }
+
+        h1 {
+            color: #78909c;
+            font-size: 24px;
+            font-weight: 300;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            margin-left: 8px;
+        }
+
+        paper-card {            
+            margin: 8px 10px;
+            width: 250px;
+            --paper-card-header-color: white;
+        }
+
+        @media (max-width: 601px) {
+            paper-card {
+                width: 100% !important;                
+                margin-left: 0px;
+                margin-right: 0px;
+            }
+        }
+    </style>
+
+    <template>
+        <template is="dom-repeat" items="[[productsList]]" on-dom-change="_repeatRender">
+            <paper-card  elevation="1" id="[[item.id]]" image="[[item.header]]" heading="[[item.name]]">
+                <div class="card-content" style='height: 100px;'>                    
+                    [[item.descriptionReduite]]                    
+                </div>
+                <div class="card-actions">
+                    <paper-button on-tap="_openCard">Open</paper-button>
+                        {% include 'DCSRatingBundle:Rating:rating.html.twig' with {'id' : '7'} %}
+                </div>
+            </paper-card>
+        </template>
+        <center>
+            <div style="width:500px;">
+                {{ knp_pagination_render(tab) }}
+            </div>
+        </center>
+    </template>
+</dom-module>
+
+<script type="text/javascript">
+    addEventListener('WebComponentsReady', function () {
+    Polymer({
+    is: "portfolio-AllIdeas",
+            behaviors: [
+                    Polymer.NeonAnimationRunnerBehavior,
+                    Polymer.NeonSharedElementAnimatableBehavior
+            ],
+            properties: {
+            // START ANIMATIONS
+            animationConfig: {
+            value: function () {
+            return {
+            'entry': [{
+            name: 'fade-in-animation',
+                    node: this
+            }],
+                    'exit': [{
+                    name: 'hero-animation',
+                            id: 'hero',
+                            fromPage: this
+                    }, {
+                    name: 'fade-out-animation',
+                            node: this
+                    }]
+            }
+            }
+            }
+            // END ANIMATIONS
+            },
+            ready: function () {
+            var k = 0;
+            {% set k = 0 %}
+                this.productsList = [
+            {% for i in tab %}                             
+                {
+                    {% set ideeImage = i.imageIdee|split(', ') %}
+                            "id":{{k}},
+                            "name": "{{i.nom}}",
+                            {% set j = 0 %}                            
+                            {% for l in ideeImage %}                                
+                                "imageIdee{{j}}": "{{l}}",
+                                {%if j==0%}
+                                    "header": "{{asset('uploads/pictures/')}}{{l}}",
+                                {%endif%}
+                                {% set j = j+1 %}
+                            {%endfor%}
+                            "launcher": "{{asset('images/ic_launcher.png')}}",
+                            "membre": "{{i.idMembre.nom}}" + " " + "{{i.idMembre.prenom}}",
+                            "membreId":{{i.idMembre.id}},
+                            "descriptionReduite":{{i.description|json_encode()|raw }}.substring(0, 50) + "...",
+                            "descriptionComplete":{{i.description|json_encode()|raw }},
+                            "DateDebut": "{{i.debut|date('Y-m-d')}}",
+                            "DateFin": "{{i.fin|date('Y-m-d')}}",
+                            "idProjet":{{i.id}},
+                            "Remuneration":{{i.remunerationTotale}},
+                            "DateAjoutIdee": "{{i.date|date('Y-m-d')}}"
+                    },
+                    {% set k = k+1 %}          
+            {% endfor %} 
+                    ];
+            },
+            _repeatRender: function () {
+            this.paperCard = Polymer.dom(this.root).querySelectorAll("paper-card");
+            this.animationConfig["entry"].push({
+            name: "cascaded-animation",
+                    animation: "transform-animation",
+                    transformFrom: "translateY(100vh)",
+                    nodes: this.paperCard,
+                    timing: {
+                    delay: 0,
+                            duration: 1000
+                    }
+            })
+            },
+            _openCard: function (event) {
+            this.fire("updateShowcase", this.productsList[event.model.item.id]);
+            this.sharedElements = {
+            'hero': event.target
+            };
+            this.fire("changePage", "showcase");
+            }
+        })
+    })
+</script>

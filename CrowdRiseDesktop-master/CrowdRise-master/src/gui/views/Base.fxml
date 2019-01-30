@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import com.jfoenix.transitions.hamburger.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../ressources/jfoenix-components.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.BaseController">
+    <children>
+        <BorderPane layoutX="267.0" layoutY="108.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" >
+            <top>
+          
+                <JFXToolbar>
+                    <leftItems>
+                        <JFXRippler maskType="CIRCLE" >
+                            <StackPane fx:id="titleBurgerContainer">
+                                <JFXHamburger fx:id="titleBurger">
+                                    <HamburgerBackArrowBasicTransition />
+                                </JFXHamburger>
+                            </StackPane>
+                        </JFXRippler>
+                        <Label fx:id="titre_page">Accueil</Label>
+                    </leftItems>
+                </JFXToolbar>
+			
+            </top>
+            <center>
+                <JFXDrawer fx:id="drawer" defaultDrawerSize="250" direction="LEFT">
+                    <styleClass>
+                        <String fx:value="body" />
+                    </styleClass>
+                    <sidePane>
+                        <VBox>
+                        <JFXListView fx:id="menu" layoutX="-24.0" layoutY="-14.0" prefHeight="400.0" prefWidth="223.2135948" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <styleClass>	
+                                <String fx:value="side-menu" />
+                            </styleClass>
+                            <Label>Accueil</Label>
+                        </JFXListView>
+                        <StackPane alignment="CENTER" > 
+                        <JFXButton text="Se déconnecter" fx:id="deconnect" styleClass="button-raised-deco" onAction="#onBtnDeconncetClicked" />
+                        </StackPane>
+                        </VBox>
+                        
+                    </sidePane>
+                    <content>
+                        <AnchorPane fx:id="content"   >
+                            <children></children>
+                        </AnchorPane>
+                    </content>
+                </JFXDrawer>
+            </center>
+        </BorderPane>
+   
+    </children>
+</AnchorPane>

@@ -1,0 +1,50 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: plaintext
+
+    role_hierarchy:
+        ROLE_USER:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_provider: security.csrf.token_manager
+                success_handler: authentication_handler
+                failure_handler: authentication_handler
+            oauth:
+                resource_owners:
+                    facebook:           "/connect/check-facebook"
+                    google:             "/connect/check-google"
+                    twitter:            "/connect/check-twitter"
+                login_path:        /connect
+                failure_path:      /connect
+                
+                oauth_user_provider:
+                    service: my_user_provider
+            logout:      
+                path: /logout
+                target: /
+                success_handler: redirect.after.logout
+        
+            anonymous:    true
+            remember_me:
+                key:   '%secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+                # by default, the feature is enabled by checking a
+                # checkbox in the login form (see below), uncomment the
+                # following line to always enable it.
+                #always_remember_me: true 
+                
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_SUPER_ADMIN }

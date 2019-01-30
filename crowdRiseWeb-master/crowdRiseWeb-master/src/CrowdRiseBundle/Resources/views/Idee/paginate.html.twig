@@ -1,0 +1,40 @@
+{# empty Twig template #}
+   
+{% if pageCount > 1 %}
+<ul class="pagination">
+    {% if first is defined and current != first %}
+        <li>
+            <center><a  href="{{ path(route, query|merge({(pageParameterName): first})) }}"><i class="material-icons"><center>fast_rewind</center></i></a></center>
+        </li>
+    {% endif %}
+
+    {% if previous is defined %}
+        <li>
+            <center><a  href="{{ path(route, query|merge({(pageParameterName): previous})) }}"><i class="material-icons"><center>chevron_left</center></i></a></center>
+        </li>
+    {% endif %}
+
+    {% for page in pagesInRange %}
+        {% if page != current %}
+            <li class="waves-effect">
+                <center><a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a></center>
+            </li>
+        {% else %}
+            <li class="active">{{ page }}</li>
+        {% endif %}
+
+    {% endfor %}
+
+    {% if next is defined %}
+        <li>
+            <center><a href="{{ path(route, query|merge({(pageParameterName): next})) }}"><center><i class="material-icons"><center>chevron_right</center></i></center></a></center>
+        </li>
+    {% endif %}
+
+    {% if last is defined and current != last %}
+        <li>
+            <center><a href="{{ path(route, query|merge({(pageParameterName): last})) }}"><center><i class="material-icons"><center>fast_forward</center></i></center></a></center>
+        </li>
+    {% endif %}
+</ul>
+{% endif %}

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import com.jfoenix.validation.*?>
+<?import javafx.scene.paint.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorpane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ModifProjetCFController">
+    <children>
+      <BorderPane layoutX="189.0" layoutY="64.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: WHITE;" styleClass="body" stylesheets="@../ressources/jfoenix-components.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <GridPane style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="293.0" minWidth="10.0" prefWidth="240.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.0" minWidth="10.0" prefWidth="335.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.0" minWidth="10.0" prefWidth="145.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="101.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="146.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="155.0" minHeight="0.0" prefHeight="69.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="224.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="224.0" minHeight="10.0" prefHeight="82.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER_RIGHT" style="-fx-background-color: WHITE;" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" style="-fx-background-color: WHITE;" text="Titre:" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: WHITE;" GridPane.rowIndex="1">
+                     <children>
+                        <Label style="-fx-background-color: WHITE;" text="Description:" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="88.0" prefWidth="200.0" style="-fx-background-color: WHITE;" GridPane.rowIndex="2">
+                     <children>
+                        <Label style="-fx-background-color: WHITE;" text="Date Debut:" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: WHITE;" GridPane.rowIndex="3">
+                     <children>
+                        <Label style="-fx-background-color: WHITE;" text="Date Fin:" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: WHITE;" GridPane.rowIndex="4">
+                     <children>
+                        <Label style="-fx-background-color: WHITE;" text="Budget:" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: WHITE;" GridPane.rowIndex="5">
+                     <children>
+                        <Label style="-fx-background-color: WHITE;" text="Images:" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="1">
+                     <children>
+                        <com.jfoenix.controls.JFXTextField fx:id="titre" promptText="Titre (Obligatoire)" styleClass="jfx-text-field" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <children>
+                          <JFXDatePicker fx:id="DateDebut" prefWidth="230" />
+                    </children>
+
+                  </HBox>
+                  
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <children>
+                        <JFXDatePicker fx:id="DateFin"  prefWidth="230" />
+                     </children>
+
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <children>
+                        <JFXTextField fx:id="Budget" promptText="Budget en Dinars" styleClass="jfx-text-field" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                     <children>
+                        <JFXButton fx:id="bouton" onAction="#onboutonClicked" styleClass="animated-option-button" stylesheets="@../ressources/jfoenix-components.css" />
+                     </children>
+                  </HBox>
+                  <JFXTextArea fx:id="Desc" minWidth="200.0" prefHeight="20.0" prefWidth="200.0" promptText="Description (Obligatoire)" styleClass="jfx-text-area" stylesheets="@../ressources/jfoenix-components.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" left="40.0" right="40.0" top="10.0" />
+                     </GridPane.margin> 
+                  </JFXTextArea>
+               </children>
+            </GridPane>
+         </center>
+      </BorderPane>
+   </children>
+   <stylesheets>
+      <URL value="@../ressources/jfoenix-components.css" />
+      <URL value="@../../ressources/jfoenix-components.css" />
+   </stylesheets>
+</AnchorPane>

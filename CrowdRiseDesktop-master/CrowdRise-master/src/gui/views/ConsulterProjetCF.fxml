@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXNodesList?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane id="anchorpane" fx:id="anchorpane" prefHeight="509.0" prefWidth="756.0" stylesheets="@../../ressources/jfoenix-components.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ConsulterProjetCFController">
+   <children>
+      <BorderPane prefHeight="481.0" prefWidth="699.0" stylesheets="@../../ressources/jfoenix-components.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="481.0" prefWidth="699.0" BorderPane.alignment="CENTER">
+               <children>
+                  <GridPane alignment="CENTER" layoutX="7.0" layoutY="6.0" prefHeight="481.0" prefWidth="699.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" percentWidth="50.0" prefWidth="261.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="0.0" percentWidth="25.0" prefWidth="67.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" percentWidth="16.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" percentWidth="34.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="269.0" minHeight="10.0" prefHeight="88.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="222.0" minHeight="10.0" prefHeight="201.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="75.0" minHeight="2.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="47.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TitledPane animated="false" contentDisplay="CENTER" prefHeight="201.0" prefWidth="529.0" text="Description" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="152.0" prefWidth="279.0">
+                                 <children>
+                                    <TextFlow fx:id="Desc" layoutX="7.0" layoutY="8.0" prefHeight="25.0" prefWidth="428.0">
+                                       <children>
+                                          <Text fx:id="txt" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                                       </children>
+                                    </TextFlow>
+                                    <Label layoutX="7.0" layoutY="56.0" text="Debut:" />
+                                    <Label fx:id="Debut" layoutX="165.0" layoutY="51.0" text="Label" />
+                                    <Label layoutX="8.0" layoutY="80.0" text="Fin:" />
+                                    <Label fx:id="Fin" layoutX="165.0" layoutY="79.0" text="Label" />
+                                    <Label layoutX="-12.0" layoutY="102.0" prefHeight="17.0" prefWidth="179.0" text="Date de remise du projet:">
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label fx:id="Datemise" layoutX="165.0" layoutY="102.0" text="Label" />
+                                    <Label fx:id="Actuel" layoutX="-11.0" layoutY="126.0" prefHeight="17.0" prefWidth="106.0" text="Budget Actuel:">
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label layoutX="-10.0" layoutY="148.0" prefHeight="17.0" prefWidth="116.0" text="Budget Final:">
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label fx:id="BudgetAct" layoutX="165.0" layoutY="126.0" text="Label" />
+                                    <Label fx:id="BudgetFin" layoutX="165.0" layoutY="148.0" text="Label" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </TitledPane>
+                        <ProgressIndicator fx:id="prgressIndic" prefHeight="133.0" prefWidth="177.0" progress="0.0" GridPane.columnIndex="3" />
+                        <VBox prefHeight="123.0" prefWidth="348.0">
+                           <children>
+                              <ImageView fx:id="ImageMembre" fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <VBox.margin>
+                                    <Insets left="10.0" top="10.0" />
+                                 </VBox.margin></ImageView>
+                              <Label fx:id="userName" text="Label">
+                                 <VBox.margin>
+                                    <Insets left="25.0" />
+                                 </VBox.margin></Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="123.0" prefWidth="206.0" spacing="20.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           
+                            <children>
+                              <ImageView fx:id="imageD" fitHeight="39.0" fitWidth="45.0" onMouseClicked="#onclickImage" pickOnBounds="true" preserveRatio="true" />
+                              <ProgressBar fx:id="pb" minHeight="0.0" minWidth="0.0" prefHeight="23.0" prefWidth="131.0" progress="0.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ProgressBar>
+                              <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="button-raised-profil" stylesheets="@../../ressources/jfoenix-components.css" text="Financer ?" textOverrun="CENTER_ELLIPSIS" />
+                           </children>
+                        </VBox>
+                        <ScrollPane prefHeight="269.0" prefWidth="756.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" GridPane.rowSpan="6">
+                          <content>
+                                
+                                    <AnchorPane fx:id="pk" prefHeight="275.0" prefWidth="612.0" />
+                          </content>
+                        </ScrollPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </top>
+         <right>
+            <JFXNodesList fx:id="lstNode" stylesheets="@../../ressources/jfoenix-components.css" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
+   </children>
+</AnchorPane>

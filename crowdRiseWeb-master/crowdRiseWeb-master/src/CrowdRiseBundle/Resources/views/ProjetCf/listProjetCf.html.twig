@@ -1,0 +1,424 @@
+{% extends "CrowdRiseBundle::layout.html.twig" %}
+
+{% block content %}
+    
+    
+    
+    
+    
+    
+    <script src="{{asset('dist/sweetalert.min.js')}}"></script> 
+    <link rel="stylesheet" type="text/css" href="{{asset('dist/sweetalert.css')}}">
+    <script src="{{asset('bower_components/webcomponentsjs/webcomponents-lite.js')}}"></script>
+    <script src="{{asset('scripts/app.js')}}"></script>
+    <script src="{{asset('slider/nouislider.js')}}"></script>
+    <link href="{{asset('slider/nouislider.css')}}" rel="stylesheet">
+    
+    
+    <link rel="import" href="{{asset('bower_components/bower_components/iron-flex-layout/iron-flex-layout.html')}}">
+    <link rel="import" href="{{asset('bower_components/bower_components/iron-icons/iron-icons.html')}}">
+    <link rel="import" href="{{asset('bower_components/bower_components/iron-selector/iron-selector.html')}}">
+    <link rel="import" href="{{asset('bower_components/bower_components/iron-localstorage/iron-localstorage.html')}}">
+
+    <!-- Paper elements -->
+    <link rel="import" href="{{asset('bower_components/bower_components/paper-header-panel/paper-header-panel.html')}}">
+    <link rel="import" href="{{asset('bower_components/bower_components/paper-button/paper-button.html')}}">
+    <link rel="import" href="{{asset('bower_components/bower_components/paper-icon-button/paper-icon-button.html')}}">
+    <link rel="import" href="{{asset('bower_components/bower_components/paper-tabs/paper-tabs.html')}}">
+    <link rel="import" href="{{asset('bower_components/bower_components/paper-card/paper-card.html')}}">
+    <link rel="import" href="{{asset('bower_components/bower_components/paper-styles/typography.html')}}">
+    <link rel="import" href="{{asset('bower_components/bower_components/paper-toolbar/paper-toolbar.html')}}">
+
+    <!-- Neons elements !-->
+    <link rel="import" href="{{asset('bower_components/bower_components/neon-animation/neon-animated-pages.html')}}">
+    <link rel="import" href="{{asset('bower_components/bower_components/neon-animation/neon-animation.html')}}">
+
+    <!-- Configure your routes here -->
+    <link rel="import" href="{{asset('elements/routing.html')}}">
+
+    <!-- Add your elements here -->
+    <link rel="import" href="{{asset('elements/app-theme.html')}}">
+
+    <style is="custom-style">
+        paper-tabs {
+            color: #0091ea;
+            --paper-tabs-selection-bar-color: #26a69a;
+        }
+    </style>  
+    
+    <script>
+        
+        $(document).ready(function () {
+            
+            var position = 0;
+            {% if user is not null %}
+                var max = {{user.cr}};
+            {% else %} 
+                var max = 0;
+            {% endif %}
+            var slider = document.getElementById('slider-finance');
+            noUiSlider.create(slider, {
+             start: 0,
+             connect: 'lower',
+             range: {
+               'min': 0,
+               'max': max
+             },
+             format: wNumb({
+               decimals: 1
+             })
+            });
+
+            $('#recherche').focus(function(){
+                $(this).css({'border-radius':'10px','box-shadow': '0px 0px 5px ', 'transform': 'scale(1.03)'});
+            });
+            $('#recherche').focusout(function(){
+                $(this).css({ 'transform': 'scale(1)'});
+            });
+            
+            $('#modal-new-img-cf').hide();
+            $('#financement').submit(function(){
+                $('#modal-somme-cf').val(slider.noUiSlider.get());
+            });
+            $('#fermer-modal-cf').click(function(){            
+                
+                $('#modal-cf').closeModal();
+            });
+            $('.description-cf').hide();
+            $(".action-cf").hide();
+            $("#modal-action-cf").hide();
+            $('img').height($('.card-image').height());
+            $('img').width($('.card-image').width());
+            $('#all').click(function(){
+                $(".action-cf").hide();
+                $("#modal-action-cf").hide();
+                position = 0;
+                {% for i in tab %}
+                    $("#{{i.id}}").show();
+                {% endfor %}
+            });
+            {% if user is not null %}
+            $('#mine').click(function(){
+                position =1;
+                $("#modal-action-cf").show();
+                $(".action-cf").show();
+                {% for i in tab %}    
+                    {% if i.idMembre.id!=user.id %}
+                        $("#{{i.id}}").hide();
+                        
+                    {% endif %}
+                {% endfor %}       
+            });
+            {% endif %}
+            $('.card').mouseenter(function () {
+                $(this).css({'box-shadow': '0px 0px 10px ', 'transform': 'scale(1.05)'});
+
+
+            });
+            $('.card').mouseleave(function () {
+                $(this).css({'box-shadow': '0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) ', 'transform': 'scale(1)'});
+            });
+            $('.card').dblclick(function () {
+                var daysLeft = 0;
+                var fini = $(this).find("#fini-cf").val();
+                if (fini === '0')
+                {
+                    var dateFin=$(this).find('#date-fin-cf').val();
+                    var today='{{'now'|date('Y/m/d')}}';
+                    daysLeft = parseInt(dateFin.substring(0,4)-today.substring(0,4))*365 + parseInt(dateFin.substring(5,7)-today.substring(5,7))*30 + parseInt(dateFin.substring(8,10)-today.substring(8,10)) ;
+                    
+                }
+                var details="<b>"+$(this).find('#actuel').val()+"Cr</b>"+" sur "+$(this).find('#final').val()+"Cr</br><b>"+ $(this).find('#contribute-cf').val()+"</b> Contribution(s)</br><b>"+daysLeft+"</b> Jour restant(s)";
+                $('#modal-img-cf').attr('src',$(this).find('#img-cf').attr('src'));
+                $('#modal-img-cf').height($('.left-box').height());
+                $('#modal-img-cf').width($('.left-box').width());
+                $('#modal-nom-cf').html($(this).find('#nom-cf').text());
+                $('#modal-description-cf').html($(this).find('#description-cf').text());
+                $('#modal-cf').openModal();
+                $('#modal-img-cf').height($('.left-box').height());
+                $('#modal-img-cf').width($('.left-box').width());
+                $('#modal-details-cf').html(details);
+                $('#modal-id-cf').val($(this).find('#id-cf').val());
+                $('#modal-modifier-cf').attr('href','/crowdRiseWeb/web/app_dev.php/projetcf/update/'+$('#modal-id-cf').val());
+                $('#modal-stat-cf').attr('href','/crowdRiseWeb/web/app_dev.php/projetcf/graph/'+$('#modal-id-cf').val());
+                $('#modal-modifier-img-cf').click(function(){
+                   $('#modal-new-img-cf') .trigger('click');
+                    $('#modal-new-img-cf') .change(function(){
+                        if ($(this).val().toString().match('.+\.(png|jpeg|jpe|jpg)'))
+                        {window.location.href='/crowdRiseWeb/web/app_dev.php/projetcf/update/'+$('#modal-id-cf').val()+'/'+$('#modal-new-img-cf').val();}
+                        else{
+                            swal({
+                            title:'Format non accepté',
+                            type:'error'
+                        });
+                        }
+                    });
+                    //alert($('#modal-new-img-cf').val());
+                   
+                });
+                $('#modal-supprimer-cf').click(function(){
+                    swal({
+                      title: 'Voulez-vous vraiment supprimer ce projet?',
+                      type: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Confirmer',
+                      cancelButtonText: 'Annuler',
+                      closeOnConfirm: false
+                    },function(isConfirm){   if (isConfirm) {     window.location.href='/crowdRiseWeb/web/app_dev.php/projetcf/delete/'+$('#modal-id-cf').val();   } });
+                 });
+                {% if user is null %}
+                    $('#modal-btn-cf').attr('data-tooltip','Vous devez vous connecter !');
+                    $('#modal-btn-cf').attr('disabled',true);
+                    
+                {% else %}
+                        if (fini==='0')
+                    {
+                        $('#modal-btn-cf').attr('data-tooltip','Financer ce projet !');
+                        $('#modal-btn-cf').attr('disabled',false);
+                    }else{
+                        $('#modal-btn-cf').attr('data-tooltip','Projet fermé !');
+                        $('#modal-btn-cf').attr('disabled',true);
+                    }
+                {% endif %}
+            });
+            $('#recherche').keyup(function () {
+                if (position === 0)
+                {
+                    {% for i in tab %}
+                        var i = 0;
+                        var x = true;
+                        var nom = '{{i.nom}}';
+                        if (nom.length < $(this).val().length)
+                        {
+                            x = false;
+                        }
+                        else
+                        {
+                            for (i = 0; i < $(this).val().length; i++)
+                            {
+                                if (nom[i].toUpperCase() !== $(this).val()[i] && nom[i].toLowerCase() !== $(this).val()[i])
+                                {
+                                    x = false;
+                                }
+                            }
+                        }
+                        if (x)
+                        {
+                            $("#{{i.id}}").show();
+                        }
+                        else
+                        {
+                            $("#{{i.id}}").hide();
+                        }
+                    {% endfor %}
+                }
+                else {
+                    
+                    {% if user is not null %}
+                        {% for i in tab %}
+                            {% if i.idMembre.id == user.id %}
+                                var i = 0;
+                                var x = true;
+                                var nom = '{{i.nom}}';
+                                if (nom.length < $(this).val().length)
+                                {
+                                    x = false;
+                                }
+                                else
+                                {
+                                    for (i = 0; i < $(this).val().length; i++)
+                                    {
+                                        if (nom[i].toUpperCase() !== $(this).val()[i] && nom[i].toLowerCase() !== $(this).val()[i])
+                                        {
+                                            x = false;
+                                        }
+                                    }
+                                }
+                                if (x)
+                                {
+                                    $("#{{i.id}}").show();
+                                }
+                                else
+                                {
+                                    $("#{{i.id}}").hide();
+                                }
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                }
+        
+
+                });
+            });
+            
+            
+
+    </script>
+
+    <style>
+        
+        .display-section{
+            min-height: 100vh;
+        }
+        .card-box{
+            
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+        .left-box{
+            height: 80%;
+        }
+        .right-box{
+            height: 100%;
+            overflow:auto;
+            box-shadow: 0px 0px 5px #888888;
+            border-radius: 2%;
+        }
+        .search-bar{
+            margin-top: 1%;
+            margin-bottom: 1%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 5px #848D94 ;
+        }
+        .details-cf{
+            margin-top:10px;
+            font-size:17px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 5px #888888;
+            padding : 7px;
+        }
+                    
+        .noUi-target .noUi-active .range-label span {
+
+            font-size : 15px;
+        }
+        .noUi-target .noUi-active .range-label{
+            height: 40px;
+            width: 40px;
+        }
+        
+        .titre-cf{
+                background-image: url('{{asset('images/projetCf/13825-NPBS6D.jpg')}}');
+                box-shadow : 0px 0px 5px #888888;
+
+        }
+        
+    </style>
+    <section style='height: 30vh' class='titre-cf'>
+        </br>
+        <h1 style='font-size:50px; margin-left:5%;'>Projets</br><span style='margin-left: 8%;'> CrowdFunding </span></h1>
+    </section>
+    <section class="display-section" >
+
+        
+        
+        <form id="financement" method="post" action="{{path('crowd_rise_financement_add')}}">
+        <div id="modal-cf" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                
+                <div class="row">
+                    <div class="col s6 left-box">
+                        <img id="modal-img-cf" style="border-radius: 5px; box-shadow: 0px 0px 5px #888888;">
+                        <div id="modal-details-cf" class="details-cf"></div>
+                    </div>
+                    <div class="col s6 right-box">
+                        <h4 id="modal-nom-cf"></h4>
+                        <b>Description : </b>
+                        <p id="modal-description-cf"></p>
+                    </div>
+                    <div style="bottom: 15; left:5%;  position: absolute; width: 80%;">
+                        <div  id="slider-finance"></div>
+                    </div>  
+                    <input type="hidden" name="modal-id-cf" id="modal-id-cf"> <input type="hidden" name="modal-somme-cf" id="modal-somme-cf">
+                    <button type="submit"  class="btn-floating btn-large waves-effect waves-light yellow tooltipped" style="bottom: 5; right:5%;  position: absolute;" data-position="bottom" data-delay="50" data-tooltip="" id="modal-btn-cf"><i class="material-icons">attach_money</i></button>
+                    
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a  href="#!" class=" modal-action btn-floating btn-medium waves-effect waves-light red" id="fermer-modal-cf" style=" position : absolute;bottom:25%; right:2%;"><i class="material-icons">clear</i></a>
+                <div id="modal-action-cf" class="fixed-action-btn horizontal modal-action" style="bottom:3%; right:7%;">
+                        <a class="btn-floating btn-medium green">
+                          <i class="large material-icons">mode_edit</i>
+                        </a>
+                        <ul>
+                            <li><a  id='modal-supprimer-cf' class="btn-floating red"><i class="material-icons tooltipped " data-tooltip="Supprimer ce projet">delete</i></a></li>
+                          <li><a id='modal-modifier-img-cf' class="btn-floating yellow darken-1"><i class="material-icons tooltipped" data-tooltip="Changer l'image">insert_photo</i></a></li>
+                          <li><a id='modal-stat-cf' class="btn-floating orange"><i class="material-icons tooltipped" data-tooltip="Statistiques de financement">timeline</i></a></li>
+                          <li><a id='modal-modifier-cf' class="btn-floating blue"><i class="material-icons tooltipped" data-tooltip="Modifier ce projet">mode_edit</i></a></li>
+                          <input type="file"  name="modal-new-img-cf" id="modal-new-img-cf" accept="image/*">
+                        </ul>
+                    </div>
+            </div>
+        </div>
+        </form>            
+        
+        <paper-tabs selected="0">
+            <paper-tab id="all">Tous Les Projets Crowdfunding</paper-tab>
+            {% if user is not  null %}
+            <paper-tab id="mine">Mes Projets Crowdfunding</paper-tab>
+            
+            {% endif %}
+        </paper-tabs>
+        {% if user is not  null %}
+        <a href="{{path('crowdrise_projetcf_add')}}" class="btn-floating btn-large waves-effect waves-light green tooltipped" data-tooltip="Créer un Projet CrowdFunding" style="float : right; right:10%;top:15px;"><i class="material-icons">add</i></a>
+        {% endif %} 
+        <div class="row container">
+            <div class="col s12">
+                <nav  id="search-nav" class="search-bar">
+                <!--<input type="text" id="recherche">-->
+                <div class="input-field search-bar" id="search-div" >
+                    <input id="recherche" type="search" >
+                    <label for="search"><i class="material-icons black-text">search</i></label>
+                    <i class="material-icons">close</i>
+              </div>
+                </nav>
+                
+            </div>
+            
+            {% for i in tab %}
+                {% set a=0 %}
+                {% for c in contribute %}
+                    {% if c.idProjet.id == i.id %}
+                        {% set a = a+1 %}
+                    {% endif %}
+                {% endfor %}
+                <div class="col s4" id="{{i.id}}" name="card">
+                    <div class="card medium card-box">
+                        <input type="hidden" id="id-cf" value="{{i.id}}">
+                        <input type="hidden" id="contribute-cf" value="{{a}}">
+                        <input type="hidden" id="date-fin-cf" value="{{i.fin|date('Y/m/d')}}">
+                        <div class="card-image">
+                            <img src="{{asset(['images/projetCf/',i.imageidee]|join)}}" id="img-cf" >
+                        </div>
+                        <div class="card-content">
+                            <p id="nom-cf" style="font-size:20px;"><b>{{i.nom}}</b> 
+                            {% include 'DCSRatingBundle:Rating:control.html.twig' with {'id' : i.id, 'role' : 'ROLE_USER'} %}
+                            </p>
+                            <p id="description-cf" class="description-cf">{{i.description}}</p>
+                            <input type="hidden" id="actuel" value="{{i.budgetActuel|number_format}}"><input type="hidden" id="final" value="{{i.budgetFinale}}">
+                            {% if i.fin|date('Y/m/d')<"now"|date('Y/m/d') %}
+                            <input type="hidden" id="fini-cf" value="1">
+                            {% else %}
+                                <input type="hidden" id="fini-cf" value="0">
+                            {% endif %}
+                        </div>
+                        <div class="card-action">
+                                <div style="font-size:12px;float:left;"><b>Financé à </b>{{(100*i.budgetActuel/i.budgetFinale)|number_format}}%</div><div style="float:right;font-size:12px;">Posté le <b>{{i.date|date('d/m/Y')}}</b> </div>
+                                <div class="progress" style="margin-bottom: 0px; height: 8px;">
+                                    <div class="determinate" style="width: {% if i.budgetActuel!=0 %}{{100*i.budgetActuel/i.budgetFinale}}{% endif %}%"></div>
+                                </div>
+                                    <div style="text-align: right; float:left;" >{{i.budgetActuel|number_format}} Cr</div><div style="text-align: left; float:right;">{{i.budgetFinale}} Cr</div></br>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+            
+
+
+    </section>
+{% endblock %}

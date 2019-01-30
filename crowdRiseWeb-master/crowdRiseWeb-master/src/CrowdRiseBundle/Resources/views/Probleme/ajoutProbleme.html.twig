@@ -1,0 +1,82 @@
+{# empty Twig template #}
+{% extends "CrowdRiseBundle::layout.html.twig" %}
+{% block script %}
+    
+{% endblock %}
+{% block prob %}
+    <link href="{{asset('css/projetCf.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
+    
+    <script>
+        $(document).ready(function () {
+                        $('#intro').css({
+                'background-image': 'none',
+                'height': 'auto'
+            });
+             //Materialize.toast('', 4000);
+
+            $('.datepicker').pickadate({
+                format: 'yyyy-mm-dd',
+                selectMonths: true, // Creates a dropdown to control month
+                selectYears: 15 // Creates a dropdown of 15 years to control year
+            });
+        });
+
+    </script>
+    <style>
+        .espacement{margin : 1%;}   
+        .btn-import-image{
+            margin-left: 5%;
+        }
+    </style>
+    <section id="intro2" >
+             <div class="row">
+        <div style="margin-right:30%; margin-left:400px; margin-top:-10px; ">
+       
+ 
+        
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Ajouter votre Probleme</span>
+                <form method="post">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="medium material-icons prefix">label</i>
+                            {{form_widget(f.titre)}}
+                            <label for="nom" data-error="wrong" data-success="right" class="center-align">Titre</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="medium material-icons prefix">description</i>
+                            {{form_widget(f.description,{'attr':{'class':'materialize-textarea'}})}}
+                            <label for="" class="center-align">description</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <div class="file-path-wrapper col s12   ">
+                                <div style="margin-left:30%;">
+                               
+                                    {{form_widget(f.imageoption)}}
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{form_rest(f)}}
+            <div class="card-action">
+                <div style="margin-left:90px;">
+              <input class="waves-effect waves-light btn"onclick="Materialize.toast('Ajout Effectué', 4000)" style="margin-top:54px;padding-top:6px;" type="submit" value="valider">
+              <input class="waves-effect waves-light btn" style="margin-top:54px;margin-left:20px; padding-top:6px;" type="reset" value="Reset">
+            </div>
+            </div>
+                     </form>
+                     </div>
+            
+
+          </div>
+            <a href="{{path('crowdrise_probleme_displayAll')}}"class="waves-effect waves-light btn"><i class="material-icons left">replay</i>Retour à la liste</a><br><br>
+        </div>
+      </div>
+               
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

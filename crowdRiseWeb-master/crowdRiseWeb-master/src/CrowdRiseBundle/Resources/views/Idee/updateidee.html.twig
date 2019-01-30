@@ -1,0 +1,98 @@
+{# empty Twig template #}
+{# empty Twig template #}
+{% extends "CrowdRiseBundle::layout.html.twig" %}
+
+{% block Title %}CrowdRise - Ajouter une nouvelle idée{% endblock %}
+
+{% block content %}
+    <script src="{{asset('node_modules/sweetalert/dist/sweetalert.min.js')}}"></script> 
+    <link rel="stylesheet" type="text/css" href="{{asset('node_modules/sweetalert/dist/sweetalert.css')}}">
+    <script>
+        $(document).ready(function () {
+            $("#intro").css('background-image', 'none');
+            $("#intro").css('height', 'auto');
+            $('.modal-trigger').leanModal({
+                dismissible: false
+            });
+            
+            $('.datepick').pickadate({
+                format: 'yyyy-mm-dd',
+                selectMonths: true, // Creates a dropdown to control month
+                selectYears: 15 // Creates a dropdown of 15 years to control year
+            });    
+        });
+    </script>
+    
+
+    <form id="form_recherche" action="" method="post" >
+        {{ form_row(f._token) }}
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card-panel">
+                    <h4 class="header2">Ajout d'une Idée</h4>
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    {{form_widget(f.nom)}}
+                                    <label for="first_name">Idée Nom</label>
+                                </div>   
+                            </div>      
+
+                            <div class="row">
+                                <div class='col s1'><label for="debut">Date Debut</label></div>
+                                <div class="input-field col s5">                                    
+                                    {{form_widget(f.debut)}}    
+
+                                </div> 
+                                <div class='col s1'><label for="fin">Date Fin</label></div>
+                                <div class="input-field col s5">                                    
+                                    {{form_widget(f.fin)}}                                    
+                                </div>
+                            </div>
+
+                            <div class="row">                                
+                                <div class="input-field col s12">
+                                    {{form_widget(f.description, { 'attr': {'class': 'materialize-textarea','length': '1000'} })}}                        
+                                    <label for="message">Description</label>
+                                </div>
+                            </div>
+                            <div class="row"> 
+
+                                <div class='col s1'><label for="rem">Remuneration</label></div>
+                                <div class="input-field col s5">                                    
+                                    
+                                    {{form_widget(f.remuneration_totale)}}                        
+                                    
+                                </div> 
+
+                                {#<div class='col s1'><label for="fichier">Choisir des images</label></div>
+                                <div class="file-field input-field  col s5">                                    
+                                    <div class="btn">
+                                        <span>Images</span>
+                                        {{form_widget(f.img)}}  
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input id="nomdesfichiers" class="file-path validate" type="text" >
+                                    </div>                                   
+                                </div>#}
+                            </div>                    
+
+                            <div class="row">                      
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <button class="btn teal waves-effect waves-light right" type="submit" name="action">Submit
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+{% endblock %}

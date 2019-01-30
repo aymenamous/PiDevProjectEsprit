@@ -1,0 +1,245 @@
+{# empty Twig template #}
+{% extends "CrowdRiseBundle::problayout.html.twig" %}
+
+{% block script %}
+
+{% endblock %}
+{% block prob %}
+
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id))
+                return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script> 
+
+    <script>
+
+        $(document).ready(function () {
+            $('#intro').css({
+                'background-image': 'none',
+                'height': 'auto'
+            });
+            $('#recherche').keyup(function () {
+        {% for i in tab %}
+                    var i = 0;
+                    var x = true;
+                    var nom = '{{i.titre}}';
+                    for (i = 0; i < $(this).val().length; i++)
+                    {
+                        if (nom[i] !== $(this).val()[i])
+                        {
+                            x = false;
+                        }
+                    }
+                    if (x)
+                    {
+                        $("#{{i.id}}").show();
+                    }
+                    else
+                    {
+                        $("#{{i.id}}").hide();
+                    }
+        {% endfor %}
+
+                });
+                $('.collapsible').collapsible({
+                    accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+                });
+            });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#intro").css("height", "auto");
+            $('.modal-trigger1').leanModal({
+                dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                opacity: .5, // Opacity of modal background
+                in_duration: 300, // Transition in duration
+                out_duration: 200, // Transition out duration
+
+            }
+            );
+        });
+    </script>
+    <!-- commentaire Modal do not delete it --> 
+    <div id="modal11" class="modal bottom-sheet">
+        <div class="modal-content">
+            <ul class="collection">
+                <li class="collection-item avatar">
+                    <i class="material-icons circle">textsms</i>
+                    <span class="title">UserName</span>
+                    <p><br>
+
+                    </p>
+                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cacher</a>
+        </div>
+    </div>
+    <section id="intro2">
+
+
+        <div class="container" id="hero-text-container">
+            <div class="container" id="hero-text-container">
+                <div class="row">
+
+
+
+
+                    <div  class="row">
+
+                        <div class="col s6 m5" style="width:640px;margin-left:330px;">
+                            <div class="card-panel teal">
+                                <span class="white-text">
+                                    <h2  style="color:white;padding-left:10px;" > Problemes & Questions </h2 >
+                                    <h5  style="color:white;"> Vous pouvez consulter la liste des derniers problemes: </h5>
+                                    Cliquer sur le titre pour afficher plus de détails
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col s6 m5" style="position: relative;float: right;width:180px;">
+                            <div class="card blue-grey darken-1">
+                                <div class="card-content white-text">
+                                    <span class="card-title"></span>
+                                    <a href="{{path('crowdrise_probleme_add')}}" data-tooltip="Ajouter votre problème" class="btn-floating btn-medium waves-effect waves-light green"><i class="material-icons">add</i></a> AJOUTER<br><br>
+
+                                </div>
+                                <div class="card-action">
+                                    <a href="{{path('crowdrise_projetcf_displayAll')}}">Les Projets</a>
+                                    <a href="#">Les Idées</a>
+                                     <a href="{{path('display_survey')}}">Sondage</a>
+                                </div>
+                                    
+                            </div>
+                        </div>
+
+
+                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+                        <div  style="height:65px ;float:left; padding-left:320px;padding-right:300px; color:white; font-size: 20px;" > Recherche :<input style="height:26px;" type="text" id="recherche">
+                        </div> <br><br><br>
+                        <ul class="collapsible popout" data-collapsible="accordion"style="padding-right:230px;padding-left:240px;" >
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">view_list</i>Tous Les Problèmes</div>
+                                <div class="collapsible-body">
+
+
+                                    {% for i in tab %}
+
+
+                                        <div class="card large" id="{{i.id}}">
+                                            <div class="card-image waves-effect waves-block waves-light">
+                                                <img class="activator" src="{{asset('images/sc.png')}}">
+                                            </div>
+                                            <div class="card-content">
+                                                <span class="card-title activator grey-text text-darken-4">{{i.getTitre()}}<i class="material-icons right">more_vert</i></span>
+                                                <p><a href="#modal11" class="secondary-content waves-effect waves-light modal-trigger1"><i class="material-icons">toc</i></a>Voir Les Commentaires</a></p>
+                                            </div>
+                                            <div class="card-action">
+
+                                            </div>
+                                            <div class="card-reveal">
+                                                <div class="row">
+                                                    <div class="col s12 m6">
+                                                        <div class="card blue-grey darken-1"style="width:800px;height:260px;">
+                                                            <div class="card-content white-text">
+                                                                <span class="card-title">Titre : {{i.getTitre()}}<i class="material-icons right">close</i></span> 
+                                                                <span>Description : {{i.getDescription()}}</span>
+                                                            </div>
+                                                            <div class="card-action">
+                                                                <a href="#">Probleme {{i.getId()}}</a>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                                <p> <h4>Comment Section:</h4> {% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': 'foo'} %} </p>
+
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">recent_actors</i>Vos Problèmes Publiés</div>
+                                <div class="collapsible-body">
+
+
+                                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                                        {% for i in tab1 %}
+
+                                        <div class="card large" id="{{i.id}}">
+                                            <div class="card-image waves-effect waves-block waves-light">
+                                                <img class="activator" src="{{asset('images/sc.png')}}">
+                                            </div>
+                                            <div class="card-content">
+                                                <span class="card-title activator grey-text text-darken-4">{{i.getTitre()}}<i class="material-icons right">more_vert</i></span>
+                                                <p><a href="#modal11" class="secondary-content waves-effect waves-light modal-trigger1"><i class="material-icons">toc</i></a>Voir Les Commentaires</a></p>
+                                            </div>
+                                            <div class="card-action">
+                                              
+                                                    <a href="{{path('crowdrise_probleme_delete',{'id':i.id})}}">Supprimer</a>
+                                                    <a href="{{path('crowdrise_probleme_update',{'id':i.id})}}">Modifier</a>
+                                            </div>
+                                            <div class="card-reveal">
+                                                <div class="row">
+                                                    <div class="col s12 m6">
+                                                        <div class="card blue-grey darken-1"style="width:800px;height:260px;">
+                                                            <div class="card-content white-text">
+                                                                <span class="card-title">Titre : {{i.getTitre()}}<i class="material-icons right">close</i></span> 
+                                                                <span>Description : {{i.getDescription()}}</span>
+                                                            </div>
+                                                            <div class="card-action">
+                                                                <a href="#">Probleme {{i.getId()}}</a>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                                <p> <h4>Comment Section:</h4> {% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': 'foo'} %} </p>
+
+                                            </div>
+                                        </div>
+
+
+                                        {% endfor %}
+
+                                    {% endif %}
+
+
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="row">
+                            <div class="col s12 m6" style="width:620px;margin-left:360px;">
+                                <div class="card white">
+                                    <div class="card-content white-text">
+                                        <span class="card-title"><div style="color:black;"><b>Commentaire FACEBOOK<b></div></span>
+                                                        <p><div id="fb-root"></div>
+                                                        <div  class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="3"></div></p>
+                                                        </div>
+                                                        <div class="card-action">
+
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        <br><br><br><br> 
+                                                        </section>
+
+                                                    {% endblock %}

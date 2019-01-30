@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" onMouseClicked="#onMouseClicked" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(#61a2b1, #2A5058);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ConsulterIdeeController">
+   <children>
+      <TextArea fx:id="description" layoutX="23.0" layoutY="106.0" prefHeight="171.0" prefWidth="746.0" />
+      <Label fx:id="titre" layoutX="212.0" layoutY="31.0" text="Titre" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="24.0" />
+         </font></Label>
+      <Label layoutX="429.0" layoutY="48.0" text="Date debut" textFill="WHITE" />
+      <Label layoutX="429.0" layoutY="77.0" text="Date fin" textFill="WHITE" />
+      <Label layoutX="23.0" layoutY="77.0" text="Description" textFill="WHITE" />
+      <Button fx:id="btnMenu" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBtnMenuClicked" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #d3d3d3;" text="Afficher Menu" />
+      <Label layoutX="429.0" layoutY="18.0" text="Remuneration" textFill="WHITE" />
+      <Pane fx:id="pane" layoutX="-209.0" prefHeight="600.0" prefWidth="209.0" style="-fx-background-color: #d3d3d3;">
+         <children>
+            <Button fx:id="btnContacter" layoutX="18.0" layoutY="181.0" mnemonicParsing="false" onAction="#onBtnContacterClicked" prefHeight="37.0" prefWidth="174.0" style="-fx-background-color: linear-gradient(#61a2b1, #2A5058);" text="Contacter le proprios d'idée" textFill="WHITE" />
+            <Button fx:id="btnSolution" layoutX="18.0" layoutY="122.0" mnemonicParsing="false" onAction="#onBtnSolutionClicked" prefHeight="37.0" prefWidth="174.0" style="-fx-background-color: linear-gradient(#61a2b1, #2A5058);" text="Tâches" textFill="WHITE" />
+            <Button fx:id="btnQuitter" layoutX="18.0" layoutY="244.0" mnemonicParsing="false" onAction="#onQuitterClicked" prefHeight="37.0" prefWidth="174.0" style="-fx-background-color: linear-gradient(#61a2b1, #2A5058);" text="Quitter" textFill="#fffefe" />
+            <Label alignment="CENTER" layoutX="55.0" layoutY="33.0" prefHeight="37.0" prefWidth="99.0" style="-fx-background-color: linear-gradient(#61a2b1, #2A5058);" text="Menu" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            
+         </children>
+      </Pane>
+      <Label fx:id="remuneration" layoutX="533.0" layoutY="18.0" text="Label" />
+      <Label fx:id="dateDebut" layoutX="533.0" layoutY="48.0" text="Label" />
+      <Label fx:id="dateFin" layoutX="533.0" layoutY="77.0" text="Label" />
+      <ScrollPane layoutX="23.0" layoutY="300.0" prefHeight="268.0" prefWidth="746.0">
+        <content>
+          <AnchorPane fx:id="pk" minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="744.0" />
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

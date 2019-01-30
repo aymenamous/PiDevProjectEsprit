@@ -1,0 +1,26 @@
+{% extends "CrowdRiseBundle:Admin:indexAdmin.html.twig" %}
+
+
+{% block content %}
+    <style>
+        label{
+            font-size: 1.2rem;
+        }
+    </style>
+    <div class="container">
+    <div style="margin-top:150px;">
+{{ form_start(f) }}
+{{ form_label(f.option1,'Option 1') }}
+{{form_widget(f.option1)}}
+{{ form_label(f.option2,'Option 2') }}
+{{form_widget(f.option2)}}
+{{ form_label(f.option3,'Option 3') }}
+{{form_widget(f.option3)}}
+
+  <button class="btn waves-effect waves-light" type="submit" name="action">Ajouter
+    <i class="material-icons right">send</i>
+  </button>
+{{ form_end(f) }}
+    </div>
+</div>
+{% endblock %}

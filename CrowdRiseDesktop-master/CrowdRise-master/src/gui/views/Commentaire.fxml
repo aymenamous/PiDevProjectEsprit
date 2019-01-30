@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="commpk" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.CommentaireController">
+  <children>
+      <TextField fx:id="proj" layoutY="8.0" visible="false" />
+    <Button fx:id="buttoncom" layoutX="620.0" layoutY="52.0" mnemonicParsing="false" onAction="#btnCom" prefHeight="38.0" prefWidth="137.0" text="Commenter" textFill="#152020" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="620.0">
+      <font>
+        <Font name="Segoe UI" size="18.0" />
+      </font>
+    </Button>
+    <TextField fx:id="TxtFieldCom" layoutX="13.0" layoutY="52.0" prefHeight="38.0" prefWidth="583.0" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="13.0" />
+    <Text layoutX="97.0" layoutY="39.0" scaleX="1.716072270262651" scaleY="1.0902202643171806" strokeType="OUTSIDE" strokeWidth="0.0" text="Laissez votre commentaire ..." wrappingWidth="234.859375" AnchorPane.leftAnchor="97.0" AnchorPane.topAnchor="22.8134765625">
+      <font>
+        <Font name="Segoe UI" size="15.0" />
+      </font>
+    </Text>
+      <ListView fx:id="lst" layoutX="13.0" layoutY="98.0" onMouseClicked="#startEdit" prefHeight="310.0" prefWidth="744.0" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="98.0">
+         <padding>
+            <Insets top="1.0" />
+         </padding>
+      </ListView>
+  </children>
+</AnchorPane>

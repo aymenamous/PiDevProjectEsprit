@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="pk" prefHeight="530.0" prefWidth="800.0" styleClass="jfx-decorator" stylesheets="@../../ressources/jfoenix-components.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ListeIdeesController">
+    <children>
+      <SplitPane dividerPositions="0.005607476635514018" layoutX="-3.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="97.0" prefWidth="680.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fx:id="imgIdee" fitHeight="109.0" fitWidth="377.0" layoutX="214.0" nodeOrientation="INHERIT" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="409.0" prefWidth="680.0" style="-fx-background-color: linear-gradient(#61a2b1, #2A5058);">
+               <children>
+                   <JFXListView fx:id="liste" layoutY="2.0" prefHeight="421.0" prefWidth="815.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                       <styleClass>	
+                                <String fx:value="side-menu" />
+                       </styleClass>
+                   </JFXListView>
+                  <StackPane layoutX="173.0" layoutY="489.0" prefHeight="49.0" prefWidth="350.0">
+                     <children>
+                        <Pagination fx:id="pagination" prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </StackPane>
+                  <VBox layoutX="523.0" layoutY="480.0" prefHeight="49.0" prefWidth="47.0">
+                     <children>
+                        <Label prefHeight="15.0" prefWidth="44.0" text="Limite" textFill="WHITE" />
+                        <TextField fx:id="limitText" onAction="#changeLimit" prefHeight="25.0" prefWidth="66.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <Pane fx:id="pane" layoutX="-208.0" prefHeight="600.0" prefWidth="208.0" style="-fx-background-color: linear-gradient(#61a2b1, #2A5058);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-208.0" AnchorPane.rightAnchor="800.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="affMenu" cache="true" layoutX="201.0" layoutY="26.0" mnemonicParsing="false" onAction="#onBtnAffMenuClicked" prefHeight="30.0" prefWidth="44.0" style="-fx-background-color: #cc9c9c;" text="&gt;&gt;" />
+            <Button fx:id="ajouterIdee" layoutX="19.0" layoutY="205.0" mnemonicParsing="false" onAction="#onAjoutIdeeClicked" prefHeight="40.0" prefWidth="170.0" text="Ajouter idée" />
+            <Button fx:id="mesIdees" layoutX="19.0" layoutY="265.0" mnemonicParsing="false" onAction="#onMesIdeesClicked" prefHeight="40.0" prefWidth="170.0" text="Mes Idées" />
+            <Button layoutX="19.0" layoutY="328.0" mnemonicParsing="false" onAction="#onMenuClicked" prefHeight="40.0" prefWidth="170.0" text="Menu Principal" />
+            <Label fx:id="login" layoutX="73.0" layoutY="33.0" prefHeight="17.0" prefWidth="79.0" text="Login">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imgProfile" fitHeight="99.0" fitWidth="200.0" layoutX="4.0" layoutY="66.0" />
+            <Label layoutX="19.0" layoutY="33.0" prefHeight="20.0" prefWidth="47.0" text="Login :" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <StackPane fx:id="stackRech" prefHeight="99.0" prefWidth="200.0" />
+   </children>
+</AnchorPane>

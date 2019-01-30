@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane"  prefHeight="600.0" prefWidth="800.0"  styleClass="jfx-decorator" stylesheets="@../../ressources/jfoenix-components.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ListReclamationController">
+   <children>
+      <TableView fx:id="table" layoutX="27.0" layoutY="168.0" onMouseClicked="#supprimer" prefHeight="563.0" prefWidth="1088.0">
+        <columns>
+            <TableColumn fx:id="id" prefWidth="75.0" text="id" />
+            <TableColumn fx:id="membre" prefWidth="75.0" text="membre" />
+          <TableColumn fx:id="date" prefWidth="298.0" text="Date" />
+            <TableColumn fx:id="sujet" prefWidth="173.0" text="sujet" />
+            <TableColumn fx:id="reclamation" prefWidth="387.0" text="reclamation" />
+        </columns>
+      </TableView>
+      <JFXTextField fx:id="recherche" layoutX="249.0" layoutY="88.0" onKeyPressed="#rechercher" onKeyReleased="#rechercher" prefHeight="31.0" prefWidth="274.0" promptText="tapez votre sujet" />
+      <Text fontSmoothingType="LCD" layoutX="14.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chercher reclamation" wrappingWidth="189.21826171875">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <Text layoutX="364.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des réclamations">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

@@ -1,0 +1,8 @@
+services:
+#    crowd_rise.example:
+#        class: CrowdRiseBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+  authentication_handler:
+        class:        CrowdRiseBundle\Handler\AuthenticationHandler
+        arguments:    [@router, @security.context, @fos_user.user_manager, @service_container]
+          

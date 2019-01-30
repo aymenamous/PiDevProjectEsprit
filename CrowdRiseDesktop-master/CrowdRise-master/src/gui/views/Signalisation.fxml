@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="30.0" prefWidth="72.0" stylesheets="@../ressources/jfoenix-components.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.SignalisationController">
+   <children>
+      <Button fx:id="btnSignaler" mnemonicParsing="false" onAction="#Signaler" prefHeight="30.0" prefWidth="72.0" text="Signaler " textAlignment="CENTER" wrapText="true" />
+   </children>
+</AnchorPane>

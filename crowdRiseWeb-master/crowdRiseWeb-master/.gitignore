@@ -1,0 +1,6 @@
+app/logs/*
+app/cache/*
+nbproject/private/
+app/cache
+app/logs
+vendor/*

@@ -1,0 +1,20 @@
+{% extends "CrowdRiseBundle::layout.html.twig" %}
+
+{% block content %}
+
+
+<script src={{asset("HightChart/highcharts.js")}}></script>
+
+<script src={{asset("HightChart/exporting.js")}}></script>
+
+<script type="text/javascript">
+
+ {{ chart(chart) }}
+     {{ chart(chart1) }}
+
+</script>
+<div style="min-height: 100vh">
+    
+<div id="nombre" style="min-width: 400px; height: 600; margin: 0 auto;padding-top: 5%;"></div>
+<div id="somme" style="min-width: 400px; height: 600; margin: 0 auto;padding-top: 5%;"></div>
+</div>{% endblock %}  

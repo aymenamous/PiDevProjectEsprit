@@ -1,0 +1,227 @@
+sendMail:
+    path:     /mail
+    defaults: { _controller: CrowdRiseBundle:Mail:send }
+crowd_rise_homepage:
+    path:     /platform
+    defaults: { _controller: CrowdRiseBundle:Default:index }
+crowdrise_projetcf_displayAll:
+    path:     /projetcf/displayAll
+    defaults: { _controller: CrowdRiseBundle:ProjetCf:displayAll }
+crowdrise_projetcf_Admin:
+    path:     /projetcfadmin/displayAll
+    defaults: { _controller: CrowdRiseBundle:ProjetCFAdmin:displayAll }
+crowdrise_projetcf_accept:
+    path:     /projetcf/accept/{id}
+    defaults: { _controller: CrowdRiseBundle:ProjetCFAdmin:Accepter }
+crowdrise_projetcf_refuse:
+    path:     /projetcf/refuse/{id}
+    defaults: { _controller: CrowdRiseBundle:ProjetCFAdmin:Refuser }
+crowdrise_projetcf_add:
+    path:     /projetcf/add
+    defaults: { _controller: CrowdRiseBundle:ProjetCf:add }
+crowdrise_projetcf_delete:
+    path:     /projetcf/delete/{id}
+    defaults: { _controller: CrowdRiseBundle:ProjetCf:delete }
+crowdrise_projetcf_update:
+    path:     /projetcf/update/{id}
+    defaults: { _controller: CrowdRiseBundle:ProjetCf:update }
+    
+    
+crowdrise_probleme_displayAll:
+    path:     /probleme/displayAll
+    defaults: { _controller: CrowdRiseBundle:Probleme:displayAll } 
+    
+crowdrise_probleme_add:
+    path:     /probleme/add
+    defaults: { _controller: CrowdRiseBundle:Probleme:add }
+    
+crowdrise_probleme_delete: 
+    path:     /probleme/delete/{id}
+    defaults: { _controller: CrowdRiseBundle:Probleme:delete }
+    
+crowdrise_probleme_update: 
+    path:     /probleme/update/{id}
+    defaults: { _controller: CrowdRiseBundle:Probleme:update }
+    
+crowdrise_probleme_Admin:
+    path:     /problemeAdmin/displayAll
+    defaults: { _controller: CrowdRiseBundle:ProblemeAdmin:displayAll }
+    
+crowdrise_probleme_accept:
+    path:     /probleme/accept/{id}
+    defaults: { _controller: CrowdRiseBundle:ProblemeAdmin:Accepter }
+    
+crowdrise_probleme_refuse:
+    path:     /probleme/refuse/{id}
+    defaults: { _controller: CrowdRiseBundle:ProblemeAdmin:Refuser }
+    
+crowdrise_idees_Admin:
+    path:     /idees/displayAll
+    defaults: { _controller: CrowdRiseBundle:IdeesAdmin:displayAll }  
+crowdrise_idees_accept:
+    path:     /idees/accept/{id}
+    defaults: { _controller: CrowdRiseBundle:IdeesAdmin:Accepter }
+crowdrise_idees_refuse:
+    path:     /idees/refuse/{id}
+    defaults: { _controller: CrowdRiseBundle:IdeesAdmin:Refuser }
+crowdrise_idees_delete:
+    path:     /idees/delete/{id}
+    defaults: { _controller: CrowdRiseBundle:IdeesAdmin:delete }
+
+crowdrise_admin:
+    path:     /admin
+    defaults: { _controller: CrowdRiseBundle:Admin:index }
+    
+crowdrise_idee_add:
+    path:     /idee/add
+    defaults: { _controller: CrowdRiseBundle:Idee:add }
+crowdrise_tache_add:
+    path:     /idee/addTache
+    defaults: { _controller: CrowdRiseBundle:Idee:addTaches }
+crowdrise_idee_displayAll:
+    path:     /idee/displayAll
+    defaults: { _controller: CrowdRiseBundle:Idee:displayAll }
+    
+crowdrise_idee_delete:
+    path:     /idee/delete/{id}
+    defaults: { _controller: CrowdRiseBundle:Idee:delete }
+    requirements:
+      _method: POST|GET
+    options:
+        expose: true
+crowdrise_idee_update:
+    path:     /idee/update/{id}
+    defaults: { _controller: CrowdRiseBundle:Idee:update }
+    options:
+        expose: true
+
+
+crowdrise_competence_add:
+    path:     /competence/add
+    defaults: { _controller: CrowdRiseBundle:NomCompetence:add }
+
+crowdrise_competence_display:
+    path:     /admin/competence/display
+    defaults: { _controller: CrowdRiseBundle:NomCompetence:display }
+
+crowdrise_competence_edit:
+    path:     /admin/competence/edit/{id}
+    defaults: { _controller: CrowdRiseBundle:NomCompetence:edit }
+    
+crowdrise_competence_delete:
+    path:     /admin/competence/delete/{id}
+    defaults: { _controller: CrowdRiseBundle:NomCompetence:delete }
+
+crowdrise_competence_update:
+    path:     /admin/competence/update/{id}
+    defaults: { _controller: CrowdRiseBundle:NomCompetence:update }
+    
+crowdrise_membre_Admin:
+    path:     /MembreAdmin/displayAll
+    defaults: { _controller: CrowdRiseBundle:MembreAdmin:displayAll }
+    
+crowdrise_membre_accept:
+    path:     /Membre/accept/{id}
+    defaults: { _controller: CrowdRiseBundle:MembreAdmin:Accepter }
+crowdrise_membre_refuse:
+    path:     /Membre/refuse/{id}
+    defaults: { _controller: CrowdRiseBundle:MembreAdmin:Refuser }
+
+my_profile:
+    path:     /myProfile
+    defaults: { _controller: CrowdRiseBundle:MemberProfile:myProfile }
+
+member_profile:
+    path:     /membre/{id}
+    defaults: { _controller: CrowdRiseBundle:MemberProfile:memberProfile }
+crowd_rise_financement_add:
+    path:     /financement/add
+    defaults: { _controller: CrowdRiseBundle:Financement:add }
+crowdrise_projetcf_update_img:
+    path:     /projetcf/update/{id}/{img}
+    defaults: { _controller: CrowdRiseBundle:ProjetCf:updateImg }
+crowdrise_all_projetcf_admin:
+    path:     /projetcfadmin/displayAllAdmin
+    defaults: { _controller: CrowdRiseBundle:ProjetCFAdmin:displayAllAdmin }
+crowdrise_projetcf_admin_delete:
+    path:     /projetcfadmin/delete/{id}
+    defaults: { _controller: CrowdRiseBundle:ProjetCFAdmin:delete }
+crowdrise_projetcf_add:
+    path:     /projetcf/add
+    defaults: { _controller: CrowdRiseBundle:ProjetCf:add }
+crowdrise_projetcf_graph:
+    path:     /projetcf/graph/{id}
+    defaults: { _controller: CrowdRiseBundle:ProjetCf:chartLine }
+    
+edit_profile:
+    path:     /editProfile
+    defaults: { _controller: CrowdRiseBundle:MemberProfile:editProfile }
+
+user_add_skill:
+    path:     /add/skill
+    defaults: { _controller: CrowdRiseBundle:MemberProfile:addSkill }
+
+user_change_pic:
+    path:     /change/pic
+    defaults: { _controller: CrowdRiseBundle:MemberProfile:picChange }
+
+taches:
+    path:     /taches
+    defaults: { _controller: CrowdRiseBundle:Idee:displayTaches }
+
+AddMembreTache:
+    path:     /AddMembretaches
+    defaults: { _controller: CrowdRiseBundle:Idee:AddMembreTache }
+    
+Rechercher_Membre:
+    path:     /admin/rech
+    defaults: { _controller: CrowdRiseBundle:MembreAdmin:Rechercher }
+crowdrise_membre_enable:
+    path:     /Membre/enable/{id}
+    defaults: { _controller: CrowdRiseBundle:MembreAdmin:enableUser }
+crowdrise_membre_disable:
+    path:     /Membre/disable/{id}
+    defaults: { _controller: CrowdRiseBundle:MembreAdmin:disableUser }
+crowdRise_profile_editProfile:
+    path:     /Membre/editprofile/{id}
+    defaults: { _controller: CrowdRiseBundle:MembreAdmin:editProfile }
+        
+chat:
+    path:     /chat
+    defaults: { _controller: CrowdRiseBundle:Chat:affiche }
+    
+
+add_survey:
+    path:     /survey/add
+    defaults: { _controller: CrowdRiseBundle:Survey:add }
+
+display_survey:
+    path:     /survey/display
+    defaults: { _controller: CrowdRiseBundle:Survey:display }
+
+addoptions:
+    path:     /options/add
+    defaults: { _controller: CrowdRiseBundle:Options:add }
+
+displayoptions:
+    path:     /options/display
+    defaults: { _controller: CrowdRiseBundle:Options:display }
+
+addanswer:
+    path:     /answers/add
+    defaults: { _controller: CrowdRiseBundle:Answers:add }
+    
+addanswer1:
+    path:     /answers/display
+    defaults: { _controller: CrowdRiseBundle:Answers:display }
+payment:
+    path:     /payment
+    defaults: { _controller: CrowdRiseBundle:Transaction:payment }
+
+cancel:
+    path:     /cancel/payment
+    defaults: { _controller: CrowdRiseBundle:Transaction:cancel }
+
+completed:
+    path:     /completed/payment
+    defaults: { _controller: CrowdRiseBundle:Transaction:completed }

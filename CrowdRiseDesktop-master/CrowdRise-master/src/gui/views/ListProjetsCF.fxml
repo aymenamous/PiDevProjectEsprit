@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="lstProjetsAnch" style="-fx-background-color: WHITE;" styleClass="jfx-decorator" stylesheets="@../../ressources/jfoenix-components.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ListProjetsCFController">
+   <children>
+      <BorderPane prefHeight="463.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <AnchorPane style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXListView fx:id="liste" blendMode="DARKEN" prefHeight="400.0" prefWidth="598.0" styleClass="mylistview" stylesheets="@../../ressources/jfoenix-components.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <styleClass>
+                        <String fx:value="side-menu" />
+                    </styleClass>
+                  </JFXListView>
+               </children>
+            </AnchorPane>
+         </center>
+         <bottom>
+            <AnchorPane BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="63.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Pagination fx:id="pagination" />
+                        <TextField onAction="#changeLimit" prefHeight="25.0" prefWidth="94.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </bottom>
+         <top>
+            <HBox prefHeight="51.0" prefWidth="598.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXToggleButton fx:id="ToggButt" styleClass="jfx-toggle-button" stylesheets="@../../ressources/jfoenix-components.css" text="My Projects" toggleColor="#4504b5" />
+                  <JFXTextField layoutY="10.0" onAction="#changeLimit" prefHeight="25.0" prefWidth="94.0" />
+               </children>
+            </HBox>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>

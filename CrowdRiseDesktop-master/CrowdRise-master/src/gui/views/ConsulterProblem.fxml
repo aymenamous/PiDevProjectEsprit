@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" onMouseClicked="#onMouseClicked" prefHeight="577.0" prefWidth="653.0" styleClass="body2" stylesheets="@../../ressources/jfoenix-components.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ConsulterProblemController">
+   <children>
+      <TextArea fx:id="description" layoutX="23.0" layoutY="106.0" prefHeight="171.0" prefWidth="612.0" styleClass="jfx-text-area" />
+      <Label fx:id="titre" layoutX="212.0" layoutY="31.0" text="Titre" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <Label layoutX="429.0" layoutY="48.0" text="Date debut" textFill="WHITE" />
+      <Label layoutX="23.0" layoutY="77.0" text="Description" textFill="WHITE" />
+      <Button fx:id="btnMenu" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBtnMenuClicked" prefHeight="25.0" prefWidth="92.0" styleClass="button-raised22" text="Menu" />
+      <Pane fx:id="pane" layoutX="-209.0" prefHeight="577.0" prefWidth="209.0" styleClass="body3" stylesheets="@../../ressources/jfoenix-components.css">
+         <children>
+            <Button fx:id="btnContacter" layoutX="18.0" layoutY="181.0" mnemonicParsing="false" onAction="#onBtnContacterClicked" prefHeight="37.0" prefWidth="174.0" styleClass="button-raised" text="Contacter le Membre " textFill="WHITE" />
+            <Button fx:id="btnSolution" layoutX="18.0" layoutY="122.0" mnemonicParsing="false" onAction="#onBtnSolutionClicked" prefHeight="37.0" prefWidth="174.0" styleClass="button-raised" text="Proposer Solution ?" textFill="WHITE" />
+            <Button fx:id="btnQuitter" layoutX="18.0" layoutY="244.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="174.0" styleClass="button-raised" text="Menu Principale" textFill="#fffefe" />
+         </children>
+      </Pane>
+      <ScrollPane layoutX="23.0" layoutY="300.0" prefHeight="200.0" prefWidth="612.0">
+         <content>
+            <AnchorPane fx:id="pk" prefHeight="273.0" prefWidth="612.0" />
+         </content>
+      </ScrollPane>
+      <Label fx:id="dateDebut" layoutX="533.0" layoutY="48.0" text="Label" />
+   </children>
+</AnchorPane>

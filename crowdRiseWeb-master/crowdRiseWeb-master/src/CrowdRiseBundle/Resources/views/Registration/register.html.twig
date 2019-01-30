@@ -1,0 +1,77 @@
+{% extends "CrowdRiseBundle::layout.html.twig" %}
+{%block prob %}
+     <script>
+
+        $(document).ready(function () {
+            $('#intro').css({
+               'background-image':'none',
+               'height':'auto'
+            });
+                 });</script>
+    <section id="intro1">
+
+
+    {% block intro %}{% endblock %}
+
+</section>
+{% block fos_user_content %}
+
+{% endblock fos_user_content %}
+<br>
+<br>
+<section id="featured">
+    <div class="section center">
+        <h3 class="thin">Start your <span class="bold">journey</span> for free.</h3><br><br>
+        <div id="create-list-login-container" class="row create-list-button ">
+            <div class="col s12 m6 l6">
+                <div class="create-list-login-panel center create-list-connect-btn">
+                    <p class="flow-text">Select an account to login.</p>
+
+
+                    <fb:login-button size="xlarge"
+                                     onlogin="Log.info.bind('onlogin callback')">
+                        Facebook</fb:login-button>
+
+                       <div id="gSignInWrapper">
+                        <span class="label">Sign in with:</span>
+                        <div id="customBtn" class="customGPlusSignIn">
+                            <span class="icon"></span>
+                            <span class="buttonText btn btn-block btn-social btn-google"  style="background-color: red; width:170;height: 45;padding-top:3px;">Google</span>
+                        </div>
+                    </div>
+
+                    <script>startApp();</script>
+                </div>
+            </div>
+
+            <div class="col s12 hide-on-med-and-up or-divider">
+                <span>OR</span>
+            </div>
+
+            <div class="col s12 m6 l6 create-list-login-right">
+                <div class="hide-on-small-only vertical-or">OR</div>
+                <div class="create-list-login-panel center">
+                    <div>
+                        <div class="center">
+                            <p class="flow-text">Create an account.</p>
+                        </div>
+                        {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            </section>
+
+
+            <div id="lesforme">
+
+
+                {{ render(controller("FOSUserBundle:Security:login")) }}      
+
+            </div>
+
+            <script src="{{asset('js/bootstrap1.js')}}"></script>      
+            {%endblock%}

@@ -1,0 +1,92 @@
+{% extends "CrowdRiseBundle::layout.html.twig" %}
+{% block Title %}CrowdRise - Welcome{% endblock %}
+{% block intro %}
+    <section style="height: 1500px;">
+        <div class="slider fullscreen">
+            <ul class="slides">
+                <li>
+                    <img src="http://lorempixel.com/1366/768/technics/6"> <!-- random image -->
+                    <div class="caption center-align"><br><br>
+                        <h3>Découvrir des Projets Créatifs!</h3><br><br>
+                        <h5 class="light grey-text text-lighten-3">Site, Programme, gadget et encore plus.</h5><br>
+                        <div class="shake shake-slow">
+                            <a href="#one" data-toggle="" data-target="" class="waves-effect waves-light btn" >Browse Projects</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="http://lorempixel.com/1366/768/technics/7"> <!-- random image -->
+                    <div class="caption right-align"><br><br>
+                        <h3>Financer Votre Projet</h3><br><br>
+                        <h5 class="light grey-text text-lighten-3">CrowdRise est une plateforme de financement et de support pour des projets créatifs.</h5><br>
+                        <div class="shake shake-slow">
+                            <a href="" data-toggle="" data-target="" class="waves-effect waves-light btn" >En Savoir plus</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="http://lorempixel.com/1366/768/technics/5"> <!-- random image -->
+                    <div class="caption center-align"><br><br>
+                        <h3>Je veux participer...</h3><br><br>
+                        <h5 class="light grey-text text-lighten-3">CrowdRise vous permet de publier vos idées, partager vos problèmes et trouver des solutions.</h5><br>
+                        <div class="shake shake-chunk">
+                            <a href="" data-toggle="" data-target="" class="waves-effect waves-light btn" >Commencer !</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="http://lorempixel.com/1366/768/technics/7"> <!-- random image -->
+                    <div class="caption right-align"><br><br>
+                        <h3>This Month's facts</h3><br><br>
+                        <h5 class="light grey-text text-lighten-3">Take a short quiz or view most popular answers.</h5><br>
+                        <div class="shake shake-slow">
+                            <a href="{{path('display_survey')}}" data-toggle="" data-target="" class="waves-effect waves-light btn" >En Savoir plus</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block content %}
+    <div class="divider"></div>
+    <div class="container"></div>
+{% endblock %}
+{% block content2 %}
+    <section id="contact" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h3 class="thin"><span class="bold">Contact</span> Section.</h3><br><br><br>
+                <p>Feel free to email us to provide some feedback on our website, give us suggestions for new services, or to just say hello!</p>
+                <div class="create-list-login-panel center create-list-connect-btn">
+                    <p class="flow-text">Say Hi !</p>
+
+                    <fb:login-button size="xlarge" style=" width:170;height: 50"
+                                     onlogin="Log.info.bind('onlogin callback')">
+                        Facebook</fb:login-button>
+                    
+                    
+                    <div id="gSignInWrapper">
+                        <span class="label">Sign in with:</span>
+                        <div id="customBtn" class="customGPlusSignIn">
+                            <span class="icon"></span>
+                            <span class="buttonText btn btn-block btn-social btn-google"  style="background-color: red; width:170;height: 45;padding-top:3px;">Google</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <a href="{{path('sendMail')}}"  style="width:170;height: 45; padding-top:1px;" class="connect-btn button-facebook btn create-list-button">                              
+                            <i style="width:4O;height: 50;padding-top:1px;" class="large material-icons">email</i>
+                            </a>
+                    </div>
+
+                    <script>startApp();</script>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="500.0" stylesheets="@../../ressources/jfoenix-components.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.CameraController">
+   <children>
+      <ImageView fx:id="currentFrame" fitHeight="292.0" fitWidth="414.0" layoutX="43.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+      <com.jfoenix.controls.JFXButton fx:id="button" layoutX="14.0" layoutY="346.0" mnemonicParsing="false" onAction="#takePicture" prefHeight="10" prefWidth="100" styleClass="button-raised" text="Button" />
+      <JFXButton fx:id="button1" layoutX="387.0" layoutY="346.0" mnemonicParsing="false" onAction="#fermer" prefHeight="10" prefWidth="100" styleClass="button-raised" text="Annuler" />
+   </children>
+</AnchorPane>

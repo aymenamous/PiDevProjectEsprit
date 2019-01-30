@@ -1,0 +1,661 @@
+{# empty Twig template #}
+<dom-module id="portfolio-showcase">
+    <!-- Core CSS file -->
+    <link rel="stylesheet" href="{{asset('node_modules/photoswipe/dist/photoswipe.css')}}"> 
+
+    <!-- Skin CSS file (styling of UI - buttons, caption, etc.)
+         In the folder of skin CSS file there are also:
+         - .png and .svg icons sprite, 
+         - preloader.gif (for browsers that do not support CSS animations) -->
+    <link rel="stylesheet" href="{{asset('node_modules/photoswipe/dist/default-skin/default-skin.css')}}"> 
+
+    <!-- Core JS file -->
+    <script src="{{asset('node_modules/photoswipe/dist/photoswipe.min.js')}}"></script> 
+
+    <!-- UI JS file -->
+    <script src="{{asset('node_modules/photoswipe/dist/photoswipe-ui-default.min.js')}}"></script> 
+    <style type="text/css">
+        :host{
+            display: block;
+        }
+        #mainContainer {
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            @apply(--layout-vertical);
+            @apply(--layout-center-center);
+        }
+
+        #productCard {
+            margin: 44px 0px;
+            width: 60%;
+            background-color: white;
+            min-height: 541px;
+            z-index: 2;
+        }
+
+        #productCard paper-icon-button {
+            position: absolute;
+            right: 16px;
+            margin-top: 16px;
+        }
+
+        #productCard .title {
+            font-size: 2.5em;
+            font-weight: 300;
+            color: #555;
+        }
+
+        #productCard .author {
+            font-size: 1.8em;
+            font-weight: 300;
+            color: #444;
+        }
+
+        #productCard .description {
+            word-wrap: break-word;
+            font-size: 1.3em;
+            font-weight: 300;
+            color: #111;
+            margin: 1em;
+            margin-top: 3em;
+        }
+        #productCard .menu {
+            word-wrap: break-word;
+            font-size: 1.3em;
+            font-weight: 300;
+            color: #111;
+            margin: 1em;
+            margin-top: 3em;
+        }
+
+        .horizontal {
+            @apply(--layout-horizontal);
+        }
+
+        .vertical {
+            @apply(--layout-vertical);
+        }
+
+        @media (max-width: 890px) {
+            #productCard {
+                margin: initial;
+                width: 100%;
+            }
+        }
+
+        .my-gallery {
+            width: 100%;
+            float: left;
+        }
+        .my-gallery img {
+            width: 100%;
+            height: auto;
+        }
+        .my-gallery figure {
+            display: block;
+            float: left;
+            margin: 0 5px 5px 0;
+            width: 150px;
+        }
+        .my-gallery figcaption {
+            display: none;
+        }
+
+
+    </style>   
+    <template>
+        <!-- Main Content -->
+        <div id="mainContainer">
+            <paper-material id="productCard">
+                <div class="horizontal">
+                    <paper-icon-button on-click="_closeCard" icon="close"></paper-icon-button>                    
+                    <img  width="192px" height="192px" src="[[product.launcher]]"/>
+                    <div style="margin-left: 2em; margin-top: 2em;" class="vertical">
+                        <span class="title">[[product.name]]</span>
+                        <span class="author" >[[product.membre]]</span>
+                        <span class="author" id="prjtId" style="display:none;">[[product.idProjet]]</span>
+                        {% for i in 0..10 %}
+                            <span class="author"  style="display: none;" >[[product.imageIdee{{i}}]]</span>
+                        {% endfor %}   
+                    </div>                    
+                </div>
+                <div class="description">
+                    [[product.descriptionComplete]]
+                    <br>
+                    <br>
+                    Pour plus d'information sur les taches :
+                    <button id="btnTaches" class="btn teal waves-effect waves-light center">Tableau des taches
+                        <i class="Tiny material-icons right">playlist_add</i>
+                    </button>
+
+                    <h2>Gallery:</h2>
+
+                    <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+
+                        <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                            <a href="{{asset('uploads/pictures/')}}[[product.imageIdee0]]" itemprop="contentUrl" data-size="1024x1024">
+                                <img  src="{{asset('uploads/pictures/')}}[[product.imageIdee0]]" itemprop="thumbnail" style='height:150px; width: 150px;' alt="Image description" />
+                            </a>
+                            <figcaption style="text-align: justify;" itemprop="caption description">[[product.descriptionComplete]]</figcaption>
+
+                        </figure>
+
+                        <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                            <a href="{{asset('uploads/pictures/')}}[[product.imageIdee1]]" itemprop="contentUrl" data-size="1024x1024">
+                                <img  src="{{asset('uploads/pictures/')}}[[product.imageIdee1]]" itemprop="thumbnail" style='height:150px; width: 150px;' alt="Image description" />
+                            </a>
+                            <figcaption itemprop="caption description">[[product.descriptionComplete]]</figcaption>
+
+                        </figure>
+
+                        <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                            <a href="{{asset('uploads/pictures/')}}[[product.imageIdee2]]" itemprop="contentUrl" data-size="1024x1024">
+                                <img  src="{{asset('uploads/pictures/')}}[[product.imageIdee2]]" itemprop="thumbnail" style='height:150px; width: 150px;' alt="Image description" />
+                            </a>
+                            <figcaption itemprop="caption description">[[product.descriptionComplete]]</figcaption>
+
+                        </figure>
+                            
+                        <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                            <a href="{{asset('uploads/pictures/')}}[[product.imageIdee3]]" itemprop="contentUrl" data-size="1024x1024">
+                                <img  src="{{asset('uploads/pictures/')}}[[product.imageIdee3]]" itemprop="thumbnail" style='height:150px; width: 150px;' alt="Image description" />
+                            </a>
+                            <figcaption itemprop="caption description">[[product.descriptionComplete]]</figcaption>
+
+                        </figure>
+                            
+                        <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                            <a href="{{asset('uploads/pictures/')}}[[product.imageIdee4]]" itemprop="contentUrl" data-size="1024x1024">
+                                <img  src="{{asset('uploads/pictures/')}}[[product.imageIdee4]]" itemprop="thumbnail" style='height:150px; width: 150px;' alt="Image description" />
+                            </a>
+                            <figcaption itemprop="caption description">[[product.descriptionComplete]]</figcaption>
+
+                        </figure>
+                            
+                        <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                            <a href="{{asset('uploads/pictures/')}}[[product.imageIdee5]]" itemprop="contentUrl" data-size="1024x1024">
+                                <img  src="{{asset('uploads/pictures/')}}[[product.imageIdee5]]" itemprop="thumbnail" style='height:150px; width: 150px;' alt="Image description" />
+                            </a>
+                            <figcaption itemprop="caption description">[[product.descriptionComplete]]</figcaption>
+
+                        </figure>
+                            
+                        <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                            <a href="{{asset('uploads/pictures/')}}[[product.imageIdee6]]" itemprop="contentUrl" data-size="1024x1024">
+                                <img  src="{{asset('uploads/pictures/')}}[[product.imageIdee6]]" itemprop="thumbnail" style='height:150px; width: 150px;' alt="Image description" />
+                            </a>
+                            <figcaption itemprop="caption description">[[product.descriptionComplete]]</figcaption>
+
+                        </figure>   
+                    </div>                   
+
+                    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+                    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+                        <!-- Background of PhotoSwipe. 
+                             It's a separate element, as animating opacity is faster than rgba(). -->
+                        <div class="pswp__bg"></div>
+
+                        <!-- Slides wrapper with overflow:hidden. -->
+                        <div class="pswp__scroll-wrap">
+
+                            <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+                            <!-- don't modify these 3 pswp__item elements, data is added later on. -->
+                            <div class="pswp__container">
+                                <div class="pswp__item"></div>
+                                <div class="pswp__item"></div>
+                                <div class="pswp__item"></div>
+                            </div>
+
+                            <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                            <div class="pswp__ui pswp__ui--hidden">
+
+                                <div class="pswp__top-bar">
+
+                                    <!--  Controls are self-explanatory. Order can be changed. -->
+
+                                    <div class="pswp__counter"></div>
+
+                                    <button class="pswp__button pswp__button--close" title="Close (Esc)" id='btnclose'></button>
+
+                                    <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                                    <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                                    <!-- element will get class pswp__preloader--active when preloader is running -->
+                                    <div class="pswp__preloader">
+                                        <div class="pswp__preloader__icn">
+                                            <div class="pswp__preloader__cut">
+                                                <div class="pswp__preloader__donut"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                                    <div class="pswp__share-tooltip"></div> 
+                                </div>
+
+                                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                                </button>
+
+                                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                                </button>
+
+                                <div class="pswp__caption">
+                                    <div class="pswp__caption__center"></div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </paper-material>
+        </div>
+
+        <div id="ModalTaches" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Les Taches</h4>
+                <table class="bordered highlight responsive-table centered">
+                    <thead>
+                        <tr>
+                            <th>Tache</th>
+                            <th>Remuneration</th>
+                            <th>Competence</th>
+                            <th>Choice</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodytable">
+                        <tr>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <div>
+                    <button id="confirm" class="modal-action modal-close waves-effect waves-green btn-flat">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+                <div>
+                    <button id="Cancel" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel                    
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </template>
+</dom-module>
+
+<script type="text/javascript">
+    addEventListener('WebComponentsReady', function () {
+        Polymer({
+            is: "portfolio-showcase",
+            behaviors: [
+                Polymer.NeonAnimationRunnerBehavior,
+                Polymer.NeonSharedElementAnimatableBehavior
+            ],
+            properties: {
+                product: {
+                    observer: "_productChanged"
+                },
+                sharedElements: {
+                    value: function () {
+                        return {
+                            'hero': this.$.productCard
+                        }
+                    }
+                },
+                // DEBUT : CONFIGURATIONS DES ANIMATIONS
+                animationConfig: {
+                    value: function () {
+                        return {
+                            'entry': [{
+                                    name: 'hero-animation',
+                                    id: 'hero',
+                                    toPage: this
+                                }, {
+                                    name: 'fade-in-animation',
+                                    node: this
+                                }],
+                            'exit': [{
+                                    name: 'fade-out-animation',
+                                    node: this
+                                }, {
+                                    name: 'scale-down-animation',
+                                    node: this
+                                }]
+                        }
+                    }
+                }
+                // FIN : CONFIGURATIONS DES ANIMATIONS
+            },
+            ready: function () {
+                
+
+                var competences;
+                this.openPhotoSwipe('.my-gallery');
+                $('#btnclose').click(function () {
+                    $('#divNav').css("z-index", "998");
+                });
+
+                $(window).scroll(function () {
+                    $('#divNav').css("z-index", "998");
+                });
+
+                $("#confirm").click(function () {
+                    var selected = [];
+                    var error = 0;
+                    var errortext = "Vous ne possedez pas cette (ou ces) competence(s): ";
+                    $('#bodytable input:checked').each(function () {
+                        selected.push([$(this).attr('name'), $(this).attr('id')]);
+                        var i = 0;
+                        while ((i < competences.length) && ($(this).attr('name') != competences[i]['nom'])) {
+                            i++;
+                        }
+                        if (i == competences.length) {
+                            error = 1;
+                            errortext = errortext + $(this).attr('name') + " ";
+                            $(this).prop("checked", false);
+                        } else {
+                            $(this).prop("disabled", true);
+                            $.ajax({
+                                type: "POST",
+                                url: "{{ path('AddMembreTache')}}",
+                                beforeSend: function (xhr) {
+                                },
+                                data: {
+                                    idSolution: $(this).attr('id')
+                                },
+                                cache: false,
+                                success: function (data) {
+                                }
+                            }).fail(function () {
+                                $('#modalProcess').closeModal();
+                                swal("Erreur !",
+                                        "Il y a quelque chose qui cloche",
+                                        "error"
+                                        );
+                            });
+                        }
+                    });
+                    if (error == 1) {
+                        swal("Erreur !",
+                                errortext,
+                                "error"
+                                );
+                    }
+                    $('#modalProcess').closeModal();
+
+
+
+                });
+                function isEmpty(el) {
+                    return !$.trim(el.html())
+                }
+                $('#btnTaches').click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ path('taches')}}",
+                        beforeSend: function (xhr) {
+                            $('#modalProcess').openModal();
+                        },
+                        data: {
+                            idprj: $('#prjtId').text()
+                        },
+                        cache: false,
+                        success: function (data) {
+                            competences = data["resCompt"];
+                            console.log(isEmpty($('#bodytable tr')));
+                            $('#bodytable').empty();
+                            for (var i = 0; i < data["resSol"].length; i++) {
+                                var table = document.getElementById("bodytable");
+                                var row = table.insertRow(0);
+                                var cell1 = row.insertCell(0);
+                                var cell2 = row.insertCell(1);
+                                var cell3 = row.insertCell(2);
+                                var cell4 = row.insertCell(3);
+                                var cell5 = row.insertCell(4);
+                                cell1.innerHTML = data["resSol"][i][0]["tache"];
+                                cell2.innerHTML = data["resSol"][i][0]["remuneration"];
+                                cell3.innerHTML = data["resSol"][i]["nom"];
+                                console.log(data["resSol"][i]["id"]);
+                                if (data["resSol"][i]["id"] == null) {
+                                    cell4.innerHTML = "<p><input type='checkbox' class='filled-in' name='" + data["resSol"][i]["nom"] + "' id='" + data["resSol"][i][0]["id"] + "' /><label for='" + data["resSol"][i][0]["id"] + "'></label></p>"
+                                } else {
+                                    cell4.innerHTML = "<p><input type='checkbox' disabled='disabled' class='filled-in' name='" + data["resSol"][i]["nom"] + "' id='" + data["resSol"][i][0]["id"] + "' /><label for='" + data["resSol"][i][0]["id"] + "'></label></p>"
+                                }
+                                cell5.innerHTML = "<span style='display:none;'>" + data["resSol"][i][0]["id"] + "</span>";
+                            }
+
+                            $('#modalProcess').closeModal();
+
+                            $('#ModalTaches').openModal({dismissible: false});
+                        }
+                    }).fail(function () {
+                        $('#modalProcess').closeModal();
+                        swal("Erreur !",
+                                "Il y a quelque chose qui cloche",
+                                "error"
+                                );
+                    });
+
+                })
+            },
+            openPhotoSwipe: function (gallerySelector) {
+
+                // parse slide data (url, title, size ...) from DOM elements 
+                // (children of gallerySelector)
+                var parseThumbnailElements = function (el) {
+                    var thumbElements = el.childNodes,
+                            numNodes = thumbElements.length,
+                            items = [],
+                            figureEl,
+                            linkEl,
+                            size,
+                            item;
+
+                    for (var i = 0; i < numNodes; i++) {
+
+                        figureEl = thumbElements[i]; // <figure> element
+
+                        // include only element nodes 
+                        if (figureEl.nodeType !== 1) {
+                            continue;
+                        }
+
+                        linkEl = figureEl.children[0]; // <a> element
+
+                        size = linkEl.getAttribute('data-size').split('x');
+
+                        // create slide object
+                        item = {
+                            src: linkEl.getAttribute('href'),
+                            w: parseInt(size[0], 10),
+                            h: parseInt(size[1], 10)
+                        };
+
+
+
+                        if (figureEl.children.length > 1) {
+                            // <figcaption> content
+                            item.title = figureEl.children[1].innerHTML;
+                        }
+
+                        if (linkEl.children.length > 0) {
+                            // <img> thumbnail element, retrieving thumbnail url
+                            item.msrc = linkEl.children[0].getAttribute('src');
+                        }
+
+                        item.el = figureEl; // save link to element for getThumbBoundsFn
+                        items.push(item);
+                    }
+
+                    return items;
+                };
+
+                // find nearest parent element
+                var closest = function closest(el, fn) {
+                    return el && (fn(el) ? el : closest(el.parentNode, fn));
+                };
+
+                // triggers when user clicks on thumbnail
+                var onThumbnailsClick = function (e) {
+                    $('#divNav').css("z-index", "-1");
+                    e = e || window.event;
+                    e.preventDefault ? e.preventDefault() : e.returnValue = false;
+
+                    var eTarget = e.target || e.srcElement;
+
+                    // find root element of slide
+                    var clickedListItem = closest(eTarget, function (el) {
+                        return (el.tagName && el.tagName.toUpperCase() === 'FIGURE');
+                    });
+
+                    if (!clickedListItem) {
+                        return;
+                    }
+
+                    // find index of clicked item by looping through all child nodes
+                    // alternatively, you may define index via data- attribute
+                    var clickedGallery = clickedListItem.parentNode,
+                            childNodes = clickedListItem.parentNode.childNodes,
+                            numChildNodes = childNodes.length,
+                            nodeIndex = 0,
+                            index;
+
+                    for (var i = 0; i < numChildNodes; i++) {
+                        if (childNodes[i].nodeType !== 1) {
+                            continue;
+                        }
+
+                        if (childNodes[i] === clickedListItem) {
+                            index = nodeIndex;
+                            break;
+                        }
+                        nodeIndex++;
+                    }
+
+
+
+                    if (index >= 0) {
+                        // open PhotoSwipe if valid index found
+                        openPhotoSwipe(index, clickedGallery);
+                    }
+                    return false;
+                };
+
+                // parse picture index and gallery index from URL (#&pid=1&gid=2)
+                var photoswipeParseHash = function () {
+                    var hash = window.location.hash.substring(1),
+                            params = {};
+
+                    if (hash.length < 5) {
+                        return params;
+                    }
+
+                    var vars = hash.split('&');
+                    for (var i = 0; i < vars.length; i++) {
+                        if (!vars[i]) {
+                            continue;
+                        }
+                        var pair = vars[i].split('=');
+                        if (pair.length < 2) {
+                            continue;
+                        }
+                        params[pair[0]] = pair[1];
+                    }
+
+                    if (params.gid) {
+                        params.gid = parseInt(params.gid, 10);
+                    }
+
+                    return params;
+                };
+
+                var openPhotoSwipe = function (index, galleryElement, disableAnimation, fromURL) {
+                    var pswpElement = document.querySelectorAll('.pswp')[0],
+                            gallery,
+                            options,
+                            items;
+
+                    items = parseThumbnailElements(galleryElement);
+
+                    // define options (if needed)
+                    options = {
+                        // define gallery index (for URL)
+                        galleryUID: galleryElement.getAttribute('data-pswp-uid'),
+                        getThumbBoundsFn: function (index) {
+                            // See Options -> getThumbBoundsFn section of documentation for more info
+                            var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
+                                    pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+                                    rect = thumbnail.getBoundingClientRect();
+
+                            return {x: rect.left, y: rect.top + pageYScroll, w: rect.width};
+                        }
+
+                    };
+
+                    // PhotoSwipe opened from URL
+                    if (fromURL) {
+                        if (options.galleryPIDs) {
+                            // parse real index when custom PIDs are used 
+                            // http://photoswipe.com/documentation/faq.html#custom-pid-in-url
+                            for (var j = 0; j < items.length; j++) {
+                                if (items[j].pid == index) {
+                                    options.index = j;
+                                    break;
+                                }
+                            }
+                        } else {
+                            // in URL indexes start from 1
+                            options.index = parseInt(index, 10) - 1;
+                        }
+                    } else {
+                        options.index = parseInt(index, 10);
+                    }
+
+                    // exit if index not found
+                    if (isNaN(options.index)) {
+                        return;
+                    }
+
+                    if (disableAnimation) {
+                        options.showAnimationDuration = 0;
+                    }
+
+                    // Pass data to PhotoSwipe and initialize it
+                    gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+                    gallery.init();
+                };
+
+                // loop through all gallery elements and bind events
+                var galleryElements = document.querySelectorAll(gallerySelector);
+
+                for (var i = 0, l = galleryElements.length; i < l; i++) {
+                    galleryElements[i].setAttribute('data-pswp-uid', i + 1);
+                    galleryElements[i].onclick = onThumbnailsClick;
+                }
+
+                // Parse URL and open gallery if it contains #&pid=3&gid=1
+                var hashData = photoswipeParseHash();
+                if (hashData.pid && hashData.gid) {
+                    openPhotoSwipe(hashData.pid, galleryElements[ hashData.gid - 1 ], true, true);
+                }
+            },
+            // FIN : PROPRIETES
+            _closeCard: function () {
+                this.fire("changePage", "AllIdeas");
+            },
+            _productChanged: function (data) {
+                this.$.mainContainer.style.backgroundImage = "url('" + data["header"] + "')";
+            }
+        })
+    })
+</script>

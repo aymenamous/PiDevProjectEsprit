@@ -1,0 +1,140 @@
+{% extends "CrowdRiseBundle::layout2.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block fos_user_content %}
+
+    <div class="modal fade card-panel e3f2fd blue lighten-5"  id="modal1"   role="dialog"  >
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"> <center> Log in </center></h4>
+            </div>
+            <div class="modal-body">
+                <div id="er">
+
+
+                </div>
+                <form  method="post" >
+                    <br>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                    <div class="input-field" style=" margin-left:20%; margin-right: 19%">
+                        <i class="material-icons prefix">account_circle</i>
+
+
+                        <label for="username">{{ 'security.login.username'|trans }}</label>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+
+                    </div>
+                    <br>
+                    <div class="input-field" style=" margin-left:20%; margin-right: 19%">
+                        <i class="material-icons prefix"> vpn_key</i>
+
+                        <label for="password">{{ 'security.login.password'|trans }}</label>
+                        <input type="password" id="password" name="_password" required="required" />
+
+                    </div>
+                    <br>
+                    <div class="input-field " style=" margin-left:16%; margin-right:50%">
+                        <input type="checkbox" id="remember_me" name="_remember_me"checked="checked" value="on" class="filled-in" />
+                        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                    </div>
+                    <br>
+                    <div class="input-field "style=" margin-left:20%; margin-right: 19%">
+
+
+                        <a href="{{ path('fos_user_resetting_request') }}" style="font-size: 16">mot de passe oublié ? </a>
+
+                    </div>
+                    <br>
+                    <div class="center-align">
+                        <button type="button"   class="waves-effect waves-light btn"  id="_submit" name="_submit"  type="submit" >{{ 'security.login.submit'|trans  }}</button>
+
+<br><br><br>
+                    </div>
+                        <br><br><br>
+
+                </form>
+
+            </div>
+            <br>
+        </div>
+    </div>
+
+    {% block hwi_oauth_content %}
+
+        {# Display oauth errors (here using Bootstrap) #}
+        {% if error is defined and error %}
+            <div class="row">
+                <div class="col-md-12 alert alert-danger text-center">
+                    <span class="error">{{ error }}</span>
+                </div>
+            </div>
+        {% endif %}
+
+
+
+
+    {% endblock hwi_oauth_content %}    
+
+</div>
+</div>
+
+{% endblock fos_user_content %}
+
+
+{% block scriptform %}
+    <script>
+        $(document).ready(function () {
+            $('#_submit').click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: $('form').attr('method'),
+                    url: '{{ path("fos_user_security_check") }}',
+                    data: $('form').serialize(),
+                    dataType: "json",
+                    success: function (data, status, object) {
+                        if (data.error) {
+                            $('#er').html('<div style="padding:1" class="alert alert-danger" role="alert"> nom de compte ou mot de passe incorrect </div>');
+
+                        }
+                        else {
+                            if (document.getElementById("username").value == "admin")
+                            {
+                                setTimeout(function () {
+                                    window.location = "{{path('crowdrise_admin')}}"
+                                }, 2000);
+
+                            }
+
+
+                            else {
+
+                                $('#er').html('<div style="padding:1"  class="alert alert-success" role="alert">Bienvenue </div>');
+                                setTimeout(function () {
+                                    window.location = "{{path('crowd_rise_homepage')}}"
+                                }, 2000);
+
+                            }
+                        }
+                    },
+                    error: function (data, status, object) {
+                        console.log(data.message);
+
+                    }
+                });
+            });
+        });
+
+
+
+
+    </script>
+{% endblock  %}
+
+
+
+
+
+

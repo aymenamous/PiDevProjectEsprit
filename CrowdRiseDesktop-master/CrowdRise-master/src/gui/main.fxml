@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.mainController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0">
+         <image>
+            <Image url="@intro-bg.jpg" />
+         </image>
+      </ImageView>
+      <HBox layoutX="4.0" layoutY="15.0" prefHeight="76.0" prefWidth="592.0" />
+      <Label layoutX="163.0" layoutY="72.0" prefHeight="95.0" prefWidth="475.0" text=" CROWDRISE" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Lucida Bright Demibold" size="69.0" />
+         </font>
+      </Label>
+      <Label layoutX="270.0" layoutY="216.0" prefHeight="27.0" prefWidth="336.0" text="A Crowdsourcing and Crowdfunding app." textFill="#c6c5c5">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="302.0" layoutY="253.0" prefHeight="27.0" prefWidth="276.0" text="Created by The Brogrammers" textFill="#c6c5c5">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Circle layoutX="418.0" layoutY="372.0" opacity="0.52" radius="38.0" stroke="WHITE" strokeLineJoin="BEVEL" strokeType="INSIDE">
+         <fill>
+            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="BLACK" offset="0.3256704980842911" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Circle>
+      <Text fill="WHITE" layoutX="398.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\\/">
+         <font>
+            <Font name="System Bold" size="46.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

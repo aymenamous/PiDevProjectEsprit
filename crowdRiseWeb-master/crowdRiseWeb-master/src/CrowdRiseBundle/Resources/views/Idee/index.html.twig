@@ -1,0 +1,87 @@
+{# empty Twig template #}
+
+{% extends "CrowdRiseBundle::layout.html.twig" %}
+{% block Title %}CrowdRise | Browse projects{% endblock %}
+{% block contentNavBar %}
+    <li><a href="{{path('crowdrise_idee_add')}}">Nouvelle Idée</a></li>
+    {% endblock %}
+    {% block content %}
+    
+    <section style='height:200px;'>
+        <img src="{{asset('uploads/pictures/Barriere.jpg')}}" style='height:200px;width: 100%;' alt="Smiley face" >
+    </section>
+    <section id="featured" style="height:2000px;" >
+        <!-- style -->
+        <link rel="stylesheet" href="{{asset('styles/main.css')}}">
+        <style is="custom-style">
+            paper-tabs {
+                color: blue;
+                --paper-tabs-selection-bar-color: #26a69a;
+            }
+            paper-card {
+                margin: 8px 16px;
+                width: 200px;
+                height: 200px;
+                --paper-card-header-color: white;
+            }
+
+            @media (max-width: 601px) {
+                paper-card {
+                    width: 100% !important;
+                    margin-left: 0px;
+                    margin-right: 0px;
+                }
+            }
+        </style>  
+        <!-- End style -->
+
+        <!-- javascript -->
+        <script src="{{asset('bower_components/webcomponentsjs/webcomponents-lite.js')}}"></script>
+        <script src="{{asset('scripts/app.js')}}"></script>
+        
+        <!-- End javascript -->
+
+        <!-- imports + templates -->
+        {{ include('CrowdRiseBundle::elements.html.twig') }}
+        <!-- End imports + templates -->      
+
+
+        <template is="dom-bind" id="app"> 
+            <section style="height : 1500px;">
+                <!--<center>
+                    <nav style="width:500px; border-radius: 10px;box-shadow: 0px 0px 5px #848D94 ; margin-top: 1%;margin-bottom: 1%;" >
+                        <div style="width:500px;border-radius: 10px;" class="nav-wrapper">                        
+                            <div class="input-field teal" style="border-radius: 10px;">
+                                <input id="search"  type="search" class="input-field teal" style="border-radius: 10px;">
+                                <label for="search"><i class="material-icons">search</i></label>
+                                <i class="material-icons">close</i>
+                            </div>                        
+                        </div>
+                    </nav>
+                </center>-->
+                <paper-header-panel mode="scroll">
+                    <!-- START THE TOOLBAR !-->
+                    <paper-toolbar id="indexToolbar"> 
+                        <paper-tabs class="bottom"  attr-for-selected="data-route" selected="{{route}}">
+                            <paper-tab data-route="AllIdeas">Browse All projects</paper-tab>
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <paper-tab data-route="MesIdees">Mes Idees</paper-tab>
+                                {% endif %}  
+                        </paper-tabs>
+                    </paper-toolbar>
+                    <!-- END THE TOOLBAR !-->
+
+                    <!-- START THE IRON-PAGES !-->
+                    <neon-animated-pages attr-for-selected="data-route" selected="{{route}}">
+                        <portfolio-AllIdeas data-route="AllIdeas"></portfolio-AllIdeas>
+                        <portfolio-MesIdees data-route="MesIdees"></portfolio-MesIdees>
+                        <portfolio-showcase data-route="showcase"></portfolio-showcase>
+                        <portfolio-showcaseMesIdees data-route="showcaseMesIdees"></portfolio-showcaseMesIdees>
+                    </neon-animated-pages>
+                    <!-- END THE IRON-PAGES !-->
+                </paper-header-panel>
+            </section>
+        </template>
+
+    </section>               
+{% endblock %}

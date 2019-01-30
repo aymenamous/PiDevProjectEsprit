@@ -1,0 +1,19 @@
+{# empty Twig template #}
+{% extends "CrowdRiseBundle::layout.html.twig" %}
+{% block script %}
+    <script>
+        $(document).ready(function(){
+            $('#intro').css({
+                'background-image' :'display',
+                'height': 'auto'
+            });
+            $('#msg').css({
+                'display' :'none'
+            });
+        });
+        
+    </script> 
+{% endblock %}
+{% block chat %}
+    {% render(controller('CunningsoftChatBundle:Chat:show')) %}
+{% endblock %}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.*?>
+
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="600.0" styleClass="body2" stylesheets="@../../ressources/jfoenix-components.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ProblemAddController">
+   <children>
+      <Label layoutX="222.0" layoutY="21.0" prefHeight="27.0" prefWidth="188.0" styleClass="te" text="Poser votre Question :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="67.0" prefHeight="17.0" prefWidth="56.0" text=" Titre* :" textFill="WHITE" />
+      <JFXTextField fx:id="txtAjout" layoutX="92.0" layoutY="67.0" maxWidth="479.0" prefHeight="25.0" prefWidth="479.0" promptText="saisir le titre de votre idée" styleClass="jfx-text-field" stylesheets="@../../ressources/jfoenix-components.css" />
+      <Label layoutX="15.0" layoutY="117.0" prefHeight="17.0" prefWidth="78.0" text=" Description* :" textFill="WHITE" />
+      <TextField fx:id="txtDescription" alignment="TOP_LEFT" layoutX="92.0" layoutY="125.0" prefHeight="159.0" prefWidth="479.0" styleClass="jfx-text-area" />
+      <Label layoutX="18.0" layoutY="314.0" text="Mots-Clés :" textFill="WHITE" />
+      <JFXTextField fx:id="txtmotcles" layoutX="92.0" layoutY="319.0" maxWidth="391.0" prefHeight="25.0" prefWidth="391.0" styleClass="jfx-text-field" />
+      <CheckBox fx:id="checkbox" layoutX="18.0" layoutY="386.0" mnemonicParsing="false" styleClass="custom-jfx-check-box" text="j'ai lu et j'accepte toutes les conditions*." textFill="WHITE" />
+      <Label layoutX="13.0" layoutY="413.0" text="* : Champ obligatoire" textFill="#fffdfd" />
+     
+      <JFXButton fx:id="btnAjout" layoutX="122.0" layoutY="450.0" mnemonicParsing="false" onAction="#method" prefHeight="25.0" prefWidth="107.0" styleClass="button-raised" text="Ajouter ">
+
+      </JFXButton>
+      <JFXButton fx:id="quit" layoutX="368.0" layoutY="450.0" mnemonicParsing="false" onAction="#onBtnquitClicked" prefHeight="25.0" prefWidth="107.0" styleClass="button-raised" text="Quitter">
+        
+      </JFXButton>
+  
+      <JFXProgressBar styleClass="jfx-progress-bar" layoutX="65.0" layoutY="355.0" prefHeight="18.0" prefWidth="529.0" progress="0.0" />
+   </children>
+</AnchorPane>

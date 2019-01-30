@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="body" stylesheets="@../ressources/jfoenix-components.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.Signalisation2Controller">
+   <children>
+      <TextArea fx:id="txtSignal" layoutX="25.0" layoutY="236.0" prefHeight="86.0" prefWidth="551.0" promptText="Tapez la raison de votre siganlisation" styleClass="jfx-text-area" />
+      <Button fx:id="btnSignal" layoutX="396.0" layoutY="338.0" mnemonicParsing="false" onAction="#Confirmer" prefHeight="44.0" prefWidth="180.0" styleClass="button-raised" text="Confirmer" />
+      <RadioButton fx:id="CI" layoutX="34.0" layoutY="27.0" mnemonicParsing="false" text="Contenu indésirabl " />
+      <RadioButton fx:id="In" layoutX="34.0" layoutY="82.0" mnemonicParsing="false" text="Insulte" />
+      <RadioButton fx:id="AI" layoutX="34.0" layoutY="143.0" mnemonicParsing="false" text="Aucun interet" />
+      <Text layoutX="20.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Autres" />
+      <PointLight color="CHARTREUSE" layoutX="396.0" layoutY="103.0" lightOn="true" />
+      
+   </children>
+</AnchorPane>

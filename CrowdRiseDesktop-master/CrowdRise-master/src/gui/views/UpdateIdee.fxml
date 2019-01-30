@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="pk" onMouseClicked="#onMouseClicked" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(#61a2b1, #2A5058);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.UpdateIdeeController">
+   <children>
+      <TextField fx:id="nom" layoutX="30.0" layoutY="182.0" prefHeight="25.0" prefWidth="180.0" />
+      <DatePicker fx:id="dateDebut" layoutX="594.0" layoutY="53.0" />
+      <DatePicker fx:id="dateFin" layoutX="594.0" layoutY="103.0" />
+      <TextArea fx:id="description" layoutX="30.0" layoutY="263.0" prefHeight="171.0" prefWidth="743.0" />
+      <Label layoutX="28.0" layoutY="145.0" prefHeight="17.0" prefWidth="32.0" text="Titre" textFill="WHITE" />
+      <Label layoutX="516.0" layoutY="57.0" text="Date debut" textFill="WHITE" />
+      <Label layoutX="516.0" layoutY="107.0" text="Date fin" textFill="WHITE" />
+      <Label layoutX="30.0" layoutY="234.0" text="Description" textFill="WHITE" />
+      <Button fx:id="btnMenu" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBtnMenuClicked" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #d3d3d3;" text="Afficher Menu" />
+      <Button fx:id="btnReset" layoutX="676.0" layoutY="547.0" mnemonicParsing="false" onAction="#onBtnResetClicked" prefHeight="37.0" prefWidth="92.0" text="Reset" />
+      <Button fx:id="btnUpdate" layoutX="562.0" layoutY="547.0" mnemonicParsing="false" onAction="#onBtnUpdateClicked" prefHeight="37.0" prefWidth="92.0" text="Enregistrer" />
+      <Label layoutX="28.0" layoutY="463.0" text="Remuneration" textFill="WHITE" />
+      <TextField fx:id="remuneration" layoutX="120.0" layoutY="459.0" prefHeight="25.0" prefWidth="92.0" />
+      <Pane fx:id="pane" layoutX="-209.0" prefHeight="608.0" prefWidth="209.0" style="-fx-background-color: #d3d3d3;">
+         <children>
+            <Button fx:id="btnSupprimer" layoutX="27.0" layoutY="210.0" mnemonicParsing="false" onAction="#onBtnSupprimerClicked" prefHeight="37.0" prefWidth="155.0" style="-fx-background-color: linear-gradient(#61a2b1, #2A5058);" text="Supprimer" textFill="WHITE" />
+            <Button fx:id="btnModifier" layoutX="27.0" layoutY="154.0" mnemonicParsing="false" onAction="#onBtnModifierClicked" prefHeight="37.0" prefWidth="155.0" style="-fx-background-color: linear-gradient(#61a2b1, #2A5058);" text="Modifier" textFill="WHITE" />
+            <Button fx:id="btnQuitter" layoutX="27.0" layoutY="267.0" mnemonicParsing="false" onAction="#onQuitterClicked" prefHeight="37.0" prefWidth="155.0" style="-fx-background-color: linear-gradient(#61a2b1, #2A5058);" text="Quitter" textFill="#fffefe" />
+            <Label alignment="CENTER" layoutX="55.0" layoutY="33.0" prefHeight="37.0" prefWidth="99.0" style="-fx-background-color: linear-gradient(#61a2b1, #2A5058);" text="Menu" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="ModifierSol" layoutX="27.0" layoutY="107.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" style="-fx-background-color: linear-gradient(#61a2b1, #2A5058);" text="Modifier Solution" textFill="WHITE" />
+         </children>
+      </Pane>
+      <VBox layoutX="230.0" layoutY="17.0" onMouseEntered="#onPhotoEntred" onMouseExited="#onPhotoExisted" prefHeight="180.0" prefWidth="280.0">
+         <children>
+            <ImageView fx:id="imgv_idee" fitHeight="152.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="true" />
+            <Hyperlink fx:id="link_image" alignment="TOP_LEFT" onAction="#onLinkClicked" prefHeight="36.0" prefWidth="231.0" text="Modifier l'image de votre idée" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
